@@ -27,6 +27,7 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem "capybara"
+  gem "valid_attribute"
 end
 
 group :development, :test do
