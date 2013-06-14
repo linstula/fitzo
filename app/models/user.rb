@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :first_name, :last_name
   # attr_accessible :title, :body
 
-  validates_presence_of :first_name, :last_name, :username
+  validates_presence_of :first_name, :last_name, :username, :role
+  validates_inclusion_of :role, in: ["user", "trainer"]
 end
