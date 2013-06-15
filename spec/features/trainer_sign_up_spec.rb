@@ -18,7 +18,10 @@ describe "A Trainer signing up" do
 
     click_on "Submit"
 
+    trainer = User.last
+
     expect(page).to have_content("Welcome! You have signed up successfully.")
+    expect(trainer.role).to eql("trainer")
     expect(User.count).to eql(prev_count + 1)
   end
 
