@@ -1,0 +1,22 @@
+%nav.top-bar
+  %ul.title-area
+    / Title Area
+    %li.name
+      %h1
+        = link_to "Fitzo", root_path
+    / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
+    %li.toggle-topbar.menu-icon
+      %a{:href => "#"}
+  %section.top-bar-section
+
+    %ul.left
+      
+    %ul.right
+      %li.divider.hide-for-small
+      %li
+        - if user_signed_in?
+          = link_to "Sign out", destroy_user_session_path, method: :delete
+        - else
+          = link_to "Sign in", new_user_session_path
+
+      
