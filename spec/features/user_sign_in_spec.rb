@@ -13,7 +13,7 @@ describe "A user signing in" do
     fill_in "Password", with: registered_user.password
 
     expect(page).to have_content("Successfully signed in")
-    expect(page).to have_selector(:link_or_button "Sign out")
+    expect(page).to have_selector(link_or_button: "Sign out")
     expect(current_user).to eql(registered_user)
   end
 
