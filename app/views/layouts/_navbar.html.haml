@@ -7,16 +7,22 @@
     / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
     %li.toggle-topbar.menu-icon
       %a{:href => "#"}
+        %span Menu
   %section.top-bar-section
-
-    %ul.left
-      
     %ul.right
-      %li.divider.hide-for-small
-      %li
-        - if user_signed_in?
-          = link_to "Sign out", destroy_user_session_path, method: :delete
-        - else
+      - if user_signed_in?
+        %li
+          %li.has-dropdown
+            = link_to "#{current_user.username}", "#"
+            %ul.dropdown
+              %li
+                = link_to "Edit Account", 
+                  edit_user_registration_path(current_user)
+              %li
+                = link_to "Sign out", destroy_user_session_path, method: :delete
+      - else
+        %li.divider
+        %li
           = link_to "Sign in", new_user_session_path
 
       
