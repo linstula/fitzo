@@ -20,7 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)
         if resource.role == "trainer"
-          redirect_to profile_path(resource) 
+          redirect_to user_profile_path(resource) 
         else
           respond_with resource, :location => after_sign_up_path_for(resource)
         end
