@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe "A Trainer signing up" do
+
+  let!(:user)     { FactoryGirl.create(:user) }
+  let!(:trainer)  { FactoryGirl.create(:trainer) }
   
   it "can create an account" do
     prev_count = User.count
@@ -23,6 +26,17 @@ describe "A Trainer signing up" do
     expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(trainer.role).to eql("trainer")
     expect(User.count).to eql(prev_count + 1)
+  end
+
+  it "has a profile page" do
+    prev_count = Profile.count
+    new_trainer = trainer
+    sign_in(new_trainer)
+
+    visit profile_path(trainer)
+
+    expect(Profile.count).to eql(prev_count + 1)
+    expect(page).to have_content("#{profile.user.username}'s Profile")
   end
 
 end
