@@ -7,14 +7,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource
-    
-    if resource.role == "trainer"
-      @profile = resource.build_profile
-    end
 
     if resource.save
       if resource.role == "trainer"
-        @profile.save
+        resource.build_profile
+        resource.profile.save
       end
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?

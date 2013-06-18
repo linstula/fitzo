@@ -43,8 +43,6 @@ describe "A Trainer signing up" do
     click_on "Submit"
 
     expect(Profile.count).to eql(prev_count + 1)
-
-    expect(page).to have_content("#{@user.username}'s Profile")
   end
 
 end
