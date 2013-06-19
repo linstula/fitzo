@@ -27,6 +27,9 @@ describe User do
     expect(trainer.profile).to be_valid
   end
 
-  it "should not have a profile if the role is 'member'"
+  it "should not have a profile if the role is 'member'" do
+    member.save
+    expect(member.profile).to be nil
+  end
   
 end
