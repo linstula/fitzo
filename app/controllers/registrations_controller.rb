@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, :only => [ :new]
 
   def new
-    build_resource({role: params[:role] || "user"})
+    build_resource({role: params[:role] || "member"})
   end
 
   def create

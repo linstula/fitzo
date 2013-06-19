@@ -2,14 +2,14 @@ require "spec_helper"
 
 feature "A user signing in" do
   
-  let!(:registered_user) { FactoryGirl.create(:user) }
+  let!(:registered_member) { FactoryGirl.create(:member) }
 
   scenario "can sign in if they are a registered user" do
     valid_password = "12345678"
     visit root_path
     click_link "Sign in"
 
-    fill_in "Email", with: registered_user.email
+    fill_in "Email", with: registered_member.email
     fill_in "Password", with: valid_password
     within (".simple_form") do
       click_button "Sign in"

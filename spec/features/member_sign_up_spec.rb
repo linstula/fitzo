@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "A Member signing up" do
 
-  let(:member) { FactoryGirl.build(:user) }
+  let(:member) { FactoryGirl.build(:member) }
 
   it "can create an account" do
     prev_count = User.count
@@ -11,6 +11,7 @@ feature "A Member signing up" do
     click_button "Sign up"
 
     sign_up(member)
+
 
     expect(User.count).to eql(prev_count + 1)
     expect(current_path).to eql(root_path)

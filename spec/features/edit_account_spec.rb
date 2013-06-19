@@ -13,16 +13,16 @@ require 'spec_helper'
 
 feature "Editing a user account" do
 
-  let!(:user)     { FactoryGirl.create(:user) }
+  let!(:member)     { FactoryGirl.create(:member) }
   let!(:trainer)  { FactoryGirl.create(:trainer) }
   
   describe "when a user is not signed in" do
 
     it "does not see an edit menu" do
-      not_logged_in_user = user
+      not_logged_in_member = member
       visit root_path
 
-      expect(page).to_not have_link("#{not_logged_in_user.username}")
+      expect(page).to_not have_link("#{not_logged_in_member.username}")
     end
 
   end
@@ -30,9 +30,9 @@ feature "Editing a user account" do
   describe "when a user is signed in as a user" do
 
     it "can see an edit menu" do
-      sign_in(user)
+      sign_in(member)
 
-      expect(page).to have_link("#{user.username}")
+      expect(page).to have_link("#{member.username}")
     end
 
   end
@@ -42,7 +42,7 @@ feature "Editing a user account" do
   describe "deleting an account" do
 
     it "when I'm signed in" do
-      sign_in(user)
+      sign_in(member)
       prev_count = User.count
 
       visit edit_user_registration_path
