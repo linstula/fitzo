@@ -1,8 +1,11 @@
 Fitzo::Application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, :controllers => {:registrations => "registrations"} 
 
   resource :home, only: [:show]
 
+  resources :users, only: :show do
+    resource :profile
+  end
   root :to => "home#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.
