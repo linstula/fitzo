@@ -7,7 +7,8 @@ I want to add services to my profile
 so users can see what services I offer
 } do
 
-  let(:trainer)  { FactoryGirl.build(:trainer) }
+  let(:trainer)   { FactoryGirl.create(:trainer) }
+  let(:service)   { FactoryGirl.create(:service) }
 
   it "can be created" do
     sign_in(trainer)
@@ -17,7 +18,7 @@ so users can see what services I offer
 
     click_on "Add Service"
 
-    add_service(service)
+    fill_in_service_form(service)
 
     expect(trainer.services.count).to eql(prev_count + 1)
     expect(current_path).to eql(edit_user_profile_path(trainer))

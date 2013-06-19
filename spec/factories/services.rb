@@ -6,7 +6,7 @@ FactoryGirl.define do
     description "MyText"
     duration 1
     price 1
-    category "MyString"
-    user_id ""
+    sequence(:category) {|n| "Category#{n}" }
+    association :user, factory: :trainer
   end
 end

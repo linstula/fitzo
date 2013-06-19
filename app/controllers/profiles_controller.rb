@@ -8,4 +8,8 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+    
+  end
+
 end
