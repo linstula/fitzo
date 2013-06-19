@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe User do
 
+  let(:member) { FactoryGirl.build(:user) }
+
   it { should have_valid(:email).when("foobar@example.com") }
   it { should have_valid(:password).when("foobarbaz") }
   it { should have_valid(:username).when("foousername") }
@@ -18,5 +20,12 @@ describe User do
   it { should_not have_valid(:role).when(nil, "", "not_user", "not_trainer") }
 
   it { should have_one(:profile) }
+
+  it "should have a profile if the role is 'trainer'" do
+    member.save
+    expect(member.profile).to eql(nil)
+  end
+
+  it "should not have a profile if the role is 'member'"
   
 end
