@@ -21,15 +21,25 @@ describe User do
   it { should_not have_valid(:role).when(nil, "", "not_user", "not_trainer") }
 
   it { should have_one(:profile) }
+  it { should have_many(:services) }
 
-  it "should have a profile if the role is 'trainer'" do
-    trainer.save
-    expect(trainer.profile).to be_valid
+  describe "profile" do
+
+    it "should be destroyed when the user is deleted"
+
+    it "should have a profile if the role is 'trainer'" do
+      trainer.save
+      expect(trainer.profile).to be_valid
+    end
+
+    it "should not have a profile if the role is 'member'" do
+      member.save
+      expect(member.profile).to be nil
+    end
   end
 
-  it "should not have a profile if the role is 'member'" do
-    member.save
-    expect(member.profile).to be nil
+  describe "services" do
+    it "should be destroyed when the user is deleted"
   end
   
 end
