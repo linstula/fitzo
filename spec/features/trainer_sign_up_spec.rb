@@ -28,7 +28,7 @@ describe "A Trainer signing up" do
 
   it "has a profile page created on sign up" do
 
-    prev_count = Profile.count
+    prev_count = TrainerProfile.count
     visit root_path
 
     click_on "Get Listed"
@@ -42,7 +42,7 @@ describe "A Trainer signing up" do
 
     click_on "Submit"
 
-    expect(Profile.count).to eql(prev_count + 1)
+    expect(TrainerProfile.count).to eql(prev_count + 1)
   end
 
 end
