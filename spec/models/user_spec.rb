@@ -2,12 +2,15 @@ require 'spec_helper'
 
 describe User do
 
+  let(:member) { FactoryGirl.build(:member) }
+  let(:trainer) { FactoryGirl.build(:trainer) }
+
   it { should have_valid(:email).when("foobar@example.com") }
   it { should have_valid(:password).when("foobarbaz") }
   it { should have_valid(:username).when("foousername") }
   it { should have_valid(:first_name).when("Firstname") }
   it { should have_valid(:last_name).when("Lastname") }
-  it { should have_valid(:role).when("user", "trainer") }
+  it { should have_valid(:role).when("member", "trainer") }
 
 
   it { should_not have_valid(:email).when(nil, "", "foobar@example") }
@@ -18,5 +21,15 @@ describe User do
   it { should_not have_valid(:role).when(nil, "", "not_user", "not_trainer") }
 
   it { should have_one(:profile) }
+
+  it "should have a profile if the role is 'trainer'" do
+    trainer.save
+    expect(trainer.profile).to be_valid
+  end
+
+  it "should not have a profile if the role is 'member'" do
+    member.save
+    expect(member.profile).to be nil
+  end
   
 end

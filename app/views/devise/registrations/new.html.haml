@@ -6,9 +6,9 @@
     = f.input :email, :required => true, :autofocus => true
     = f.input :password, :required => true
     = f.input :password_confirmation, :required => true
-    = f.input :username
-    = f.input :first_name
-    = f.input :last_name
+    = f.input :username, :required => true
+    = f.input :first_name, :required => true
+    = f.input :last_name, :required => true
   .form-actions
     = f.button :submit, "Submit"
 = render "devise/shared/links"

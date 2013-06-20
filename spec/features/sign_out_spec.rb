@@ -2,10 +2,10 @@ require 'spec_helper'
 
 feature "Signing out" do
   
-  let!(:user) { FactoryGirl.create(:user) }
+  let!(:member) { FactoryGirl.create(:member) }
 
   scenario "when clicking the sign out button" do
-    sign_in(user)
+    sign_in(member)
 
     click_link "Sign out"
 
