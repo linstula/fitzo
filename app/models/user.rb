@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
   after_save :create_profile_for_trainer
 
-  has_one :profile, :dependent => :destroy
+  has_one :trainer_profile, :dependent => :destroy
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

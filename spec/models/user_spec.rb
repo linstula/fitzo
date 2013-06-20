@@ -20,16 +20,15 @@ describe User do
   it { should_not have_valid(:last_name).when(nil, "") }
   it { should_not have_valid(:role).when(nil, "", "not_user", "not_trainer") }
 
-  it { should have_one(:profile) }
+  it { should have_one(:trainer_profile) }
 
   it "should have a profile if the role is 'trainer'" do
     trainer.save
-    expect(trainer.profile).to be_valid
+    expect(trainer.trainer_profile).to be_valid
   end
 
   it "should not have a profile if the role is 'member'" do
     member.save
-    expect(member.profile).to be nil
+    expect(member.trainer_profile).to be nil
   end
-  
 end

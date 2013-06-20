@@ -1,4 +1,4 @@
-class ProfilesController < ApplicationController
+class TrainerProfilesController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
