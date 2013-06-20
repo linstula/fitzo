@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   def create_profile_for_trainer
     if self.role == 'trainer'
-      self.build_profile.save
+      self.build_trainer_profile.save
     end
   end
 end
