@@ -11,9 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619012251) do
 
-  create_table "profiles", :force => true do |t|
+ActiveRecord::Schema.define(:version => 20130620151521) do
+
+  create_table "trainer_profiles", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id",    :null => false
