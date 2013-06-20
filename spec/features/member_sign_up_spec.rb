@@ -19,15 +19,15 @@ feature "A Member signing up" do
   end
 
   it "does not have a profile page" do
-    prev_count = Profile.count
+    prev_count = TrainerProfile.count
     visit root_path
 
     click_button "Sign up"
 
     sign_up(member)
 
-    expect(Profile.count).to eql(prev_count)
-    visit user_profile_path("#{User.last.id}")
+    expect(TrainerProfile.count).to eql(prev_count)
+    visit user_trainer_profile_path("#{User.last.id}")
     expect(current_path).to eql(root_path)
     expect(page).to have_content("Resource does not exist")
   end
