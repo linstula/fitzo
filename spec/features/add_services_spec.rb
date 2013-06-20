@@ -19,7 +19,8 @@ so users can see what services I offer
     click_on "Add Service"
 
     fill_in_service_form(service)
-
+    click_on "Create Service"
+    binding.pry
     expect(trainer.services.count).to eql(prev_count + 1)
     expect(current_path).to eql(edit_user_profile_path(trainer))
     expect(page).to have_content(service.title)
