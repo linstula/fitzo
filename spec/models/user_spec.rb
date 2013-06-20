@@ -22,13 +22,20 @@ describe User do
 
   it { should have_one(:trainer_profile) }
 
-  it "should have a profile if the role is 'trainer'" do
-    trainer.save
-    expect(trainer.trainer_profile).to be_valid
-  end
 
-  it "should not have a profile if the role is 'member'" do
-    member.save
-    expect(member.trainer_profile).to be nil
+  describe "profile" do
+
+    it "should be destroyed when the user is deleted"
+
+    it "should have a profile if the role is 'trainer'" do
+      trainer.save
+      expect(trainer.trainer_profile).to be_valid
+      # Test the profile creation method in the user model
+    end
+
+    it "should not have a profile if the role is 'member'" do
+      member.save
+      expect(member.trainer_profile).to be nil
+    end
   end
 end

@@ -8,4 +8,9 @@ class TrainerProfilesController < ApplicationController
     end
   end
 
+  def edit
+    @trainer = User.find(params[:user_id])
+    @profile = @trainer.trainer_profile
+  end
+
 end
