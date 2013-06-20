@@ -17,6 +17,6 @@ describe User do
   it { should_not have_valid(:last_name).when(nil, "") }
   it { should_not have_valid(:role).when(nil, "", "not_user", "not_trainer") }
 
-  it { should have_one(:profile) }
+  it { should have_one(:trainer_profile) }
   
 end

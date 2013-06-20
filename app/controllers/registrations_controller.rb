@@ -10,14 +10,14 @@ class RegistrationsController < Devise::RegistrationsController
 
     if resource.save
       if resource.role == "trainer"
-        resource.build_profile
-        resource.profile.save
+        resource.build_trainer_profile
+        resource.trainer_profile.save
       end
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)
         if resource.role == "trainer"
-          redirect_to user_profile_path(resource) 
+          redirect_to user_trainer_profile_path(resource) 
         else
           respond_with resource, :location => after_sign_up_path_for(resource)
         end
