@@ -5,7 +5,8 @@ class TrainerProfile < ActiveRecord::Base
     dependent: :destroy
 
   has_many :specialties, through: :trainer_specialties
-  has_many :trainer_specialties
+  has_many :trainer_specialties, 
+    dependent: :destroy
 
   validates_presence_of :user_id
 
