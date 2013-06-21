@@ -10,5 +10,4 @@ describe Specialty do
 
   it { should_not have_valid(:title).when("", nil)}
 
-
 end

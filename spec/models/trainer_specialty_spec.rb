@@ -8,8 +8,4 @@ describe TrainerSpecialty do
   it { should validate_presence_of(:trainer_profile_id)}
   it { should validate_presence_of(:specialty_id)}
 
-
-
-
-
 end
