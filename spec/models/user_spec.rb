@@ -20,13 +20,10 @@ describe User do
   it { should_not have_valid(:last_name).when(nil, "") }
   it { should_not have_valid(:role).when(nil, "", "not_user", "not_trainer") }
 
-  it { should have_one(:trainer_profile) }
+  it { should have_one(:trainer_profile).dependent(:destroy) }
 
 
   describe "profile" do
-
-    it "should be destroyed when the user is deleted"
-
     it "should have a profile if the role is 'trainer'" do
       trainer.save
       expect(trainer.trainer_profile).to be_valid
