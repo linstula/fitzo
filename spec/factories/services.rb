@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :service do
-    title "MyString"
-    description "MyText"
-    duration 1
-    price 1
+    title "Service Title"
+    description "This is a description of my service"
+    duration 60
+    price 50
     sequence(:category) {|n| "Category#{n}" }
     association :trainer_profile, factory: :trainer_profile  # This needs to be changed to a profile.
   end

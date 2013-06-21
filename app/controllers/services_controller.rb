@@ -14,7 +14,7 @@ class ServicesController < ApplicationController
     if @service.save
       redirect_to edit_user_trainer_profile_path(@user)
     else
-      flash.now[:notice] = "That was silly..."
+      flash.now[:notice] = "Service was not created. See errors below."
       render 'new'
     end
   end

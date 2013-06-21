@@ -38,7 +38,7 @@ feature "trainer adds a service to their profile", %{
     click_on "Create Service"
 
     expect(page).to have_content "can't be blank"
-    expect(page).to have_content "That was silly..."
+    expect(page).to have_content "Service was not created. See errors below."
     expect(trainer_profile.services.count).to eq @prev_count
   end
 end

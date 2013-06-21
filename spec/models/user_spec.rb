@@ -24,13 +24,13 @@ describe User do
 
 
   describe "profile" do
-    it "should have a profile if the role is 'trainer'" do
+    it "has a profile if the role is 'trainer'" do
       trainer.save
       expect(trainer.trainer_profile).to be_valid
       # Test the profile creation method in the user model
     end
 
-    it "should not have a profile if the role is 'member'" do
+    it "does not have a profile if the role is 'member'" do
       member.save
       expect(member.trainer_profile).to be nil
     end
