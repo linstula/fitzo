@@ -2,6 +2,7 @@ class TrainerProfilesController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
+    @trainer_profile = @user.trainer_profile
 
     unless @user.role == "trainer"
       redirect_to root_path, notice: "Resource does not exist"
@@ -10,7 +11,7 @@ class TrainerProfilesController < ApplicationController
 
   def edit
     @trainer = User.find(params[:user_id])
-    @profile = @trainer.trainer_profile
+    @trainer_profile = @trainer.trainer_profile
   end
 
 end

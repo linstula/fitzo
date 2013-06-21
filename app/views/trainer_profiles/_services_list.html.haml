@@ -1,0 +1,22 @@
+%section
+  %h2
+    Serices
+  %h3
+    %span
+      Title
+    %span
+      Description
+    %span
+      Duration
+    %span
+      Price
+  %h5
+    - trainer_profile.services.each do |service|
+      %span
+        = service.title
+      %span
+        = service.description
+      %span
+        = service.duration
+      %span
+        = service.price

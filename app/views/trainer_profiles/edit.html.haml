@@ -1,3 +1,7 @@
 %h1 
   Edit Profile
-= button_to "Add Service", new_trainer_profile_service_path(@profile), method: :get
+  
+= render 'trainer_profiles/services_list', trainer_profile: @trainer_profile
+
+= button_to "Add Service", new_trainer_profile_service_path(@trainer_profile),
+  method: :get
