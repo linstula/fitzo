@@ -6,6 +6,9 @@ Fitzo::Application.routes.draw do
   resources :users, only: :show do
     resource :trainer_profile
   end
+  resources :trainer_profiles do
+    resources :services
+  end
   root :to => "home#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.
