@@ -4,3 +4,5 @@
 = render 'services/list', trainer_profile: @trainer_profile
 
 = render 'specialties/list', trainer_profile: @trainer_profile
+
+= link_to "Recommend #{@user.first_name}", new_trainer_profile_recommendation_path(@user)

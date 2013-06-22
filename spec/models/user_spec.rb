@@ -21,6 +21,7 @@ describe User do
   it { should_not have_valid(:role).when(nil, "", "not_user", "not_trainer") }
 
   it { should have_one(:trainer_profile).dependent(:destroy) }
+  it { should have_many(:recommendations).dependent(:destroy) }
 
 
   describe "profile" do
