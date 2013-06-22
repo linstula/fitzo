@@ -31,11 +31,10 @@ feature "trainer adds a specialty", %{
 
       click_on "Create Specialty"
       specialty = Specialty.last
-      binding.pry
 
-      expect(@prev_count).to eql(@prev_count + 1)
+      expect(trainer_profile.specialties.count).to eql(@prev_count + 1)
       expect(current_path).to eql(edit_user_trainer_profile_path(trainer))
-      expect(page).to have_content(:specialty_attr[:title])
+      expect(page).to have_content(specialty_attr[:title])
       expect(page).to have_content("Service added.")
     end
 
