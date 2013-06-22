@@ -38,7 +38,16 @@ feature "trainer adds a specialty", %{
       expect(page).to have_content("Service added.")
     end
 
-    it "can see the new specialty on the profile page"
+    it "can see a newly created specialty on the profile page" do
+      fill_in_specialty(specialty_attr)
+
+      click_on "Create Specialty"
+      specialty = Specialty.last
+
+      visit user_trainer_profile_path(trainer)
+
+      expect(page).to have_content(specialty_attr[:title])
+    end
   end
 
 

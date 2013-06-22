@@ -14,6 +14,10 @@
       - if user_signed_in?
         %li 
           = link_to "Signed in as #{current_user.username}"
+        - if current_user.role == "trainer"
+          %li.divider
+          %li
+            = link_to "Edit Profile", edit_user_trainer_profile_path(current_user)
         %li.divider
         %li
           = link_to "Edit Account", edit_user_registration_path
