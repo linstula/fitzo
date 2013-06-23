@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :recommendation do
-    title "MyString"
-    content "MyText"
-    user_id 1
-    trainer_profile_id 1
+    title "This is a recommendation title"
+    content "This is the content for a recommendation."
+    association :user, factory: :member
+    association :trainer_profile, factory: :trainer_profile
   end
 end
