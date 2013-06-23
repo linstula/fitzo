@@ -55,7 +55,9 @@ describe "user writes a recommendation for a trainer" do
 
   it "should tell a user that they have already recommended a trainer"
 
-  it "cannot write a recommendation for their own profile"
+  it "cannot write a recommendation for their own profile" 
+
+  it "cannot write a recommendation if they are a trainer"
 end
 
 def fill_in_recommendation(recommendation)
