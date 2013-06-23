@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :recommendation do
-    title "This is a recommendation title"
+    sequence(:title) {|n| "This is recommendation title #{n}" }
     content "This is the content for a recommendation."
     association :user, factory: :member
     association :trainer_profile, factory: :trainer_profile
