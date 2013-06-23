@@ -20,7 +20,17 @@ describe "user writes a recommendation for a trainer" do
     expect(page).to have_content(recommendation_attr[:title])
   end
 
-  it "cannot be created if a user is not signed in"
+  it "cannot be created if a user is not signed in" do
+    profile = trainer.trainer_profile
+    prev_count = profile.recommendations.count
+    visit user_trainer_profile_path(trainer)
+
+    fill_in_recommendation(recommendation_attr)
+    click_on "Create Recommendation"
+
+    expect(profile.recommendations.count).to eql(prev_count)
+    expect(current_path).to eql(new_user_session_path)
+  end
 
   it "cannot create more than one recommendation per trainer"
 
