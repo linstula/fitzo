@@ -14,15 +14,16 @@ feature "trainer adds a specialty", %{
   # * Form must try to find standardized results 
   #   from DB for the specialty
 
-  let(:trainer_profile) { FactoryGirl.create(:trainer_profile) }
-  let(:trainer)         { trainer_profile.user }
+  # let(:trainer_profile) { FactoryGirl.create(:trainer_profile) }
+  let(:trainer)         { FactoryGirl.create(:trainer) }
   let(:specialty_attr)  {  FactoryGirl.attributes_for(:specialty)}
   
   context "a signed-in trainer" do
     before(:each) do
-      @prev_count = trainer_profile.specialties.count
+      trainer.build_trainer_profile.save
+      @prev_count = trainer.trainer_profile.specialties.count
       sign_in(trainer)
-      visit edit_user_trainer_profile_path(trainer)
+      visit edit_trainer_profile_path(trainer.trainer_profile)
       click_on "Add Specialty"
     end
 
@@ -33,7 +34,7 @@ feature "trainer adds a specialty", %{
       specialty = Specialty.last
 
       expect(trainer_profile.specialties.count).to eql(@prev_count + 1)
-      expect(current_path).to eql(edit_user_trainer_profile_path(trainer))
+      expect(current_path).to eql(edit_trainer_profile_path(trainer.trainer_profile))
       expect(page).to have_content(specialty_attr[:title])
       expect(page).to have_content("Service added.")
     end

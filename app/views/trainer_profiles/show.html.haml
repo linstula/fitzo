@@ -1,12 +1,12 @@
 %h1
-  = "#{@user.username.capitalize}'s Profile"
+  = "#{@trainer.username.capitalize}'s Profile"
 
 = render 'services/list', trainer_profile: @trainer_profile
 
 = render 'specialties/list', trainer_profile: @trainer_profile
 
 %h3
-  = "Write a recommendation for #{@user.first_name}"
+  = "Write a recommendation for #{@trainer.first_name}"
 
 = render 'recommendations/form', { trainer_profile: @trainer_profile, user: current_user }
 

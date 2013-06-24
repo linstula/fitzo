@@ -6,11 +6,12 @@ describe "A signed in trainer" do
     let(:trainer) { FactoryGirl.create(:trainer) }
 
     it "can access an edit profile page" do
+      trainer.build_trainer_profile.save
       sign_in(trainer)
 
       click_on "Edit Profile"
 
-      expect(current_path).to eql(edit_user_trainer_profile_path(trainer))
+      expect(current_path).to eql(edit_trainer_profile_path(trainer.trainer_profile))
     end
   end
 

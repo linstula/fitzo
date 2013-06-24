@@ -1,10 +1,8 @@
 %nav.top-bar
   %ul.title-area
-    / Title Area
     %li.name
       %h1
         = link_to "Fitzo", root_path
-    / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
     %li.toggle-topbar.menu-icon
       %a{:href => "#"}
         %span Menu
@@ -17,7 +15,7 @@
         - if current_user.role == "trainer"
           %li.divider
           %li
-            = link_to "Edit Profile", edit_user_trainer_profile_path(current_user)
+            = link_to "Edit Profile", edit_trainer_profile_path(current_user.trainer_profile)
         %li.divider
         %li
           = link_to "Edit Account", edit_user_registration_path
