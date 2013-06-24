@@ -11,6 +11,10 @@ end
 
 def sign_up(user)
   valid_password = 12345678
+
+  visit root_path
+  click_on "Get Listed"
+  
   fill_in "Email", with: user.email
   fill_in "user[password]", with: valid_password
   fill_in "user[password_confirmation]", with: valid_password
