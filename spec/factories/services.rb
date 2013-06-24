@@ -7,6 +7,6 @@ FactoryGirl.define do
     duration 60
     price 50
     sequence(:category) {|n| "Category#{n}" }
-    association :trainer_profile, factory: :trainer_profile  # This needs to be changed to a profile.
+    association :trainer_profile, factory: :trainer_profile
   end
 end

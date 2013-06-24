@@ -4,6 +4,10 @@ class TrainerProfile < ActiveRecord::Base
   has_many :services,
     dependent: :destroy
 
+  has_many :specialties, through: :trainer_specialties
+  has_many :trainer_specialties, 
+    dependent: :destroy
+
   validates_presence_of :user_id
 
   accepts_nested_attributes_for :services, allow_destroy: true

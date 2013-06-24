@@ -37,8 +37,6 @@ feature "Editing a user account" do
 
   end
 
-  scenario "when a user is signed in as a trainer"
-
   describe "deleting an account" do
 
     it "when I'm signed in" do
