@@ -4,3 +4,10 @@
 = render 'services/list', trainer_profile: @trainer_profile
 
 = render 'specialties/list', trainer_profile: @trainer_profile
+
+%h3
+  = "Write a recommendation for #{@user.first_name}"
+
+= render 'recommendations/form', { trainer_profile: @trainer_profile, user: current_user }
+
+= render 'recommendations/list', trainer_profile: @trainer_profile

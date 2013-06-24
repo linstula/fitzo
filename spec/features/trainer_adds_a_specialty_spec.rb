@@ -42,7 +42,6 @@ feature "trainer adds a specialty", %{
       fill_in_specialty(specialty_attr)
 
       click_on "Create Specialty"
-      specialty = Specialty.last
 
       visit user_trainer_profile_path(trainer)
 
