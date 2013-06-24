@@ -12,7 +12,7 @@ class ServicesController < ApplicationController
     @service = @trainer_profile.services.build(params[:service])
     
     if @service.save
-      redirect_to edit_user_trainer_profile_path(@user)
+      redirect_to edit_trainer_profile_path(@trainer_profile)
       flash.now[:notice] = "Service added."
     else
       flash.now[:notice] = "Service was not created. See errors below."
