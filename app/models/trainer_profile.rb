@@ -3,9 +3,10 @@ class TrainerProfile < ActiveRecord::Base
 
   has_many :services,
     dependent: :destroy
-
   has_many :specialties, through: :trainer_specialties
   has_many :trainer_specialties, 
+    dependent: :destroy
+  has_many :recommendations, 
     dependent: :destroy
 
   validates_presence_of :user_id

@@ -1,0 +1,15 @@
+%section
+  %h2
+    Recommendations
+  %h3
+    %span
+      Title
+  %h3
+    %span
+      Title
+  %h5
+    - trainer_profile.recommendations.each do |recommendation|
+      %span
+        = recommendation.title
+      %span
+        = recommendation.content
