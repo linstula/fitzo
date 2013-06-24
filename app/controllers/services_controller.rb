@@ -13,6 +13,7 @@ class ServicesController < ApplicationController
     
     if @service.save
       redirect_to edit_user_trainer_profile_path(@user)
+      flash.now[:notice] = "Service added."
     else
       flash.now[:notice] = "Service was not created. See errors below."
       render 'new'
