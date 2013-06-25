@@ -12,6 +12,7 @@ def sign_up_trainer(trainer)
   fill_in "Last name", with: trainer[:last_name]
 
   click_on "Submit"
+  click_on "Sign out"
 end
 
 def sign_up_member(member)

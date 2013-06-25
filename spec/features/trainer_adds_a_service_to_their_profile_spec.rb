@@ -14,16 +14,18 @@ feature "trainer adds a service to their profile", %{
   # * must specify a price
   # * must specify a category
 
+  let(:service_attr)  { FactoryGirl.attributes_for(:service) }
+  let(:trainer_attr)  { FactoryGirl.attributes_for(:trainer) }
+  let(:new_trainer)   { sign_up_trainer(trainer_attr) }
+  let(:member_attr)   { FactoryGirl.attributes_for(:member) }
+  let(:new_member)    { sign_up_member(member_attr) }
+
   context "A signed in trainer editing their profile" do
-
-      let(:service_attr)  { FactoryGirl.attributes_for(:service) }
-      let(:trainer_attr)  { FactoryGirl.attributes_for(:trainer) }
-      let(:new_trainer)   { sign_up_trainer(trainer_attr) }
-
 
     it "adds a service with valid attributes" do
       new_trainer
       trainer = User.last
+      sign_in(trainer)
       profile = trainer.trainer_profile
       prev_count = profile.services.count
 
@@ -39,6 +41,7 @@ feature "trainer adds a service to their profile", %{
     it "cannot add a service with invalid attributes" do
       new_trainer
       trainer = User.last
+      sign_in(trainer)
       profile = trainer.trainer_profile
       prev_count = profile.services.count
 
@@ -51,20 +54,62 @@ feature "trainer adds a service to their profile", %{
     end
   end
 
-  # context "a guest user" do
+  context "an unathorized user" do
 
-  #   it "cannot create a sevice for a trainer" do
-  #     sign_up_trainer(trainer_attr)
-  #     visit new_trainer_profile_service_path(trainer)
+    it "these tests need to be moved to another file"
 
-  #     expect(current_path).to eql(root_path)
-  #     expect(page).to have_content("Access Denied.")
-  #   end
-  # end
+    it "cannot access the trainer's edit page" do
+      new_trainer
+      trainer = User.last
+      profile = trainer.trainer_profile
 
-  context "a member" do
-  end
+      visit edit_trainer_profile_path(profile)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access Denied")
 
-  context "another trainer" do
+      new_member
+      member = User.last
+      sign_in(member)
+
+      visit edit_trainer_profile_path(profile)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access Denied")
+      click_on "Sign out"
+
+      new_trainer
+      trainer_2 = User.last
+      sign_in(trainer_2)
+
+      visit edit_trainer_profile_path(profile)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access Denied")
+    end
+
+    it "cannot create a sevice for a trainer" do
+      new_trainer
+      trainer = User.last
+      profile = trainer.trainer_profile
+      
+      visit new_trainer_profile_service_path(profile)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access Denied")
+
+      new_member
+      member = User.last
+      sign_in(member)
+
+      visit new_trainer_profile_service_path(profile)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access Denied")
+      click_on "Sign out"
+
+      new_trainer
+      trainer_2 = User.last
+      sign_in(trainer_2)
+
+      visit new_trainer_profile_service_path(profile)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access Denied")
+    end
   end
 end
