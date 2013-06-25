@@ -64,8 +64,8 @@ feature "trainer adds a service to their profile", %{
       profile = trainer.trainer_profile
 
       visit edit_trainer_profile_path(profile)
-      expect(current_path).to eql(root_path)
-      expect(page).to have_content("Access Denied")
+      expect(current_path).to eql(new_user_session_path)
+      expect(page).to have_content("You must be signed in")
 
       new_member
       member = User.last
@@ -73,7 +73,7 @@ feature "trainer adds a service to their profile", %{
 
       visit edit_trainer_profile_path(profile)
       expect(current_path).to eql(root_path)
-      expect(page).to have_content("Access Denied")
+      expect(page).to have_content("Access denied")
       click_on "Sign out"
 
       new_trainer
@@ -82,7 +82,7 @@ feature "trainer adds a service to their profile", %{
 
       visit edit_trainer_profile_path(profile)
       expect(current_path).to eql(root_path)
-      expect(page).to have_content("Access Denied")
+      expect(page).to have_content("Access denied")
     end
 
     it "cannot create a sevice for a trainer" do
@@ -91,7 +91,7 @@ feature "trainer adds a service to their profile", %{
       profile = trainer.trainer_profile
 
       visit new_trainer_profile_service_path(profile)
-      expect(current_path).to eql(root_path)
+      expect(current_path).to eql(new_user_session_path)
       expect(page).to have_content("You must be signed in")
 
       new_member
@@ -100,7 +100,7 @@ feature "trainer adds a service to their profile", %{
 
       visit new_trainer_profile_service_path(profile)
       expect(current_path).to eql(root_path)
-      expect(page).to have_content("Access Denied")
+      expect(page).to have_content("Access denied")
       click_on "Sign out"
 
       new_trainer
@@ -109,7 +109,7 @@ feature "trainer adds a service to their profile", %{
 
       visit new_trainer_profile_service_path(profile)
       expect(current_path).to eql(root_path)
-      expect(page).to have_content("Access Denied")
+      expect(page).to have_content("Access denied")
     end
   end
 end

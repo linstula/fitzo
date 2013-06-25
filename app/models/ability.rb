@@ -6,8 +6,9 @@ class Ability
     user ||= User.new
     if user.role == "trainer"
         can :manage, TrainerProfile, user_id: user.id
+        can :manage, Service
     else
-        can :read, :all
+        can :read, TrainerProfile
     end
     # Define abilities for the passed in user here. For example:
     #
