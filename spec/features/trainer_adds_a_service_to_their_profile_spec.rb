@@ -14,31 +14,57 @@ feature "trainer adds a service to their profile", %{
   # * must specify a price
   # * must specify a category
 
-  let(:service_attr)   { FactoryGirl.attributes_for(:service) }
-  let(:trainer_profile) { FactoryGirl.create(:trainer_profile) }
-  let(:trainer)   { trainer_profile.user }
+  context "A signed in trainer editing their profile" do
 
-  before(:each) do
-    @prev_count = trainer_profile.services.count
-    sign_in(trainer)
-    visit edit_trainer_profile_path(trainer.trainer_profile)
-    click_on "Add Service"
+      let(:service_attr)  { FactoryGirl.attributes_for(:service) }
+      let(:trainer_attr)  { FactoryGirl.attributes_for(:trainer) }
+      let(:new_trainer)   { sign_up_trainer(trainer_attr) }
+
+
+    it "adds a service with valid attributes" do
+      new_trainer
+      trainer = User.last
+      profile = trainer.trainer_profile
+      prev_count = profile.services.count
+
+      visit new_trainer_profile_service_path(profile)
+      fill_in_service_form(service_attr)
+      click_on "Create Service"
+
+      expect(profile.services.count).to eql(prev_count + 1)
+      expect(current_path).to eql(edit_trainer_profile_path(profile))
+      expect(page).to have_content(service_attr[:title])
+    end
+
+    it "cannot add a service with invalid attributes" do
+      new_trainer
+      trainer = User.last
+      profile = trainer.trainer_profile
+      prev_count = profile.services.count
+
+      visit new_trainer_profile_service_path(profile)
+      click_on "Create Service"
+
+      expect(page).to have_content "can't be blank"
+      expect(page).to have_content "Service was not created. See errors below."
+      expect(profile.services.count).to eq prev_count
+    end
   end
 
-  it "adds a service with valid attributes" do
-    fill_in_service_form(service_attr)
-    click_on "Create Service"
+  # context "a guest user" do
 
-    expect(trainer_profile.services.count).to eql(@prev_count + 1)
-    expect(current_path).to eql(edit_trainer_profile_path(trainer.trainer_profile))
-    expect(page).to have_content(service_attr[:title])
+  #   it "cannot create a sevice for a trainer" do
+  #     sign_up_trainer(trainer_attr)
+  #     visit new_trainer_profile_service_path(trainer)
+
+  #     expect(current_path).to eql(root_path)
+  #     expect(page).to have_content("Access Denied.")
+  #   end
+  # end
+
+  context "a member" do
   end
 
-  it "attempts to add a service with invalid attributes" do
-    click_on "Create Service"
-
-    expect(page).to have_content "can't be blank"
-    expect(page).to have_content "Service was not created. See errors below."
-    expect(trainer_profile.services.count).to eq @prev_count
+  context "another trainer" do
   end
 end
