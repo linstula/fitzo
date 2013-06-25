@@ -1,14 +1,15 @@
 class ServicesController < ApplicationController
-  load_and_authorize_resource thorugh: :trainer_profile
+  load_and_authorize_resource :trainer_profile
+  # load_and_authorize_resource :service, thorugh: :trainer_profile
 
   def new
-    @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
+    # @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
     @user = @trainer_profile.user
     @service = @trainer_profile.services.build 
   end
 
   def create
-    @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
+    # @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
     @user = @trainer_profile.user
     @service = @trainer_profile.services.build(params[:service])
     

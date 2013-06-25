@@ -89,7 +89,7 @@ feature "trainer adds a service to their profile", %{
       new_trainer
       trainer = User.last
       profile = trainer.trainer_profile
-      
+
       visit new_trainer_profile_service_path(profile)
       expect(current_path).to eql(root_path)
       expect(page).to have_content("You must be signed in")
