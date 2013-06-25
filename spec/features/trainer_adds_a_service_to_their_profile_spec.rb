@@ -92,7 +92,7 @@ feature "trainer adds a service to their profile", %{
       
       visit new_trainer_profile_service_path(profile)
       expect(current_path).to eql(root_path)
-      expect(page).to have_content("Access Denied")
+      expect(page).to have_content("You must be signed in")
 
       new_member
       member = User.last
