@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  after_save :create_profile_for_trainer
+  # after_save :create_profile_for_trainer
 
   has_one :trainer_profile, dependent: :destroy
   has_many :recommendations, dependent: :destroy
@@ -17,11 +17,11 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :username, :role
   validates_inclusion_of :role, in: ["member", "trainer"]
 
-  private
+  # private
 
-  def create_profile_for_trainer
-    if self.role == 'trainer'
-      self.build_trainer_profile.save
-    end
-  end
+  # def create_profile_for_trainer
+  #   if self.role == 'trainer'
+  #     self.build_trainer_profile.save
+  #   end
+  # end
 end

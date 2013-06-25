@@ -27,6 +27,7 @@ describe User do
   describe "profile" do
     it "has a profile if the role is 'trainer'" do
       trainer.save
+      trainer.build_trainer_profile.save
       expect(trainer.trainer_profile).to be_valid
       # Test the profile creation method in the user model
     end

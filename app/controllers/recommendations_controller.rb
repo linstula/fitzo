@@ -7,10 +7,10 @@ class RecommendationsController < ApplicationController
       @recommendation.user = current_user
 
       if @recommendation.save
-        redirect_to user_trainer_profile_path(@trainer_profile.user),
+        redirect_to trainer_profile_path(@trainer_profile),
           notice: "Recommendation added"
       else
-        redirect_to user_trainer_profile_path(@trainer_profile.user), 
+        redirect_to trainer_profile_path(@trainer_profile), 
           notice: "Recommendation was not added."
       end
     else
