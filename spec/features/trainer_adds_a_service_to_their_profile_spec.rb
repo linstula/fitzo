@@ -21,7 +21,7 @@ feature "trainer adds a service to their profile", %{
   before(:each) do
     @prev_count = trainer_profile.services.count
     sign_in(trainer)
-    visit edit_user_trainer_profile_path(trainer)
+    visit edit_trainer_profile_path(trainer.trainer_profile)
     click_on "Add Service"
   end
 
@@ -30,7 +30,7 @@ feature "trainer adds a service to their profile", %{
     click_on "Create Service"
 
     expect(trainer_profile.services.count).to eql(@prev_count + 1)
-    expect(current_path).to eql(edit_user_trainer_profile_path(trainer))
+    expect(current_path).to eql(edit_trainer_profile_path(trainer.trainer_profile))
     expect(page).to have_content(service_attr[:title])
   end
 

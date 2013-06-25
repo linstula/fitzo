@@ -3,27 +3,40 @@ require "spec_helper"
 describe "user writes a recommendation for a trainer" do
   
   let(:recommendation_attr)   { FactoryGirl.build(:recommendation) }
-  let(:trainer)   { FactoryGirl.create(:trainer) } 
+  let(:trainer)   { FactoryGirl.build(:trainer) } 
   let(:member)    { FactoryGirl.create(:member) }
 
+  before(:each) do
+    
+  end
+
   it "creates a recommendation with valid attributes" do
-    profile = trainer.trainer_profile
+    sign_up(trainer)
+    new_trainer = User.last
+    profile = new_trainer.trainer_profile
     prev_count = profile.recommendations.count
+    click_on "Sign out"
+
     sign_in(member)
-    visit user_trainer_profile_path(trainer)
+    visit trainer_profile_path(new_trainer.trainer_profile)
 
     fill_in_recommendation(recommendation_attr)
     click_on "Create Recommendation"
 
     expect(profile.recommendations.count).to eql(prev_count + 1)
-    expect(current_path).to eql(user_trainer_profile_path(trainer))
+    expect(current_path).to eql(trainer_profile_path(profile))
     expect(page).to have_content(recommendation_attr[:title])
   end
 
   it "cannot be created if a user is not signed in" do
-    profile = trainer.trainer_profile
+    sign_up(trainer)
+    new_trainer = User.last
+    profile = new_trainer.trainer_profile
+    click_on "Sign out"
+
+    profile = new_trainer.trainer_profile
     prev_count = profile.recommendations.count
-    visit user_trainer_profile_path(trainer)
+    visit trainer_profile_path(profile)
 
     fill_in_recommendation(recommendation_attr)
     click_on "Create Recommendation"
@@ -33,10 +46,14 @@ describe "user writes a recommendation for a trainer" do
   end
 
   it "cannot create more than one recommendation per trainer" do
-    profile = trainer.trainer_profile
+    sign_up(trainer)
+    new_trainer = User.last
+    click_on "Sign out"
+
+    profile = new_trainer.trainer_profile
     prev_count = profile.recommendations.count
     sign_in(member)
-    visit user_trainer_profile_path(trainer)
+    visit trainer_profile_path(profile)
 
     fill_in_recommendation(recommendation_attr)
     click_on "Create Recommendation"
@@ -49,7 +66,7 @@ describe "user writes a recommendation for a trainer" do
     click_on "Create Recommendation"
 
     expect(profile.recommendations.count).to eql(current_count)
-    expect(current_path).to eql(user_trainer_profile_path(trainer))
+    expect(current_path).to eql(trainer_profile_path(profile))
     expect(page).to_not have_content("This is a second recommendation")
   end
 

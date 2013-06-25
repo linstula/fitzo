@@ -10,8 +10,13 @@ feature "A Member signing up" do
 
     click_button "Sign up"
 
-    sign_up(member)
-
+    fill_in "Email", with: member[:email]
+    fill_in "user[password]", with: 12345678
+    fill_in "user[password_confirmation]", with: 12345678
+    fill_in "Username", with: member[:username]
+    fill_in "First name", with: member[:first_name]
+    fill_in "Last name", with: member[:last_name]
+    click_on "Submit"
 
     expect(User.count).to eql(prev_count + 1)
     expect(current_path).to eql(root_path)
@@ -24,14 +29,14 @@ feature "A Member signing up" do
 
     click_button "Sign up"
 
-    sign_up(member)
+    fill_in "Email", with: member[:email]
+    fill_in "user[password]", with: 12345678
+    fill_in "user[password_confirmation]", with: 12345678
+    fill_in "Username", with: member[:username]
+    fill_in "First name", with: member[:first_name]
+    fill_in "Last name", with: member[:last_name]
+    click_on "Submit"
 
     expect(TrainerProfile.count).to eql(prev_count)
-    visit user_trainer_profile_path("#{User.last.id}")
-    expect(current_path).to eql(root_path)
-    expect(page).to have_content("Resource does not exist")
   end
-
-
-
 end

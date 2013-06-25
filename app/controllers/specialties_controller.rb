@@ -2,7 +2,7 @@ class SpecialtiesController < ApplicationController
 
   def new
     @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
-    @user = @trainer_profile.user
+    @trainer = @trainer_profile.user
     @specialty = @trainer_profile.specialties.build
   end
 
@@ -15,10 +15,10 @@ class SpecialtiesController < ApplicationController
     if @specialty.save
       TrainerSpecialty.create(trainer_profile_id: @trainer_profile.id,
         specialty_id: @specialty.id)
-      flash[:notice] = "Service added."
-      redirect_to edit_user_trainer_profile_path(@user)
+      flash[:notice] = "Specialty added."
+      redirect_to edit_trainer_profile_path(@trainer_profile)
     else
-      flash.now[:notice] = "Service was not added. See errors below."
+      flash.now[:notice] = "Specialty was not added. See errors below."
       render "new"
     end
   end
