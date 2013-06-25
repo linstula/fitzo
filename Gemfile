@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'devise'
+gem 'cancan'
 gem 'simple_form'
 gem 'haml-rails'
 gem 'simple_form'
