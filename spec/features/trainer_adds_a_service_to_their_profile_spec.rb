@@ -65,7 +65,7 @@ feature "trainer adds a service to their profile", %{
 
       visit edit_trainer_profile_path(profile)
       expect(current_path).to eql(new_user_session_path)
-      expect(page).to have_content("You must be signed in")
+      expect(page).to have_content("You need to sign in or sign up before continuing")
 
       new_member
       member = User.last
@@ -92,7 +92,7 @@ feature "trainer adds a service to their profile", %{
 
       visit new_trainer_profile_service_path(profile)
       expect(current_path).to eql(new_user_session_path)
-      expect(page).to have_content("You must be signed in")
+      expect(page).to have_content("You need to sign in or sign up before continuing")
 
       new_member
       member = User.last
