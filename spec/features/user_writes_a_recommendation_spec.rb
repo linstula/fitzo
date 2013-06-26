@@ -68,10 +68,7 @@ describe "user writes a recommendation for a trainer" do
     expect(profile.recommendations.count).to eql(current_count)
     expect(current_path).to eql(trainer_profile_path(profile))
     expect(page).to_not have_content("This is a second recommendation")
-    binding.pry
   end
-
-  it "should tell a user that they have already recommended a trainer"
 
   it "cannot write a recommendation for their own profile" 
 
