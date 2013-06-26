@@ -13,10 +13,16 @@ feature "selecting specialties", %{
   # * I am redirected to a select specialties page
   # * I  can select multiple specialties
 
-  let!(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
-  let(:register_trainer) { sign_up(trainer_attr) }
+  
+  
 
   context "a signed in trainer" do
+
+    let(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
+    let(:register_trainer) { sign_up_trainer(trainer_attr) }
+    let!(:specialty) { FactoryGirl.create(:specialty) }
+    let!(:specialty_2) { FactoryGirl.create(:specialty) }
+
     it "can select specialties" do
       register_trainer
       trainer = User.last
@@ -25,19 +31,92 @@ feature "selecting specialties", %{
       prev_count = profile.trainer_specialties.count
 
       visit edit_trainer_profile_path(profile)
-      click_on "Edit Services"
-
-      check "Body Building"
-      check "Marathon Running"
-
-      click_on "Save"
+      check specialty.title
+      check specialty_2.title
+      click_on "Update Trainer profile"
 
       expect(profile.trainer_specialties.count).to eql(prev_count + 2)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
-      expect(page).to have_content("Specialties saved.")
+      expect(page).to have_content("Profile updated")
+    end
+
+    it "can see their specialties on their profile" do
+      register_trainer
+      trainer = User.last
+      sign_in(trainer)
+      profile = trainer.trainer_profile
+
+      profile.trainer_specialties.create(trainer_profile_id: profile.id, specialty_id: specialty.id)
+
+      visit trainer_profile_path(profile)
+
+      expect(page).to have_content(specialty.title)
+    end
+
+    it "can edit their specialties" do
+      register_trainer
+      trainer = User.last
+      sign_in(trainer)
+      profile = trainer.trainer_profile
+
+      profile.trainer_specialties.create(trainer_profile_id: profile.id,
+        specialty_id: specialty.id)
+
+      profile.trainer_specialties.create(trainer_profile_id: profile.id,
+        specialty_id: specialty_2.id)
+
+      expect(profile.trainer_specialties.count).to eql(2)
+
+      visit edit_trainer_profile_path(profile)
+
+      uncheck(specialty.title)
+      uncheck(specialty_2.title)
+
+      click_on "Update Trainer profile"
+
+      expect(profile.trainer_specialties.count).to eql(0)
+
+      visit trainer_profile_path(profile)
+      expect(page).to_not have_content("Body Building")
     end
   end
 
-  context "an un-authorized user"
+  context "an un-authorized user" do
+
+    let!(:trainer_attr)     { FactoryGirl.attributes_for(:trainer) }
+    let!(:register_trainer) { sign_up_trainer(trainer_attr) }
+    let!(:specialty)        { FactoryGirl.create(:specialty) }
+    let!(:specialty_2)      { FactoryGirl.create(:specialty) }
+    let(:member)            { FactoryGirl.create(:member) }
+
+    it "can see specialties on the trainer's profile" do
+      trainer = User.last
+      profile = trainer.trainer_profile
+
+      profile.trainer_specialties.build(specialty_id: specialty.id).save
+      profile.trainer_specialties.build(specialty_id: specialty_2.id).save
+
+      visit trainer_profile_path(profile)
+
+      expect(page).to have_content(specialty.title)
+      expect(page).to have_content(specialty_2.title)
+    end
+
+    it "cannot modify a trainer's specialties" do
+      trainer = User.last
+      profile = trainer.trainer_profile
+
+      visit edit_trainer_profile_path(profile)
+
+      expect(current_path).to eql(new_user_session_path)
+      expect(page).to have_content("You need to sign in or sign up before continuing")
+
+      sign_in(member)
+      visit edit_trainer_profile_path(profile)
+
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access denied")
+    end
+  end
 
 end
