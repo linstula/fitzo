@@ -5,10 +5,6 @@ class TrainerProfilesController < ApplicationController
     @trainer_profile = TrainerProfile.find(params[:id])
     @trainer = @trainer_profile.user
     @recommendation = Recommendation.new
-
-    unless @trainer.role == "trainer"
-      redirect_to root_path, notice: "Resource does not exist"
-    end
   end
 
   def edit
@@ -26,5 +22,4 @@ class TrainerProfilesController < ApplicationController
     redirect_to edit_trainer_profile_path(@trainer_profile),
       notice: "Profile updated"
   end
-
 end
