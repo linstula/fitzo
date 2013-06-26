@@ -24,13 +24,16 @@ class TrainerProfilesController < ApplicationController
   end
 
   def update
-    
     @trainer_profile = TrainerProfile.find(params[:id])
     @specialties = params[:trainer_profile][:specialty_ids]
     @specialties.each do |specialty_id|
-      @trainer_profile.trainer_specialties.build(specialty_id: specialty_id)
-      binding.pry
+      unless specialty_id.blank?
+        specialty = @trainer_profile.trainer_specialties.build(specialty_id: specialty_id)
+        specialty.save
+      end
     end
+    redirect_to edit_trainer_profile_path(@trainer_profile),
+      notice: "Profile updated"
   end
 
 end
