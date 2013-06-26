@@ -1,5 +1,6 @@
 class TrainerProfilesController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update]
+
   def show
     @trainer_profile = TrainerProfile.find(params[:id])
     @trainer = @trainer_profile.user
@@ -23,12 +24,9 @@ class TrainerProfilesController < ApplicationController
   def update
     @trainer_profile = TrainerProfile.find(params[:id])
     @specialties = params[:trainer_profile][:specialty_ids]
-    @specialties.each do |specialty_id|
-      unless specialty_id.blank?
-        specialty = @trainer_profile.trainer_specialties.build(specialty_id: specialty_id)
-        specialty.save
-      end
-    end
+
+    @trainer_profile.update_specialties(@specialties)
+
     redirect_to edit_trainer_profile_path(@trainer_profile),
       notice: "Profile updated"
   end

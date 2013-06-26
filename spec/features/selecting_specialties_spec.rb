@@ -67,7 +67,6 @@ feature "selecting specialties", %{
 
       uncheck(specialty.title)
       uncheck(specialty_2.title)
-      save_and_open_page
 
       click_on "Update Trainer profile"
 
