@@ -9,5 +9,5 @@
 = render 'specialties/list', trainer_profile: @trainer_profile
 
 = simple_form_for @trainer_profile do |f|
-  = f.association :specialties, as: :check_boxes
+  = f.association :specialties
   = f.button :submit

@@ -13,12 +13,16 @@ feature "selecting specialties", %{
   # * I am redirected to a select specialties page
   # * I  can select multiple specialties
 
-  let(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
-  let(:register_trainer) { sign_up_trainer(trainer_attr) }
-  let!(:specialty) { FactoryGirl.create(:specialty) }
-  let!(:specialty_2) { FactoryGirl.create(:specialty) }
+  
+  
 
   context "a signed in trainer" do
+
+    let(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
+    let(:register_trainer) { sign_up_trainer(trainer_attr) }
+    let!(:specialty) { FactoryGirl.create(:specialty) }
+    let!(:specialty_2) { FactoryGirl.create(:specialty) }
+
     it "can select specialties" do
       register_trainer
       trainer = User.last
@@ -27,9 +31,8 @@ feature "selecting specialties", %{
       prev_count = profile.trainer_specialties.count
 
       visit edit_trainer_profile_path(profile)
-
-      check "Body Building 1"
-      check "Body Building 2"
+      check specialty.title
+      check specialty_2.title
       click_on "Update Trainer profile"
 
       expect(profile.trainer_specialties.count).to eql(prev_count + 2)
@@ -50,7 +53,29 @@ feature "selecting specialties", %{
       expect(page).to have_content(specialty.title)
     end
 
-    it "can edit their specialties"
+    it "can edit their specialties" do
+      register_trainer
+      trainer = User.last
+      sign_in(trainer)
+      profile = trainer.trainer_profile
+
+      profile.trainer_specialties.create(trainer_profile_id: profile.id, specialty_id: specialty.id)
+      profile.trainer_specialties.create(trainer_profile_id: profile.id, specialty_id: specialty_2.id)
+      expect(profile.trainer_specialties.count).to eql(2)
+
+      visit edit_trainer_profile_path(profile)
+
+      uncheck(specialty.title)
+      uncheck(specialty_2.title)
+      save_and_open_page
+
+      click_on "Update Trainer profile"
+
+      expect(profile.trainer_specialties.count).to eql(0)
+
+      visit trainer_profile_path(profile)
+      expect(page).to_not have_content("Body Building")
+    end
   end
 
   context "an un-authorized user" do

@@ -1,5 +1,5 @@
 class TrainerProfilesController < ApplicationController
-
+  before_filter :authenticate_user!, only: [:edit, :update]
   def show
     @trainer_profile = TrainerProfile.find(params[:id])
     @trainer = @trainer_profile.user
@@ -11,15 +11,12 @@ class TrainerProfilesController < ApplicationController
   end
 
   def edit
-    if user_signed_in?
-      @trainer_profile = TrainerProfile.find(params[:id])
-      if @trainer_profile.owner?(current_user)
-        @trainer = @trainer_profile.user
-      else
-        redirect_to root_path, notice: "Resource does not exist"
-      end
+    @trainer_profile = TrainerProfile.find(params[:id])
+    @trainer_specialties = @trainer_profile.trainer_specialties.build
+    if @trainer_profile.owner?(current_user)
+      @trainer = @trainer_profile.user
     else
-      redirect_to new_user_session_path, notice: "You must be signed in"
+      redirect_to root_path, notice: "Resource does not exist"
     end
   end
 
