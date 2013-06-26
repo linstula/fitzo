@@ -15,6 +15,8 @@ feature "selecting specialties", %{
 
   let(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
   let(:register_trainer) { sign_up_trainer(trainer_attr) }
+  let!(:specialty) { FactoryGirl.create(:specialty) }
+  let!(:specialty_2) { FactoryGirl.create(:specialty) }
 
   context "a signed in trainer" do
     it "can select specialties" do
@@ -25,12 +27,11 @@ feature "selecting specialties", %{
       prev_count = profile.trainer_specialties.count
 
       visit edit_trainer_profile_path(profile)
-      click_on "Edit Specialties"
       save_and_open_page
-      check "Body Building"
-      check "Marathon Running"
 
-      click_on "Save"
+      check "Body Building 1"
+      check "Body Building 2"
+      click_on "Update Trainer profile"
 
       expect(profile.trainer_specialties.count).to eql(prev_count + 2)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
