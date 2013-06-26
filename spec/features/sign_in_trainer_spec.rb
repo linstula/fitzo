@@ -36,7 +36,7 @@ describe "A signed in trainer" do
       
       visit edit_trainer_profile_path(profile)
       expect(current_path).to eql(root_path)
-      expect(page).to have_content("Resource does not exist")
+      expect(page).to have_content("Access denied.")
     end
   end
 end
