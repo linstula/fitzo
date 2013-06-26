@@ -36,8 +36,15 @@ feature "selecting specialties", %{
       expect(current_path).to eql(edit_trainer_profile_path(profile))
       expect(page).to have_content("Profile updated")
     end
+
+    it "can see their specialties on their profile"
+
+    it "can edit their specialties"
   end
 
-  context "an un-authorized user"
+  context "an un-authorized user" do
+    it "can see specialties on the trainer's profile"
+    it "cannot modify a trainer's specialties"
+  end
 
 end
