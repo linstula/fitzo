@@ -13,8 +13,8 @@ feature "selecting specialties", %{
   # * I am redirected to a select specialties page
   # * I  can select multiple specialties
 
-  let!(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
-  let(:register_trainer) { sign_up(trainer_attr) }
+  let(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
+  let(:register_trainer) { sign_up_trainer(trainer_attr) }
 
   context "a signed in trainer" do
     it "can select specialties" do
