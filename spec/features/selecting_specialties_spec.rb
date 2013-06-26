@@ -25,8 +25,8 @@ feature "selecting specialties", %{
       prev_count = profile.trainer_specialties.count
 
       visit edit_trainer_profile_path(profile)
-      click_on "Edit Services"
-
+      click_on "Edit Specialties"
+      save_and_open_page
       check "Body Building"
       check "Marathon Running"
 
