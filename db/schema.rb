@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130622222014) do
+ActiveRecord::Schema.define(:version => 20130626153743) do
 
   create_table "recommendations", :force => true do |t|
     t.string   "title",              :null => false
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20130622222014) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  add_index "recommendations", ["trainer_profile_id", "user_id"], :name => "index_recommendations_on_trainer_profile_id_and_user_id", :unique => true
 
   create_table "services", :force => true do |t|
     t.string   "title",              :null => false
