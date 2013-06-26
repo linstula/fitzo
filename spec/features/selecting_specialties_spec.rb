@@ -37,7 +37,18 @@ feature "selecting specialties", %{
       expect(page).to have_content("Profile updated")
     end
 
-    it "can see their specialties on their profile"
+    it "can see their specialties on their profile" do
+      register_trainer
+      trainer = User.last
+      sign_in(trainer)
+      profile = trainer.trainer_profile
+
+      profile.trainer_specialties.create(trainer_profile_id: profile.id, specialty_id: specialty.id)
+
+      visit trainer_profile_path(profile)
+
+      expect(page).to have_content(specialty.title)
+    end
 
     it "can edit their specialties"
   end
