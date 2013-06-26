@@ -27,7 +27,6 @@ feature "selecting specialties", %{
       prev_count = profile.trainer_specialties.count
 
       visit edit_trainer_profile_path(profile)
-      save_and_open_page
 
       check "Body Building 1"
       check "Body Building 2"
