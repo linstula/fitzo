@@ -14,6 +14,7 @@ class TrainerProfilesController < ApplicationController
   def edit
     @trainer_profile = TrainerProfile.find(params[:id])
     @trainer_specialties = @trainer_profile.trainer_specialties.build
+    # TODO refactor to use cancan authorization
     if @trainer_profile.owner?(current_user)
       @trainer = @trainer_profile.user
     else
