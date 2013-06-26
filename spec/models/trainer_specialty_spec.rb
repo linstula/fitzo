@@ -8,4 +8,6 @@ describe TrainerSpecialty do
   it { should validate_presence_of(:trainer_profile_id)}
   it { should validate_presence_of(:specialty_id)}
 
+  it { should validate_uniqueness_of(:user_id).scoped_to(:specialty_id) }
+
 end
