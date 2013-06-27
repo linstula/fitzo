@@ -83,7 +83,7 @@ feature "Trainer selects specialties", %{
 
 
     it "guest user cannot modify a trainer's specialties" do
-      visit new_trainer_profile_service_path(profile)
+      visit edit_trainer_profile_path(profile)
 
       expect(current_path).to eql(new_user_session_path)
       expect(page).to have_content("You need to sign in or sign up before continuing")
@@ -91,7 +91,7 @@ feature "Trainer selects specialties", %{
 
     it "member cannot modify a trainer's specialties" do
       sign_in(member)
-      visit new_trainer_profile_service_path(profile)
+      visit edit_trainer_profile_path(profile)
 
       expect(current_path).to eql(root_path)
       expect(page).to have_content("Access denied")
@@ -99,7 +99,7 @@ feature "Trainer selects specialties", %{
 
     it "other trainer cannot modify a trainer's specialties" do
       sign_in(other_trainer)
-      visit new_trainer_profile_service_path(profile)
+      visit edit_trainer_profile_path(profile)
 
       expect(current_path).to eql(root_path)
       expect(page).to have_content("Access denied")
