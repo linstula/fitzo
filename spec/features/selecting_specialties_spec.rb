@@ -13,9 +13,6 @@ feature "selecting specialties", %{
   # * I am redirected to a select specialties page
   # * I  can select multiple specialties
 
-  
-  
-
   context "a signed in trainer" do
 
     let(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
@@ -83,19 +80,15 @@ feature "selecting specialties", %{
 
   context "an un-authorized user" do
 
-    let!(:trainer_attr)     { FactoryGirl.attributes_for(:trainer) }
-    let!(:register_trainer) { sign_up_trainer(trainer_attr) }
-    let!(:specialty)        { FactoryGirl.create(:specialty) }
-    let!(:specialty_2)      { FactoryGirl.create(:specialty) }
+    let(:trainer)     { FactoryGirl.create(:trainer) }
+    let(:specialty)        { FactoryGirl.create(:specialty) }
+    let(:specialty_2)      { FactoryGirl.create(:specialty) }
+    let(:profile)           { trainer.trainer_profile }
+    let!(:trainer_specialty){ FactoryGirl.create(:trainer_specialty, trainer_profile: profile, specialty: specialty)}
+    let!(:trainer_specialty2){ FactoryGirl.create(:trainer_specialty, trainer_profile: profile, specialty: specialty_2)}
     let(:member)            { FactoryGirl.create(:member) }
 
     it "can see specialties on the trainer's profile" do
-      trainer = User.last
-      profile = trainer.trainer_profile
-
-      profile.trainer_specialties.build(specialty_id: specialty.id).save
-      profile.trainer_specialties.build(specialty_id: specialty_2.id).save
-
       visit trainer_profile_path(profile)
 
       expect(page).to have_content(specialty.title)
