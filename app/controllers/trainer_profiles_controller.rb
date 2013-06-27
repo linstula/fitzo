@@ -15,7 +15,7 @@ class TrainerProfilesController < ApplicationController
 
   def update
     @trainer_profile = TrainerProfile.find(params[:id])
-    @specialties = params[:trainer_profile][:specialty_ids]
+    @specialties = params[:trainer_profile][:specialty_ids].reject! { |c| c.empty? }
 
     @trainer_profile.update_specialties(@specialties)
 

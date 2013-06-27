@@ -17,5 +17,9 @@ FactoryGirl.define do
     last_name "Er"
     username "Trainer"
     role "trainer"
+
+    after(:create) do |user, evaluator|
+      user.create_profile_for_trainer
+    end
   end
 end
