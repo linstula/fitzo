@@ -29,5 +29,4 @@ def sign_up_member(member)
   fill_in "Last name", with: member[:last_name]
 
   click_on "Submit"
-  click_on "Sign out"
 end

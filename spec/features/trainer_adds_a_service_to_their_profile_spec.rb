@@ -69,7 +69,6 @@ feature "trainer adds a service to their profile", %{
 
       new_member
       member = User.last
-      sign_in(member)
 
       visit edit_trainer_profile_path(profile)
       expect(current_path).to eql(root_path)
@@ -96,7 +95,6 @@ feature "trainer adds a service to their profile", %{
 
       new_member
       member = User.last
-      sign_in(member)
 
       visit new_trainer_profile_service_path(profile)
       expect(current_path).to eql(root_path)
