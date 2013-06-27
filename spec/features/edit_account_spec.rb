@@ -26,39 +26,18 @@ feature "Edit a user account" do
 
   end
 
-  describe "when a user is signed in as a member" do
+  describe "when a user is signed in" do
 
-    it "can see an edit menu" do
+    it "member can see an edit menu" do
       sign_in(member)
 
       expect(page).to have_link("#{member.username}")
     end
 
-  end
+    it "trainer can see an edit menu" do
+      sign_in(trainer)
 
-  describe "deleting an account" do
-
-    it "when I'm signed in" do
-      sign_in(member)
-      prev_count = User.count
-
-      visit edit_user_registration_path
-      click_on "Cancel my account"
-
-      expect(User.count).to eql(prev_count - 1)
-      expect(page).to have_content("Bye! Your account was 
-        successfully cancelled. We hope to see you again soon.")
-    end
-
-    it "when I'm not signed in" do 
-      prev_count = User.count
-
-      visit edit_user_registration_path
-
-      expect(current_path).to eql(new_user_session_path)
-      expect(User.count).to eql(prev_count)
+      expect(page).to have_link("#{trainer.username}")
     end
   end
-
-
 end

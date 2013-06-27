@@ -4,6 +4,7 @@ feature "Edit a profile" do
 
   context "a registered trainer" do
 
+    it "needs some tests"
 
   end
 
