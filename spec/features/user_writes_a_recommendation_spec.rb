@@ -70,8 +70,6 @@ describe "user writes a recommendation for a trainer" do
     expect(page).to_not have_content("This is a second recommendation")
   end
 
-  it "should tell a user that they have already recommended a trainer"
-
   it "cannot write a recommendation for their own profile" 
 
   it "cannot write a recommendation if they are a trainer"

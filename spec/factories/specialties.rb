@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :specialty do
-    title "Specialty Title"
-    association :trainer_profile, factory: :trainer_profile
+    sequence(:title) {|n| "Body Building #{n}" }
   end
 end

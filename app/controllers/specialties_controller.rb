@@ -4,6 +4,7 @@ class SpecialtiesController < ApplicationController
     @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
     @trainer = @trainer_profile.user
     @specialty = @trainer_profile.specialties.build
+    @specialties = Specialty.all
   end
 
   def create
