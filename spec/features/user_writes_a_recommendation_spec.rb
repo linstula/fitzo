@@ -70,9 +70,18 @@ describe "user writes a recommendation for a trainer" do
     expect(page).to_not have_content("This is a second recommendation")
   end
 
-  it "cannot write a recommendation for their own profile" 
+  it "cannot write a recommendation for their own profile" do
+    sign_up_trainer(trainer)
+    new_trainer = User.last
+    sign_in(new_trainer)
 
-  it "cannot write a recommendation if they are a trainer"
+    profile = new_trainer.trainer_profile
+    prev_count = profile.recommendations.count
+    visit trainer_profile_path(profile)
+
+    expect(page).to_not have_css("form.new_recommendation")
+  end
+
 end
 
 def fill_in_recommendation(recommendation)
