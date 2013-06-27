@@ -16,12 +16,4 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name, :username, :role
   validates_inclusion_of :role, in: ["member", "trainer"]
-
-  # private
-
-  # def create_profile_for_trainer
-  #   if self.role == 'trainer'
-  #     self.build_trainer_profile.save
-  #   end
-  # end
 end
