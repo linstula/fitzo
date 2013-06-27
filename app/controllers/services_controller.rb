@@ -4,12 +4,8 @@ class ServicesController < ApplicationController
   load_and_authorize_resource :service, through: :trainer_profile
 
   def new
-    if current_user.trainer_profile
-      @trainer_profile = current_user.trainer_profile
-      @service = @trainer_profile.services.build
-    else
-      redirect_to root_path
-    end 
+    @trainer_profile = current_user.trainer_profile
+    @service = @trainer_profile.services.build
   end
 
   def create

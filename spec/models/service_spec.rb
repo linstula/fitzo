@@ -18,6 +18,4 @@ describe Service do
   it { should_not have_valid(:price).when("string", "", nil, 1.0, 0.99, 100.0)}
   it { should_not have_valid(:trainer_profile_id).when("", nil)}
 
-
-  it "should deal with other trainer editing trainers services"
 end

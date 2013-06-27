@@ -11,10 +11,11 @@ feature "Trainer selects specialties", %{
   # * Only I can add specialties to my profile
   # * I  can select multiple specialties
 
+  let(:trainer) { FactoryGirl.create(:trainer) }
+  let(:profile) { trainer.trainer_profile }
+
   context "a signed in trainer" do
 
-    let(:trainer) { FactoryGirl.create(:trainer) }
-    let(:profile)           { trainer.trainer_profile }
     let!(:specialty) { FactoryGirl.create(:specialty) }
     let!(:specialty_2) { FactoryGirl.create(:specialty) }
 
@@ -70,15 +71,8 @@ feature "Trainer selects specialties", %{
 
   context "an un-authorized user" do
 
-    let(:trainer)           { FactoryGirl.create(:trainer) }
     let(:other_trainer)     { FactoryGirl.create(:trainer) }
-    let(:specialty)         { FactoryGirl.create(:specialty) }
-    let(:specialty_2)       { FactoryGirl.create(:specialty) }
-    let(:profile)           { trainer.trainer_profile }
-    let!(:trainer_specialty){ FactoryGirl.create(:trainer_specialty, trainer_profile: profile, specialty: specialty)}
-    let!(:trainer_specialty2){ FactoryGirl.create(:trainer_specialty, trainer_profile: profile, specialty: specialty_2)}
     let(:member)            { FactoryGirl.create(:member) }
-
 
     it "guest user cannot modify a trainer's specialties" do
       visit edit_trainer_profile_path(profile)
