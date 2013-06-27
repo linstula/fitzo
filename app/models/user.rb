@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
 
   # private
 
-  # def create_profile_for_trainer
-  #   if self.role == 'trainer'
-  #     self.build_trainer_profile.save
-  #   end
-  # end
+  def create_profile_for_trainer
+    if self.role == 'trainer'
+      self.build_trainer_profile.save
+    end
+  end
 end

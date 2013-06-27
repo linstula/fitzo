@@ -4,9 +4,10 @@ class Ability
   def initialize(user)
 
     user ||= User.new
+
     if user.role == "trainer"
         can :manage, TrainerProfile, user_id: user.id
-        can :manage, Service
+        can :manage, Service, trainer_profile: { user_id: user.id }
     else
         can :read, TrainerProfile
     end

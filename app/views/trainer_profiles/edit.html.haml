@@ -1,6 +1,6 @@
-%h1 
+%h1
   Edit Profile
-  
+
 = render 'services/list', trainer_profile: @trainer_profile
 
 = button_to "Add Service", new_trainer_profile_service_path(@trainer_profile),
@@ -8,5 +8,7 @@
 
 = render 'specialties/list', trainer_profile: @trainer_profile
 
-= button_to "Add Specialty", new_trainer_profile_specialty_path(@trainer_profile),
-  method: :get
+= simple_form_for @trainer_profile do |f|
+  = f.association :specialties, as: :check_boxes
+  = f.button :submit
+
