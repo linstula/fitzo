@@ -9,22 +9,6 @@ def sign_in(user)
   end
 end
 
-def sign_up(user)
-  valid_password = 12345678
-
-  visit root_path
-  click_on "Get Listed"
-  
-  fill_in "Email", with: user.email
-  fill_in "user[password]", with: valid_password
-  fill_in "user[password_confirmation]", with: valid_password
-  fill_in "Username", with: user.username
-  fill_in "First name", with: user.first_name
-  fill_in "Last name", with: user.last_name
-
-  click_on "Submit"
-end
-
 def sign_out(user)
   click_on "Sign out"
 end

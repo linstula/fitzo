@@ -11,7 +11,7 @@ describe "user writes a recommendation for a trainer" do
   end
 
   it "creates a recommendation with valid attributes" do
-    sign_up(trainer)
+    sign_up_trainer(trainer)
     new_trainer = User.last
     profile = new_trainer.trainer_profile
     prev_count = profile.recommendations.count
@@ -29,7 +29,7 @@ describe "user writes a recommendation for a trainer" do
   end
 
   it "cannot be created if a user is not signed in" do
-    sign_up(trainer)
+    sign_up_trainer(trainer)
     new_trainer = User.last
     profile = new_trainer.trainer_profile
     click_on "Sign out"
@@ -46,7 +46,7 @@ describe "user writes a recommendation for a trainer" do
   end
 
   it "cannot create more than one recommendation per trainer" do
-    sign_up(trainer)
+    sign_up_trainer(trainer)
     new_trainer = User.last
     click_on "Sign out"
 
