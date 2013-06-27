@@ -28,19 +28,7 @@ feature "User Registration" do
 
     it "can create an account" do
       prev_count = User.count
-
-      visit root_path
-
-      click_on "Get Listed"
-
-      fill_in "Username", with: trainer.username
-      fill_in "Email", with: trainer.email
-      fill_in "user[password]", with: 12345678
-      fill_in "user[password_confirmation]", with: 12345678
-      fill_in "First name", with: trainer.first_name
-      fill_in "Last name", with: trainer.last_name
-
-      click_on "Submit"
+      sign_up_trainer(trainer)
 
       trainer = User.last
 

@@ -23,7 +23,6 @@ feature "selecting specialties", %{
     it "can select specialties" do
       register_trainer
       trainer = User.last
-      sign_in(trainer)
       profile = trainer.trainer_profile
       prev_count = profile.trainer_specialties.count
 
@@ -40,7 +39,6 @@ feature "selecting specialties", %{
     it "can see their specialties on their profile" do
       register_trainer
       trainer = User.last
-      sign_in(trainer)
       profile = trainer.trainer_profile
 
       profile.trainer_specialties.create(trainer_profile_id: profile.id, specialty_id: specialty.id)
@@ -53,7 +51,6 @@ feature "selecting specialties", %{
     it "can edit their specialties" do
       register_trainer
       trainer = User.last
-      sign_in(trainer)
       profile = trainer.trainer_profile
 
       profile.trainer_specialties.create(trainer_profile_id: profile.id,

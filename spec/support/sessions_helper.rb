@@ -24,3 +24,7 @@ def sign_up(user)
 
   click_on "Submit"
 end
+
+def sign_out(user)
+  click_on "Sign out"
+end

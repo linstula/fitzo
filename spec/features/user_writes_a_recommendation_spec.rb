@@ -73,7 +73,6 @@ describe "user writes a recommendation for a trainer" do
   it "cannot write a recommendation for their own profile" do
     sign_up_trainer(trainer)
     new_trainer = User.last
-    sign_in(new_trainer)
 
     profile = new_trainer.trainer_profile
     prev_count = profile.recommendations.count

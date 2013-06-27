@@ -25,7 +25,6 @@ feature "trainer adds a service to their profile", %{
     it "adds a service with valid attributes" do
       new_trainer
       trainer = User.last
-      sign_in(trainer)
       profile = trainer.trainer_profile
       prev_count = profile.services.count
 
@@ -41,7 +40,6 @@ feature "trainer adds a service to their profile", %{
     it "cannot add a service with invalid attributes" do
       new_trainer
       trainer = User.last
-      sign_in(trainer)
       profile = trainer.trainer_profile
       prev_count = profile.services.count
 
@@ -62,6 +60,7 @@ feature "trainer adds a service to their profile", %{
       new_trainer
       trainer = User.last
       profile = trainer.trainer_profile
+      sign_out(trainer)
 
       visit edit_trainer_profile_path(profile)
       expect(current_path).to eql(new_user_session_path)
@@ -88,6 +87,7 @@ feature "trainer adds a service to their profile", %{
       new_trainer
       trainer = User.last
       profile = trainer.trainer_profile
+      sign_out(trainer)
 
       visit new_trainer_profile_service_path(profile)
       expect(current_path).to eql(new_user_session_path)
