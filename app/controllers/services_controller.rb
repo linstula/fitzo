@@ -1,10 +1,11 @@
 class ServicesController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource :trainer_profile
+  load_and_authorize_resource :service, through: :trainer_profile
 
   def new
-    @trainer_profile = current_user.trainer_profile ||= TrainerProfile.new
-    @service = @trainer_profile.services.build 
-    authorize! :manage, @trainer_profile
+    @trainer_profile = current_user.trainer_profile
+    @service = @trainer_profile.services.build
   end
 
   def create
