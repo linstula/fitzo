@@ -1,13 +1,13 @@
 require "spec_helper"
 
-feature "selecting specialties", %{
+feature "Trainer selects specialties", %{
   as a trainer
   I want to select what specialties I have
   so users know what skills I have
 } do
 
   # Acceptance Criteria
-  # * I can select specialties form an existing lsit
+  # * I can select specialties from an existing list
   # * Only I can add specialties to my profile
   # * I can click on a button in my profile to add a specialty
   # * I am redirected to a select specialties page
@@ -15,15 +15,13 @@ feature "selecting specialties", %{
 
   context "a signed in trainer" do
 
-    let(:trainer_attr) { FactoryGirl.attributes_for(:trainer) }
-    let(:register_trainer) { sign_up_trainer(trainer_attr) }
+    let(:trainer) { FactoryGirl.create(:trainer) }
+    let(:profile)           { trainer.trainer_profile }
     let!(:specialty) { FactoryGirl.create(:specialty) }
     let!(:specialty_2) { FactoryGirl.create(:specialty) }
 
     it "can select specialties" do
-      register_trainer
-      trainer = User.last
-      profile = trainer.trainer_profile
+      sign_in(trainer)
       prev_count = profile.trainer_specialties.count
 
       visit edit_trainer_profile_path(profile)
@@ -36,12 +34,12 @@ feature "selecting specialties", %{
       expect(page).to have_content("Profile updated")
     end
 
-    it "can see their specialties on their profile" do
-      register_trainer
-      trainer = User.last
-      profile = trainer.trainer_profile
+    it "can see new specialties on their profile" do
+      sign_in(trainer)
+      visit edit_trainer_profile_path(profile)
 
-      profile.trainer_specialties.create(trainer_profile_id: profile.id, specialty_id: specialty.id)
+      check specialty.title
+      click_on "Update Trainer profile"
 
       visit trainer_profile_path(profile)
 
@@ -49,15 +47,13 @@ feature "selecting specialties", %{
     end
 
     it "can edit their specialties" do
-      register_trainer
-      trainer = User.last
-      profile = trainer.trainer_profile
+      sign_in(trainer)
+      visit edit_trainer_profile_path(profile)
+      prev_count = profile.trainer_specialties.count
 
-      profile.trainer_specialties.create(trainer_profile_id: profile.id,
-        specialty_id: specialty.id)
-
-      profile.trainer_specialties.create(trainer_profile_id: profile.id,
-        specialty_id: specialty_2.id)
+      check specialty.title
+      check specialty_2.title
+      click_on "Update Trainer profile"
 
       expect(profile.trainer_specialties.count).to eql(2)
 
@@ -65,7 +61,6 @@ feature "selecting specialties", %{
 
       uncheck(specialty.title)
       uncheck(specialty_2.title)
-
       click_on "Update Trainer profile"
 
       expect(profile.trainer_specialties.count).to eql(0)
@@ -77,31 +72,33 @@ feature "selecting specialties", %{
 
   context "an un-authorized user" do
 
-    let(:trainer)     { FactoryGirl.create(:trainer) }
-    let(:specialty)        { FactoryGirl.create(:specialty) }
-    let(:specialty_2)      { FactoryGirl.create(:specialty) }
+    let(:trainer)           { FactoryGirl.create(:trainer) }
+    let(:other_trainer)     { FactoryGirl.create(:trainer) }
+    let(:specialty)         { FactoryGirl.create(:specialty) }
+    let(:specialty_2)       { FactoryGirl.create(:specialty) }
     let(:profile)           { trainer.trainer_profile }
     let!(:trainer_specialty){ FactoryGirl.create(:trainer_specialty, trainer_profile: profile, specialty: specialty)}
     let!(:trainer_specialty2){ FactoryGirl.create(:trainer_specialty, trainer_profile: profile, specialty: specialty_2)}
     let(:member)            { FactoryGirl.create(:member) }
 
-    it "can see specialties on the trainer's profile" do
-      visit trainer_profile_path(profile)
 
-      expect(page).to have_content(specialty.title)
-      expect(page).to have_content(specialty_2.title)
-    end
-
-    it "cannot modify a trainer's specialties" do
-      trainer = User.last
-      profile = trainer.trainer_profile
-
+    it "guest user cannot modify a trainer's specialties" do
       visit edit_trainer_profile_path(profile)
 
       expect(current_path).to eql(new_user_session_path)
       expect(page).to have_content("You need to sign in or sign up before continuing")
+    end
 
+    it "member cannot modify a trainer's specialties" do
       sign_in(member)
+      visit edit_trainer_profile_path(profile)
+
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access denied")
+    end
+
+    it "other trainer cannot modify a trainer's specialties" do
+      sign_in(other_trainer)
       visit edit_trainer_profile_path(profile)
 
       expect(current_path).to eql(root_path)
