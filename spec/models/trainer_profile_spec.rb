@@ -36,6 +36,7 @@ describe TrainerProfile do
     current_count = profile.trainer_specialties.count
 
     updated_spec_ids = [spec.id.to_s]
+ 
     profile.remove_specialties(updated_spec_ids)
     expect(profile.trainer_specialties.count).to eql(current_count - 1)
   end

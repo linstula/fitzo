@@ -5,9 +5,10 @@
 
 = render 'specialties/list', trainer_profile: @trainer_profile
 
-%h3
-  = "Write a recommendation for #{@trainer.first_name}"
+- unless @trainer_profile.user == current_user
+  %h3
+    = "Write a recommendation for #{@trainer.first_name}"
 
-= render 'recommendations/form', { trainer_profile: @trainer_profile, user: current_user }
+  = render 'recommendations/form', { trainer_profile: @trainer_profile, user: current_user }
 
 = render 'recommendations/list', trainer_profile: @trainer_profile

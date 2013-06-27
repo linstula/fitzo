@@ -34,13 +34,7 @@ class TrainerProfile < ActiveRecord::Base
   def remove_specialties(specialty_ids)
     ids_to_remove =  current_specialty_ids - specialty_ids
 
-    ids_to_remove.each do |id|
-      trainer_specialties.where(specialty_id: id).destroy
-    end
-
-    # can do this instead
-    # trainer_specialties.where(specialty_id: ids_to_remove).destroy_all
-
+    trainer_specialties.where(specialty_id: ids_to_remove).destroy_all
   end
 
   def update_specialties(specialty_ids)
