@@ -9,8 +9,6 @@ feature "Trainer selects specialties", %{
   # Acceptance Criteria
   # * I can select specialties from an existing list
   # * Only I can add specialties to my profile
-  # * I can click on a button in my profile to add a specialty
-  # * I am redirected to a select specialties page
   # * I  can select multiple specialties
 
   context "a signed in trainer" do
