@@ -11,23 +11,22 @@ require 'spec_helper'
 # * I can delete my account
 # * Trainers see another link to edit their profile
 
-feature "Editing a user account" do
+feature "Edit a user account" do
 
-  let!(:member)     { FactoryGirl.create(:member) }
-  let!(:trainer)  { FactoryGirl.create(:trainer) }
+  let(:member)     { FactoryGirl.create(:member) }
+  let(:trainer)  { FactoryGirl.create(:trainer) }
   
   describe "when a user is not signed in" do
 
     it "does not see an edit menu" do
-      not_logged_in_member = member
       visit root_path
 
-      expect(page).to_not have_link("#{not_logged_in_member.username}")
+      expect(page).to_not have_link("#{member.username}")
     end
 
   end
 
-  describe "when a user is signed in as a user" do
+  describe "when a user is signed in as a member" do
 
     it "can see an edit menu" do
       sign_in(member)
@@ -56,6 +55,7 @@ feature "Editing a user account" do
 
       visit edit_user_registration_path
 
+      expect(current_path).to eql(new_user_session_path)
       expect(User.count).to eql(prev_count)
     end
   end
