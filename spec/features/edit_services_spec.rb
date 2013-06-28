@@ -6,6 +6,7 @@ feature "Edit services" do
   let(:profile)       { trainer.trainer_profile}
   let(:service_attr)  { FactoryGirl.attributes_for(:service) }
   let(:member)        { FactoryGirl.create(:member) }
+  let(:other_trainer) { FactoryGirl.create(:trainer) }
   
   context "registered trainer" do
 
@@ -52,7 +53,16 @@ feature "Edit services" do
       expect(page).to have_content("Access denied")
     end
 
-    it "other trainer can't access trainer's edit service page"
+    it "other trainer can't access trainer's edit service page" do
+      profile.services.create(service_attr)
+      service = profile.services.last
+
+      sign_in(other_trainer)
+
+      visit edit_trainer_profile_service_path(profile, service)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access denied")
+    end
 
   end
 
