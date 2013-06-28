@@ -2,9 +2,10 @@ require "spec_helper"
 
 feature "Edit services" do
 
-  let(:trainer) { FactoryGirl.create(:trainer) }
-  let(:profile) { trainer.trainer_profile}
-  let(:service_attr) { FactoryGirl.attributes_for(:service) }
+  let(:trainer)       { FactoryGirl.create(:trainer) }
+  let(:profile)       { trainer.trainer_profile}
+  let(:service_attr)  { FactoryGirl.attributes_for(:service) }
+  let(:member)        { FactoryGirl.create(:member) }
   
   context "registered trainer" do
 
@@ -40,7 +41,16 @@ feature "Edit services" do
       expect(page).to have_content("You need to sign in or sign up before continuing")
     end
 
-    it "member can't access the edit service page"
+    it "member can't access the edit service page" do
+      profile.services.create(service_attr)
+      service = profile.services.last
+
+      sign_in(member)
+
+      visit edit_trainer_profile_service_path(profile, service)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access denied")
+    end
 
     it "other trainer can't access trainer's edit service page"
 
