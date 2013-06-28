@@ -29,7 +29,22 @@ feature "Edit services" do
     end
   end
 
-  context "unathorized user"
+  context "unathorized user" do
+
+    it "guest user can't access the edit service page" do
+      profile.services.create(service_attr)
+      service = profile.services.last
+
+      visit edit_trainer_profile_service_path(profile, service)
+      expect(current_path).to eql(new_user_session_path)
+      expect(page).to have_content("You need to sign in or sign up before continuing")
+    end
+
+    it "member can't access the edit service page"
+
+    it "other trainer can't access trainer's edit service page"
+
+  end
 
 
 end
