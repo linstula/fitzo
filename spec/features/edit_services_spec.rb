@@ -29,7 +29,7 @@ feature "Edit services" do
       expect(page).to have_content("Service updated")
     end
 
-    it "does not see edit links on the show page of profile" do
+    it "does not see edit or delete service links on profile show page" do
       sign_in(trainer)
 
       profile.services.create(service_attr)
@@ -37,6 +37,7 @@ feature "Edit services" do
       visit trainer_profile_path(profile)
 
       expect(page).to_not have_button("Edit Service")
+      expect(page).to_not have_button("Remove Service")
     end
 
     it "can delete a service" do
