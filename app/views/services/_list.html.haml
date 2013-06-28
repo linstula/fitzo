@@ -25,6 +25,6 @@
             = service.duration
           %td 
             = service.price
-          - if current_user == trainer_profile.user
+          - if current_page?(controller: "trainer_profiles", action: 'edit')
             %td 
               = button_to "Edit Service", edit_trainer_profile_service_path(trainer_profile, service), method: :get

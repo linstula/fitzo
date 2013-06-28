@@ -7,7 +7,7 @@ Fitzo::Application.routes.draw do
     
   # end
   resources :trainer_profiles, only: [:show, :edit, :update] do
-    resources :services, only: [:new, :create, :edit,:update, :show]
+    resources :services, except: [:destroy, :index]
     resources :specialties, only: [:new, :create]
     resources :recommendations, only: [:create]
   end

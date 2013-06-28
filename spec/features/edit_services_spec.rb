@@ -14,7 +14,6 @@ feature "Edit services" do
       prev_count = profile.services.count
       sign_in(trainer)
 
-
       profile.services.create(service_attr)
       expect(profile.services.count).to eql(prev_count + 1)
 
@@ -28,6 +27,16 @@ feature "Edit services" do
       expect(current_path).to eql(edit_trainer_profile_path(profile))
       expect(page).to have_content("New service title")
       expect(page).to have_content("Service updated")
+    end
+
+    it "does not see edit links on the show page of profile" do
+      sign_in(trainer)
+
+      profile.services.create(service_attr)
+
+      visit trainer_profile_path(profile)
+
+      expect(page).to_not have_button("Edit Service")
     end
   end
 
@@ -63,8 +72,8 @@ feature "Edit services" do
       expect(current_path).to eql(root_path)
       expect(page).to have_content("Access denied")
     end
-
   end
 
+  it "needs to create a delete service"
 
 end
