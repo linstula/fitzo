@@ -1,22 +1,32 @@
-%section
-  %h2
-    Services
-  %h3
-    %span
-      Title
-    %span
-      Description
-    %span
-      Duration
-    %span
-      Price
-  %h5
-    - trainer_profile.services.each do |service|
-      %span
-        = service.title
-      %span
-        = service.description
-      %span
-        = service.duration
-      %span
-        = service.price
+%div
+  %table
+    %thead
+      %tr
+        %th
+          %h3
+            Title
+        %th 
+          %h3
+            Description
+        %th
+          %h3
+            Duration
+        %th
+          %h3
+            Price
+    %tbody
+      - trainer_profile.services.each do |service|
+        %tr
+          %td 
+            = service.title
+          %td 
+            = service.description
+          %td 
+            = service.duration
+          %td 
+            = service.price
+          - if current_page?(controller: "trainer_profiles", action: 'edit')
+            %td 
+              = button_to "Edit Service", edit_trainer_profile_service_path(trainer_profile, service), method: :get, class: "button small radius"
+            %td 
+              = button_to "Remove Service", trainer_profile_service_path(trainer_profile, service), method: :delete, class: "button small radius alert", confirm: "Are you sure?"
