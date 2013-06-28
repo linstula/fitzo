@@ -27,4 +27,6 @@
             = service.price
           - if current_page?(controller: "trainer_profiles", action: 'edit')
             %td 
-              = button_to "Edit Service", edit_trainer_profile_service_path(trainer_profile, service), method: :get
+              = button_to "Edit Service", edit_trainer_profile_service_path(trainer_profile, service), method: :get, class: "button small radius"
+            %td 
+              = button_to "Remove Service", trainer_profile_service_path(trainer_profile, service), method: :delete, class: "button small radius alert", confirm: "Are you sure?"

@@ -9,7 +9,7 @@ class ServicesController < ApplicationController
   def create
     if @service.save
       redirect_to edit_trainer_profile_path(@trainer_profile), 
-      notice: "Service added."
+        notice: "Service added."
     else
       flash.now[:notice] = "Service was not created. See errors below."
       render 'new'
@@ -22,10 +22,20 @@ class ServicesController < ApplicationController
   def update
     if @service.update_attributes(params[:service])
       redirect_to edit_trainer_profile_path(@trainer_profile),
-      notice: "Service updated."
+        notice: "Service updated."
     else
-      flash[:now] = "Service not updated."
+      flash[:now] = "Unable to update service."
       render "edit"
+    end
+  end
+
+  def destroy
+    if @service.destroy
+      redirect_to edit_trainer_profile_path(@trainer_profile),
+        notice: "Service removed."
+    else
+      redirect_to edit_trainer_profile_path(@trainer_profile),
+        notice: "Unable to remove service."
     end
   end
 end

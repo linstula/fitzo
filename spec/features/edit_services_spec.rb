@@ -38,6 +38,20 @@ feature "Edit services" do
 
       expect(page).to_not have_button("Edit Service")
     end
+
+    it "can delete a service" do
+      profile.services.create(service_attr)
+      prev_count = profile.services.count
+      sign_in(trainer)
+
+      visit edit_trainer_profile_path(profile)
+      click_on "Remove Service"
+
+      expect(profile.services.count).to eql(prev_count - 1)
+      expect(current_path).to eql(edit_trainer_profile_path(profile))
+      expect(page).to_not have_content(service_attr[:title])
+      expect(page).to have_content("Service removed.")
+    end
   end
 
   context "unathorized user" do
@@ -73,7 +87,4 @@ feature "Edit services" do
       expect(page).to have_content("Access denied")
     end
   end
-
-  it "needs to create a delete service"
-
 end
