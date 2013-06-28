@@ -20,4 +20,18 @@ class ServicesController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+    
+  end
+
+  def update
+    if @service.update_attributes(params[:service])
+      redirect_to edit_trainer_profile_path(@trainer_profile),
+      notice: "Service updated"
+    else
+      flash[:now] = "Service not updated"
+      render "edit"
+    end
+  end
 end
