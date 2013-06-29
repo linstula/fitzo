@@ -9,10 +9,10 @@ class RecommendationsController < ApplicationController
 
     if @recommendation.save
       redirect_to trainer_profile_path(@trainer_profile),
-        notice: "Recommendation added"
+        notice: "Recommendation added."
     else
       redirect_to trainer_profile_path(@trainer_profile), 
-        notice: "Recommendation was not added."
+        notice: "Recommendation could not be added."
     end
   end
 
@@ -28,8 +28,8 @@ class RecommendationsController < ApplicationController
       redirect_to trainer_profile_path(@trainer_profile),
         notice: "Recommendation updated."
     else
-      flash[:now] = "Recommendation could not be updated."
-      render "edit"
+      redirect_to edit_trainer_profile_recommendation_path(@trainer_profile,
+        @recommendation), notice: "Recommendation could not be updated."
     end
   end
 end
