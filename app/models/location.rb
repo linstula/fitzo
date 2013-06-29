@@ -5,7 +5,7 @@ class Location < ActiveRecord::Base
   
   attr_accessible :city, :state, :street_address, :zip_code
 
-  after_validation :get_location_details
+  # after_validation :get_location_details
 
   def get_location_details
     self.full_address = "#{street_address} #{city}, #{state} #{zip_code}"
