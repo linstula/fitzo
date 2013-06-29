@@ -1,4 +1,8 @@
 class Location < ActiveRecord::Base
+  has_many :trainer_profiles, 
+    through: :trainer_locations
+  has_many :trainer_locations
+  
   attr_accessible :city, :state, :street_address, :zip_code
 
   after_validation :get_location_details
