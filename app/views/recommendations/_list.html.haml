@@ -14,5 +14,6 @@
       %span
         = recommendation.content
       %span 
-        = button_to "Edit Recommendation", edit_trainer_profile_recommendation_path(trainer_profile, recommendation), method: :get
+        - if can? :update, recommendation
+          = button_to "Edit Recommendation", edit_trainer_profile_recommendation_path(trainer_profile, recommendation), method: :get
 

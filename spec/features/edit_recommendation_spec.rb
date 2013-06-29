@@ -40,10 +40,21 @@ feature "Edit recommendation" do
     end
   end
 
-  # context "user does not own the recommendation"
-  #   it "guest user"
-  #   it "other member"
-  #   it "trainer"
+  context "user does not own the recommendation" do
+
+    it "cannot see an edit recommendation button" do
+      visit trainer_profile_path(profile)
+      expect(profile.recommendations.count).to eql(1)
+      expect(page).to_not have_button("Edit Recommendation")
+    end
+    # it "guest user cannot access the edit recommendaiton page" do
+    #   visit trainer_profile_path(profile)
+    # end
+
+    it "other member"
+
+    it "trainer"
+  end
 
 
 end

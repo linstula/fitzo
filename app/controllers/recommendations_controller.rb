@@ -1,7 +1,7 @@
 class RecommendationsController < ApplicationController
   before_filter :authenticate_user!
-  # load_and_authorize_resource :user
-  # load_and_authorize_resource :recommendation, through: :user
+  load_and_authorize_resource :recommendation
+
   def create
     @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
     @recommendation = @trainer_profile.recommendations.build(params[:recommendation])
