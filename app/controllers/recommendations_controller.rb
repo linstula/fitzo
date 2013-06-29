@@ -32,4 +32,15 @@ class RecommendationsController < ApplicationController
         @recommendation), notice: "Recommendation could not be updated."
     end
   end
+
+  def destroy
+    @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
+    if @recommendation.destroy
+      redirect_to trainer_profile_path(@trainer_profile), 
+        notice: "Recommendation deleted."
+    else
+      redirect_to trainer_profile_path(@trainer_profile),
+        notice: "Recommendation could not be deleted"
+    end
+  end
 end

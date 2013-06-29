@@ -39,6 +39,19 @@ feature "Edit recommendation" do
         recommendation))
       expect(page).to have_content("Recommendation could not be updated.")
     end
+
+    it "can delete the recommendation" do
+      sign_in(member)
+      prev_count = profile.recommendations.count
+
+      visit trainer_profile_path(profile)
+      click_on "Delete Recommendation"
+
+      expect(profile.recommendations.count).to eql(prev_count - 1)
+      expect(current_path).to eql(trainer_profile_path(profile))
+      expect(page).to have_content("Recommendation deleted.")
+      expect(page).to_not have_content("Edited recommendation title")
+    end
   end
 
   context "user does not own the recommendation" do
@@ -47,6 +60,12 @@ feature "Edit recommendation" do
       visit trainer_profile_path(profile)
       expect(profile.recommendations.count).to eql(1)
       expect(page).to_not have_button("Edit Recommendation")
+    end
+
+    it "guest user cannot see a delete recommendation button" do
+      visit trainer_profile_path(profile)
+      expect(profile.recommendations.count).to eql(1)
+      expect(page).to_not have_button("Delete Recommendation")
     end
 
     it "guest user cannot access the edit recommendaiton page" do
@@ -62,6 +81,13 @@ feature "Edit recommendation" do
       expect(page).to_not have_button("Edit Recommendation")
     end
 
+    it "other member cannot see a delete recommendation button" do
+      sign_in(other_member)
+      visit trainer_profile_path(profile)
+      expect(profile.recommendations.count).to eql(1)
+      expect(page).to_not have_button("Delete Recommendation")
+    end
+
     it "other member cannot access the edit recommendaiton page" do
       sign_in(other_member)
       visit edit_trainer_profile_recommendation_path(profile, recommendation)
@@ -74,6 +100,13 @@ feature "Edit recommendation" do
       visit trainer_profile_path(profile)
       expect(profile.recommendations.count).to eql(1)
       expect(page).to_not have_button("Edit Recommendation")
+    end
+
+    it "trainer cannot see a delete recommendation button" do
+      sign_in(trainer)
+      visit trainer_profile_path(profile)
+      expect(profile.recommendations.count).to eql(1)
+      expect(page).to_not have_button("Delete Recommendation")
     end
 
     it "trainer cannot access the edit recommendaiton page" do
