@@ -5,7 +5,8 @@ feature "Edit recommendation" do
   let(:recommendation)  { FactoryGirl.create(:recommendation) }
   let(:profile)         { recommendation.trainer_profile }
   let(:member)          { recommendation.user }
-  let(:trainer)         { trainer_profile.user }
+  let(:trainer)         { profile.user }
+  let(:other_member)    { FactoryGirl.create(:member) }
   
   context "recommendation owner" do
 
@@ -42,18 +43,45 @@ feature "Edit recommendation" do
 
   context "user does not own the recommendation" do
 
-    it "cannot see an edit recommendation button" do
+    it "guest user cannot see an edit recommendation button" do
       visit trainer_profile_path(profile)
       expect(profile.recommendations.count).to eql(1)
       expect(page).to_not have_button("Edit Recommendation")
     end
-    # it "guest user cannot access the edit recommendaiton page" do
-    #   visit trainer_profile_path(profile)
-    # end
 
-    it "other member"
+    it "guest user cannot access the edit recommendaiton page" do
+      visit edit_trainer_profile_recommendation_path(profile, recommendation)
+      expect(profile.recommendations.count).to eql(1)
+      expect(page).to_not have_button("Edit Recommendation")
+    end
 
-    it "trainer"
+    it "other member cannot see an edit recommendation button" do
+      sign_in(other_member)
+      visit trainer_profile_path(profile)
+      expect(profile.recommendations.count).to eql(1)
+      expect(page).to_not have_button("Edit Recommendation")
+    end
+
+    it "other member cannot access the edit recommendaiton page" do
+      sign_in(other_member)
+      visit edit_trainer_profile_recommendation_path(profile, recommendation)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access denied")
+    end
+
+    it "trainer cannot see an edit recommendation button" do
+      sign_in(trainer)
+      visit trainer_profile_path(profile)
+      expect(profile.recommendations.count).to eql(1)
+      expect(page).to_not have_button("Edit Recommendation")
+    end
+
+    it "trainer cannot access the edit recommendaiton page" do
+      sign_in(trainer)
+      visit edit_trainer_profile_recommendation_path(profile, recommendation)
+      expect(current_path).to eql(root_path)
+      expect(page).to have_content("Access denied")
+    end
   end
 
 
