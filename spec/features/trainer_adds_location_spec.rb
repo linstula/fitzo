@@ -22,7 +22,20 @@ feature "Trainer adds location" do
       expect(page).to have_content(location[:street_address])
       expect(page).to have_content("Location added.")
     end
-    it "cannot add a location with invalid attributes"
+    
+    it "cannot add a location with invalid attributes" do
+      sign_in(trainer)
+      prev_count = profile.locations.count
+      visit edit_trainer_profile_path(profile)
+
+      click_on "Add a Location"
+    
+      click_on "Add Location"
+
+      expect(profile.locations.count).to eql(prev_count)
+      expect(current_path).to eql(new_trainer_profile_location_path(profile))
+      expect(page).to have_content("Location could not be added.")
+    end
     it "must specify a location from a list if the entered location is ambiguous"
     it "can have more than one location"
 

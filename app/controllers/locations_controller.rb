@@ -17,8 +17,8 @@ class LocationsController < ApplicationController
         redirect_to edit_trainer_profile_path(@trainer_profile),
           notice: "Location added."
       else
-        flash[:now] = "Location could not be added."
-        render "new"
+        redirect_to new_trainer_profile_location_path(@trainer_profile),
+          notice: "Location could not be added."
       end
     else
       TrainerLocation.create(trainer_profile_id: @trainer_profile.id,
