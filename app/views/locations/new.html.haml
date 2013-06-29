@@ -1,5 +1,1 @@
-= simple_form_for [@trainer_profile, @location] do |f|
-  = f.input :street_address
-  = f.input :city
-  = f.input :state
-  = f.input :zip_code
+= render 'locations/form', trainer_profile: @trainer_profile, location: @location
