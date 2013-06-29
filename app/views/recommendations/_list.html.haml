@@ -13,3 +13,9 @@
         = recommendation.title
       %span
         = recommendation.content
+      %span 
+        - if can? :update, recommendation
+          = button_to "Edit Recommendation", edit_trainer_profile_recommendation_path(trainer_profile, recommendation), method: :get
+        - if can? :destroy, recommendation
+          = button_to "Delete Recommendation", trainer_profile_recommendation_path(trainer_profile, recommendation), method: :delete
+
