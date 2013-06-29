@@ -9,6 +9,6 @@
   %h3
     = "Write a recommendation for #{@trainer.first_name}"
 
-  = render 'recommendations/form', { trainer_profile: @trainer_profile, user: current_user }
+  = render 'recommendations/form', { trainer_profile: @trainer_profile, recommendation: @recommendation  }
 
 = render 'recommendations/list', trainer_profile: @trainer_profile
