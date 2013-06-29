@@ -14,7 +14,7 @@ feature "Trainer adds location" do
       visit edit_trainer_profile_path(profile)
 
       click_on "Add a Location"
-      fill_in_locaiton_form(location)
+      fill_in_location_form(location)
       click_on "Create Location"
 
       expect(profile.locations.count).to eql(prev_count + 1)
@@ -41,4 +41,11 @@ feature "Trainer adds location" do
   end
 
 
+end
+
+def fill_in_location_form(location)
+  fill_in "Street address", with: location[:street_address]
+  fill_in "City", with: location[:city]
+  fill_in "State", with: location[:state]
+  fill_in "Zip code", with: location[:zip_code]
 end

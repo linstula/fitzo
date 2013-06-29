@@ -9,6 +9,7 @@ class Location < ActiveRecord::Base
   validates_presence_of :zip_code
 
   validates :zip_code, :numericality => { :only_integer => true }
+  validates_length_of :zip_code, is: 5
   validates_length_of :state, is: 2
 
   attr_accessible :city, :state, :street_address, :zip_code
