@@ -9,7 +9,7 @@ Fitzo::Application.routes.draw do
   resources :trainer_profiles, only: [:show, :edit, :update] do
     resources :services, except: [:index]
     resources :specialties, only: [:new, :create]
-    resources :recommendations, only: [:create]
+    resources :recommendations, only: [:create, :edit, :update]
   end
   root :to => "home#show"
   # The priority is based upon order of creation:
