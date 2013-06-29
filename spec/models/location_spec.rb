@@ -15,4 +15,5 @@ describe Location do
     "Massachusetts") }
 
   it "need test coverage for location model methods"
+  it "needs to save the search results from google for future use."
 end
