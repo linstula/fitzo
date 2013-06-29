@@ -3,7 +3,8 @@ class TrainerProfile < ActiveRecord::Base
 
   has_many :locations, 
     through: :trainer_locations
-  has_many :trainer_locations
+  has_many :trainer_locations, 
+    dependent: :destroy
 
   has_many :services,
     dependent: :destroy
