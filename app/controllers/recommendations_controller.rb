@@ -18,12 +18,10 @@ class RecommendationsController < ApplicationController
 
   def edit
     @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
-    @recommendation = Recommendation.find(params[:id])
   end
 
   def update
     @trainer_profile = TrainerProfile.find(params[:trainer_profile_id])
-    @recommendation = Recommendation.find(params[:id])
     if @recommendation.update_attributes(params[:recommendation])
       redirect_to trainer_profile_path(@trainer_profile),
         notice: "Recommendation updated."
