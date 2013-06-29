@@ -2,7 +2,15 @@ class Location < ActiveRecord::Base
   has_many :trainer_profiles, 
     through: :trainer_locations
   has_many :trainer_locations
-  
+
+  validates_presence_of :street_address
+  validates_presence_of :city
+  validates_presence_of :state
+  validates_presence_of :zip_code
+
+  validates :zip_code, :numericality => { :only_integer => true }
+  validates_length_of :state, is: 2
+
   attr_accessible :city, :state, :street_address, :zip_code
 
   # after_validation :get_location_details
