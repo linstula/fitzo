@@ -1,5 +1,5 @@
 %h1
-  = "#{@trainer.username.capitalize}'s Profile"
+  = "#{@trainer_profile.user.username.capitalize}'s Profile"
 
 = render 'services/list', trainer_profile: @trainer_profile
 
@@ -7,7 +7,7 @@
 
 - unless @trainer_profile.user == current_user
   %h3
-    = "Write a recommendation for #{@trainer.first_name}"
+    = "Write a recommendation for #{@trainer_profile.user.first_name}"
 
   = render 'recommendations/form', { trainer_profile: @trainer_profile, recommendation: @recommendation  }
 

@@ -1,20 +1,17 @@
 class TrainerProfilesController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update]
+  load_and_authorize_resource
 
   def show
-    @trainer_profile = TrainerProfile.find(params[:id])
-    @trainer = @trainer_profile.user
     @recommendation = Recommendation.new
   end
 
   def edit
-    @trainer_profile = TrainerProfile.find(params[:id])
     @trainer_specialties = @trainer_profile.trainer_specialties.build
     authorize! :manage, @trainer_profile
   end
 
   def update
-    @trainer_profile = TrainerProfile.find(params[:id])
     @specialties = params[:trainer_profile][:specialty_ids].reject! { |c| c.empty? }
 
     @trainer_profile.update_specialties(@specialties)
