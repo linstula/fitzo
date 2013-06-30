@@ -1,7 +1,12 @@
 %h1
   Edit Profile
 
+= render 'locations/list', trainer_profile: @trainer_profile
+
 = render 'services/list', trainer_profile: @trainer_profile
+
+= button_to "Add a Location", new_trainer_profile_location_path(@trainer_profile),
+  method: :get
 
 = button_to "Add Service", new_trainer_profile_service_path(@trainer_profile),
   method: :get

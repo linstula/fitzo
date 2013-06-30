@@ -1,11 +1,19 @@
 class TrainerProfile < ActiveRecord::Base
   belongs_to :user
 
+  has_many :locations, 
+    through: :trainer_locations
+  has_many :trainer_locations, 
+    dependent: :destroy
+
   has_many :services,
     dependent: :destroy
-  has_many :specialties, through: :trainer_specialties
+
+  has_many :specialties, 
+    through: :trainer_specialties
   has_many :trainer_specialties,
     dependent: :destroy
+
   has_many :recommendations,
     dependent: :destroy
 
