@@ -13,6 +13,7 @@ gem 'simple_form'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'geocoder'
+gem 'pg_search'
 
 # Gems used only for assets and not required
 # in production environments by default.

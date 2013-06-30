@@ -2,8 +2,12 @@ class TrainerProfilesController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update]
   load_and_authorize_resource
 
+  # def index
+  #   @articles = Article.text_search(params[:query]).page(params[:page]).per_page(3)
+  # end
+
   def show
-    @recommendation = Recommendation.new
+    @recommendation = Recommendation.new(trainer_profile_id: @trainer_profile.id)
   end
 
   def edit

@@ -2,3 +2,14 @@ Home page
 
 = link_to "Sign up", new_user_registration_path(role: "member")
 = link_to "Get Listed", new_user_registration_path(role: "trainer")
+
+
+= form_tag root_path, method: :get do
+  %p
+    = text_field_tag :query, params[:query]
+    = submit_tag "Search", name: nil
+
+
+- @trainer_profiles.each do |profile|
+  %h2
+    = link_to "#{profile.user.username}", trainer_profile_path(profile)
