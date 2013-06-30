@@ -37,30 +37,50 @@ feature "Trainer adds location" do
       expect(page).to have_content("Location could not be added.")
     end
 
-    it "must specify a location from a list if the entered location is ambiguous" do
+    it "must specify a location from a list if the entered location is ambiguous"
+    #   sign_in(trainer)
+    #   prev_count = profile.locations.count
+    #   visit edit_trainer_profile_path(profile)
+
+    #   click_on "Add a Location"
+    #   fill_in "Street address", with: "000"
+    #   fill_in "City", with: "NotARealCity"
+    #   fill_in "State", with: "ZZ"
+    #   click_on "Add Location"
+
+    #   expect(profile.locations.count).to eql(prev_count)
+    #   expect(page).to have_content("Select your location")
+
+    #   # select one of the search results
+    #   # click submit
+
+    #   expect(profile.locations.count).to eql(prev_count + 1)
+    #   expect(current_path).to eql(edit_trainer_profile_path(profile))
+    #   # expect(page).to have_content(#selection street_address)
+    #   expect(page).to have_content("Location added.")
+    # end
+
+    it "can have more than one location" do
       sign_in(trainer)
       prev_count = profile.locations.count
       visit edit_trainer_profile_path(profile)
 
       click_on "Add a Location"
-      fill_in "Street address", with: "000"
-      fill_in "City", with: "NotARealCity"
-      fill_in "State", with: "ZZ"
+      fill_in_location_form(location)
       click_on "Add Location"
 
-      expect(profile.locations.count).to eql(prev_count)
-      expect(page).to have_content("Select your location")
+      click_on "Add a Location"
+      fill_in "Street address", with: "123 Boston Ave"
+      fill_in "City", with: "Boston"
+      fill_in "State", with: "MA"
+      click_on "Add Location"
 
-      # select one of the search results
-      # click submit
-
-      expect(profile.locations.count).to eql(prev_count + 1)
+      expect(profile.locations.count).to eql(prev_count + 2)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
-      expect(page).to have_content(#selection street_address)
+      expect(page).to have_content(location[:street_address])
+      expect(page).to have_content("123 Boston Ave")
       expect(page).to have_content("Location added.")
     end
-    
-    it "can have more than one location"
 
   end
 
