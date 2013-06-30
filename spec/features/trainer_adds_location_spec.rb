@@ -2,9 +2,11 @@ require "spec_helper"
 
 feature "Trainer adds location" do
 
-  let(:trainer)   { FactoryGirl.create(:trainer) }
-  let(:profile)   { trainer.trainer_profile }
-  let(:location)  { FactoryGirl.attributes_for(:location) }
+  let(:trainer)       { FactoryGirl.create(:trainer) }
+  let(:profile)       { trainer.trainer_profile }
+  let(:location)      { FactoryGirl.attributes_for(:location) }
+  let(:member)        { FactoryGirl.create(:member) }
+  let(:other_trainer) { FactoryGirl.create(:trainer) }
 
   context "registered trainer" do
 
@@ -103,9 +105,23 @@ feature "Trainer adds location" do
   context "unauthorized user" do
 
     describe "guest user" do
+
+      it "cannot acces the new location page" do
+        visit new_trainer_profile_location_path(profile)
+
+        expect(current_path).to eql(new_user_session_path)
+        expect(page).to have_content("You need to sign in or sign up")
+      end
     end
 
     describe "member" do
+      it "cannot acces the new location page" do
+        sign_in(member)
+        visit new_trainer_profile_location_path(profile)
+
+        expect(current_path).to eql(root_path)
+        expect(page).to have_content("Access denied")
+      end
     end
 
     describe "other trainer" do
