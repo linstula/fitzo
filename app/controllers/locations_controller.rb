@@ -1,15 +1,16 @@
 class LocationsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
+  load_and_authorize_resource :trainer_profile
 
   def new
-    @trainer_profile = current_user.trainer_profile
+    # @trainer_profile = current_user.trainer_profile
     # @location = Location.new
   end
 
   def create
-    @trainer_profile = current_user.trainer_profile
-    @location = @trainer_profile.locations.build(params[:location])
+    # @trainer_profile = current_user.trainer_profile
+    # @location = @trainer_profile.locations.build(params[:location])
 
     unless @location.already_registered?
       if @location.valid_location?

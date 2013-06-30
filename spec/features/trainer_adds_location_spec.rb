@@ -125,6 +125,13 @@ feature "Trainer adds location" do
     end
 
     describe "other trainer" do
+      it "cannot acces trainer's new location page" do
+        sign_in(other_trainer)
+        visit new_trainer_profile_location_path(profile)
+
+        expect(current_path).to eql(root_path)
+        expect(page).to have_content("Access denied")
+      end
     end
   end
 
