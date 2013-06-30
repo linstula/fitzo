@@ -34,10 +34,26 @@ feature "Trainer adds location" do
 
       expect(profile.locations.count).to eql(prev_count)
       expect(current_path).to eql(new_trainer_profile_location_path(profile))
-      expect(page).to have_content("Location could not be added.")
+      expect(page).to have_content("We couldn't find that address.")
     end
 
-    it "must specify a location from a list if the entered location is ambiguous"
+    it "cannot create an ambiguous location" do
+      sign_in(trainer)
+      prev_count = profile.locations.count
+      visit edit_trainer_profile_path(profile)
+
+      click_on "Add a Location"
+      fill_in "Street address", with: "Summer street" # Note no street number
+      fill_in "City", with: "Boston"
+      fill_in "State", with: "MA"
+      click_on "Add Location"
+
+      expect(profile.locations.count).to eql(prev_count)
+      expect(current_path).to eql(new_trainer_profile_location_path(profile))
+      expect(page).to have_content("We couldn't find that address.")
+    end
+
+    # it "must specify a location from a list if the entered location is ambiguous"
     #   sign_in(trainer)
     #   prev_count = profile.locations.count
     #   visit edit_trainer_profile_path(profile)

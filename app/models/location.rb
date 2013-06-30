@@ -20,6 +20,11 @@ class Location < ActiveRecord::Base
     Location.find_by_full_address(full_address).present?
   end
 
+  def valid_location?
+    @loc_data = Geocoder.search(full_address)
+    @loc_data.count == 1
+  end
+
   private
 
   def get_full_address
@@ -27,10 +32,9 @@ class Location < ActiveRecord::Base
   end
 
   def get_location_details
-    loc = Geocoder.search(full_address)
-    self.zip_code = loc[0].postal_code
-    self.neighborhood = loc[0].neighborhood
-    self.latitude = loc[0].coordinates[0]
-    self.longitude = loc[0].coordinates[1]
+    self.zip_code = @loc_data[0].postal_code
+    self.neighborhood = @loc_data[0].neighborhood
+    self.latitude = @loc_data[0].coordinates[0]
+    self.longitude = @loc_data[0].coordinates[1]
   end
 end
