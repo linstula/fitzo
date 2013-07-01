@@ -4,6 +4,7 @@
     = text_field_tag :query, params[:query]
     = submit_tag "Search Trainers", name: nil
 
+= gmaps4rails(@json)
 
 - @trainer_profiles.each do |profile|
   %h2
