@@ -1,21 +1,42 @@
 class Location < ActiveRecord::Base
+  include PgSearch
+
   has_many :trainer_profiles, 
     through: :trainer_locations
   has_many :trainer_locations
 
+  has_many :specialties,
+    through: :trainer_profiles
+
   validates_presence_of :street_address
   validates_presence_of :city
   validates_presence_of :state
+  validates_presence_of :zip_code
 
   validates_length_of :state, is: 2
 
-  attr_accessible :city, :state, :street_address
+  attr_accessible :city, :state, :street_address, :zip_code
 
   # this should be a before_validaiton callback
   # instead of a before_save but it blows up the unit tests. 
   before_save :get_location_details
 
   acts_as_gmappable :process_geocoding => false
+
+  pg_search_scope :location_search, 
+    against: [:street_address, :zip_code, :neighborhood],
+    using: {tsearch: {dictionary: "english"}},
+    associated_against: {
+      specialties: :title
+    }
+
+  def self.search_for_locations(query)
+    if query.present?
+      location_search(query)
+    else
+      scoped
+    end
+  end
 
   def gmaps4rails_address
     "#{latitude}, #{longitude}"
@@ -34,11 +55,10 @@ class Location < ActiveRecord::Base
   private
 
   def get_full_address
-    self.full_address = "#{street_address.downcase} #{city.downcase}, #{state.downcase}"
+    self.full_address = "#{street_address.downcase} #{city.downcase}, #{state.downcase} #{zip_code}"
   end
 
   def get_location_details
-    self.zip_code = @loc_data[0].postal_code
     self.neighborhood = @loc_data[0].neighborhood
     self.latitude = @loc_data[0].coordinates[0]
     self.longitude = @loc_data[0].coordinates[1]
