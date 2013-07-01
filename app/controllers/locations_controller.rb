@@ -6,6 +6,9 @@ class LocationsController < ApplicationController
   def new
     # @trainer_profile = current_user.trainer_profile
     # @location = Location.new
+    if current_user.id != @trainer_profile.user.id
+      redirect_to root_path, notice: "Access denied"
+    end
   end
 
   def create

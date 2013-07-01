@@ -7,8 +7,9 @@ class Ability
 
     if user.role == "trainer"
       can :manage, TrainerProfile, user_id: user.id
+      can :read, TrainerProfile
       can :manage, Service, trainer_profile: { user_id: user.id }
-      can :manage, Location
+      can [:read, :create], Location
     else
       can :read, TrainerProfile
       can [:create, :read], Recommendation

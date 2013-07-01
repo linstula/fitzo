@@ -25,15 +25,19 @@ class TrainerProfile < ActiveRecord::Base
 
   attr_accessible :services_attributes
 
-  pg_search_scope :specialties_search,
+  pg_search_scope :trainer_search,
     using: {tsearch: {dictionary: "english"}},
-    associated_against: {user: :username, specialties: :title}
+    associated_against: {
+      user: :username,
+      specialties: :title,
+      locations: :neighborhood
+    }
     
     
 
-  def self.search_by_specialties(query)
+  def self.search_for_profiles(query)
     if query.present?
-      specialties_search(query)
+      trainer_search(query)
     else
       scoped
     end
