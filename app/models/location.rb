@@ -38,6 +38,10 @@ class Location < ActiveRecord::Base
     end
   end
 
+  def gmaps4rails_infowindow
+    "<h2>" + self.trainer_profiles.first.user.first_name + "</h2>"
+  end
+
   def gmaps4rails_address
     "#{latitude}, #{longitude}"
   end
