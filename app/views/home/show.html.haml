@@ -8,3 +8,5 @@ Home page
   %p
     = text_field_tag :query, params[:query]
     = submit_tag "Search Trainers", name: nil
+
+= gmaps4rails(@json)

@@ -15,6 +15,12 @@ class Location < ActiveRecord::Base
   # instead of a before_save but it blows up the unit tests. 
   before_save :get_location_details
 
+  acts_as_gmappable :process_geocoding => false
+
+  def gmaps4rails_address
+    "#{latitude}, #{longitude}"
+  end
+
   def already_registered?
     get_full_address
     Location.find_by_full_address(full_address).present?
