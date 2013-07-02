@@ -48,6 +48,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'shoulda'
+  gem "dotenv-rails"
 end
 
 group :production do
