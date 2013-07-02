@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :member, class: User do
-    sequence(:email) {|n| "trainer#{n}@example.com" }
+    sequence(:email) {|n| "member#{n}@example.com" }
     password "12345678"
     first_name "Mem"
     last_name "Ber"
@@ -11,7 +11,7 @@ FactoryGirl.define do
   end
 
   factory :trainer, class: User do
-    sequence(:email) {|n| "member#{n}@example.com" }
+    sequence(:email) {|n| "trainer#{n}@example.com" }
     password "12345678"
     first_name "Train"
     last_name "Er"
