@@ -23,7 +23,7 @@ class Location < ActiveRecord::Base
 
   # this should be a before_validaiton callback
   # instead of a before_save but it blows up the unit tests. 
-  # before_save :set_location_data
+  before_save :set_location_data
 
   acts_as_gmappable :process_geocoding => false
 
@@ -36,7 +36,11 @@ class Location < ActiveRecord::Base
 
   def self.search_for_locations(query)
     if query.present?
-      location_search(query)
+      locations = location_search(query)
+      if locations.empty?
+        locations = Location.all
+      end
+      locations
     else
       scoped
     end
@@ -55,6 +59,7 @@ class Location < ActiveRecord::Base
   end
 
   def already_registered?
+    make_full_address
     Location.find_by_full_address(full_address).present?
   end
 
@@ -62,7 +67,7 @@ class Location < ActiveRecord::Base
     Geocoder.search(full_address)
   end
 
-  def definitive_location?
+  def definitive_result?
     @loc_data = query_location_data
     @loc_data.count == 1
   end

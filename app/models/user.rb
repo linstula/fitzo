@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-       :username, :first_name, :last_name, :role
+       :username, :first_name, :last_name
 
   validates_presence_of :first_name, :last_name, :username, :role
   validates_inclusion_of :role, in: ["member", "trainer"]

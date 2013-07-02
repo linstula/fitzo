@@ -19,9 +19,6 @@ describe Location do
     "non-integer string", "1234", "123456") }
 
 
-  it "need test coverage for location model methods"
-  it "needs to save the search results from google for future use."
-
   it "can create a full_address" do
     loc = FactoryGirl.build(:location)
     loc.make_full_address
@@ -30,8 +27,8 @@ describe Location do
 
   it "can see if the location has already been registered" do
     loc = FactoryGirl.build(:location)
-    loc.make_full_address
     expect(loc.already_registered?).to be false
+    loc.definitive_result?
     loc.save
 
     loc_2 = FactoryGirl.build(:location)
@@ -39,32 +36,23 @@ describe Location do
     expect(loc_2.already_registered?).to be true
   end
 
-  it "can query the google maps API and return search results" do
-    loc = FactoryGirl.build(:location)
-    loc.make_full_address
-    expect(loc.query_location_data.first).to be_kind_of(Geocoder::Result::Google)
-  end
-
-  it "can determine whether the API query returned a definitive result" do
+  it "can query the gmaps API and determine whether it returned a definitive result" do
     loc = FactoryGirl.build(:location)
     loc.make_full_address
     loc.query_location_data
-    expect(loc.definitive_location?).to be true
+    expect(loc.definitive_result?).to be true
 
     loc_2 = Location.new(street_address: "123", city: "SOMETHING",
       state: "MA", zip_code: "12345" )
     loc_2.make_full_address
     loc_2.query_location_data
-    expect(loc_2.definitive_location?).to be false
+    expect(loc_2.definitive_result?).to be false
   end
 
   it "assigns lat/long coordiantes and a neighborhood if available" do
     loc = FactoryGirl.build(:location)
-    loc.make_full_address
     loc.already_registered?
-    loc.query_location_data
-    loc.definitive_location?
-    loc.set_location_data
+    loc.definitive_result?
     loc.save
 
     expect(loc.latitude).to be_kind_of(Float)
@@ -75,14 +63,19 @@ describe Location do
   it "can be searched for with :street_address, :neighborhood, and :zip_code" do
     loc = Location.new(street_address: "337 Summer Street", city: "Boston",
       state: "MA", zip_code: "02210")
-    loc.make_full_address
     loc.already_registered?
-    loc.query_location_data
-    loc.definitive_location?
+    loc.definitive_result?
     loc.save
 
-    search_results = Location.search_for_locations(loc.street_address)
+    loc_2 = Location.new(street_address: "1 Washington Street", city: "Boston",
+      state: "MA", zip_code: "02108")
+    loc_2.already_registered?
+    loc_2.definitive_result?
+    loc_2.save
+
+    search_results = Location.search_for_locations("337 Summer Street")
     expect(search_results.include?(loc)).to be true 
+    expect(search_results.include?(loc_2)).to be false
   end
   it "can be searched for through specialties associations by :title"
 end

@@ -16,7 +16,7 @@ class LocationsController < ApplicationController
     # @location = @trainer_profile.locations.build(params[:location])
 
     unless @location.already_registered?
-      if @location.definitive_location?
+      if @location.definitive_result?
         if @location.save
           TrainerLocation.create(trainer_profile_id: @trainer_profile.id,
             location_id: @location.id)
