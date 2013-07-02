@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Trainer adds location" do
+feature "Trainer adds location", :vcr do
 
   let(:trainer)       { FactoryGirl.create(:trainer) }
   let(:profile)       { trainer.trainer_profile }

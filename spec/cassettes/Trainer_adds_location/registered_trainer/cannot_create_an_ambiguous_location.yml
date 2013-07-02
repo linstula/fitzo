@@ -1,0 +1,149 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=Summer%20Street%20Boston,%20MA%20&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 02 Jul 2013 15:05:42 GMT
+      Expires:
+      - Wed, 03 Jul 2013 15:05:42 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! "{\n   \"results\" : [\n      {\n         \"address_components\" :
+        [\n            {\n               \"long_name\" : \"Summer Street\",\n               \"short_name\"
+        : \"Summer St\",\n               \"types\" : [ \"route\" ]\n            },\n
+        \           {\n               \"long_name\" : \"Boston\",\n               \"short_name\"
+        : \"Boston\",\n               \"types\" : [ \"locality\", \"political\" ]\n
+        \           },\n            {\n               \"long_name\" : \"Suffolk\",\n
+        \              \"short_name\" : \"Suffolk\",\n               \"types\" : [
+        \"administrative_area_level_2\", \"political\" ]\n            },\n            {\n
+        \              \"long_name\" : \"Massachusetts\",\n               \"short_name\"
+        : \"MA\",\n               \"types\" : [ \"administrative_area_level_1\", \"political\"
+        ]\n            },\n            {\n               \"long_name\" : \"United
+        States\",\n               \"short_name\" : \"US\",\n               \"types\"
+        : [ \"country\", \"political\" ]\n            }\n         ],\n         \"formatted_address\"
+        : \"Summer Street, Boston, MA, USA\",\n         \"geometry\" : {\n            \"bounds\"
+        : {\n               \"northeast\" : {\n                  \"lat\" : 42.35920670,\n
+        \                 \"lng\" : -71.03472320\n               },\n               \"southwest\"
+        : {\n                  \"lat\" : 42.33740230,\n                  \"lng\" :
+        -71.06052230\n               }\n            },\n            \"location\" :
+        {\n               \"lat\" : 42.34877330,\n               \"lng\" : -71.04717750\n
+        \           },\n            \"location_type\" : \"GEOMETRIC_CENTER\",\n            \"viewport\"
+        : {\n               \"northeast\" : {\n                  \"lat\" : 42.35920670,\n
+        \                 \"lng\" : -71.03472320\n               },\n               \"southwest\"
+        : {\n                  \"lat\" : 42.33740230,\n                  \"lng\" :
+        -71.06052230\n               }\n            }\n         },\n         \"types\"
+        : [ \"route\" ]\n      },\n      {\n         \"address_components\" : [\n
+        \           {\n               \"long_name\" : \"Summer Street\",\n               \"short_name\"
+        : \"Summer St\",\n               \"types\" : [ \"route\" ]\n            },\n
+        \           {\n               \"long_name\" : \"Upper Washington / Spring
+        Street\",\n               \"short_name\" : \"Upper Washington / Spring Street\",\n
+        \              \"types\" : [ \"neighborhood\", \"political\" ]\n            },\n
+        \           {\n               \"long_name\" : \"West Roxbury\",\n               \"short_name\"
+        : \"West Roxbury\",\n               \"types\" : [ \"sublocality\", \"political\"
+        ]\n            },\n            {\n               \"long_name\" : \"Boston\",\n
+        \              \"short_name\" : \"Boston\",\n               \"types\" : [
+        \"locality\", \"political\" ]\n            },\n            {\n               \"long_name\"
+        : \"Suffolk\",\n               \"short_name\" : \"Suffolk\",\n               \"types\"
+        : [ \"administrative_area_level_2\", \"political\" ]\n            },\n            {\n
+        \              \"long_name\" : \"Massachusetts\",\n               \"short_name\"
+        : \"MA\",\n               \"types\" : [ \"administrative_area_level_1\", \"political\"
+        ]\n            },\n            {\n               \"long_name\" : \"United
+        States\",\n               \"short_name\" : \"US\",\n               \"types\"
+        : [ \"country\", \"political\" ]\n            },\n            {\n               \"long_name\"
+        : \"02132\",\n               \"short_name\" : \"02132\",\n               \"types\"
+        : [ \"postal_code\" ]\n            }\n         ],\n         \"formatted_address\"
+        : \"Summer Street, Boston, MA 02132, USA\",\n         \"geometry\" : {\n            \"bounds\"
+        : {\n               \"northeast\" : {\n                  \"lat\" : 42.2771450,\n
+        \                 \"lng\" : -71.16096619999999\n               },\n               \"southwest\"
+        : {\n                  \"lat\" : 42.27520620,\n                  \"lng\" :
+        -71.16326579999999\n               }\n            },\n            \"location\"
+        : {\n               \"lat\" : 42.27604020,\n               \"lng\" : -71.16208320\n
+        \           },\n            \"location_type\" : \"GEOMETRIC_CENTER\",\n            \"viewport\"
+        : {\n               \"northeast\" : {\n                  \"lat\" : 42.27752458029150,\n
+        \                 \"lng\" : -71.16076701970849\n               },\n               \"southwest\"
+        : {\n                  \"lat\" : 42.27482661970850,\n                  \"lng\"
+        : -71.16346498029151\n               }\n            }\n         },\n         \"types\"
+        : [ \"route\" ]\n      },\n      {\n         \"address_components\" : [\n
+        \           {\n               \"long_name\" : \"Summer Street\",\n               \"short_name\"
+        : \"Summer St\",\n               \"types\" : [ \"route\" ]\n            },\n
+        \           {\n               \"long_name\" : \"Thompson Square / Bunker Hill\",\n
+        \              \"short_name\" : \"Thompson Square / Bunker Hill\",\n               \"types\"
+        : [ \"neighborhood\", \"political\" ]\n            },\n            {\n               \"long_name\"
+        : \"Boston\",\n               \"short_name\" : \"Boston\",\n               \"types\"
+        : [ \"locality\", \"political\" ]\n            },\n            {\n               \"long_name\"
+        : \"Suffolk\",\n               \"short_name\" : \"Suffolk\",\n               \"types\"
+        : [ \"administrative_area_level_2\", \"political\" ]\n            },\n            {\n
+        \              \"long_name\" : \"Massachusetts\",\n               \"short_name\"
+        : \"MA\",\n               \"types\" : [ \"administrative_area_level_1\", \"political\"
+        ]\n            },\n            {\n               \"long_name\" : \"United
+        States\",\n               \"short_name\" : \"US\",\n               \"types\"
+        : [ \"country\", \"political\" ]\n            },\n            {\n               \"long_name\"
+        : \"02129\",\n               \"short_name\" : \"02129\",\n               \"types\"
+        : [ \"postal_code\" ]\n            }\n         ],\n         \"formatted_address\"
+        : \"Summer Street, Boston, MA 02129, USA\",\n         \"geometry\" : {\n            \"bounds\"
+        : {\n               \"northeast\" : {\n                  \"lat\" : 42.37770910,\n
+        \                 \"lng\" : -71.06383620\n               },\n               \"southwest\"
+        : {\n                  \"lat\" : 42.37732970,\n                  \"lng\" :
+        -71.06447519999999\n               }\n            },\n            \"location\"
+        : {\n               \"lat\" : 42.37751610,\n               \"lng\" : -71.06415930\n
+        \           },\n            \"location_type\" : \"GEOMETRIC_CENTER\",\n            \"viewport\"
+        : {\n               \"northeast\" : {\n                  \"lat\" : 42.37886838029150,\n
+        \                 \"lng\" : -71.06280671970848\n               },\n               \"southwest\"
+        : {\n                  \"lat\" : 42.37617041970850,\n                  \"lng\"
+        : -71.06550468029148\n               }\n            }\n         },\n         \"types\"
+        : [ \"route\" ]\n      },\n      {\n         \"address_components\" : [\n
+        \           {\n               \"long_name\" : \"245 Summer St\",\n               \"short_name\"
+        : \"245 Summer St\",\n               \"types\" : [ \"premise\" ]\n            },\n
+        \           {\n               \"long_name\" : \"Boston\",\n               \"short_name\"
+        : \"Boston\",\n               \"types\" : [ \"locality\", \"political\" ]\n
+        \           },\n            {\n               \"long_name\" : \"Suffolk\",\n
+        \              \"short_name\" : \"Suffolk\",\n               \"types\" : [
+        \"administrative_area_level_2\", \"political\" ]\n            },\n            {\n
+        \              \"long_name\" : \"Massachusetts\",\n               \"short_name\"
+        : \"MA\",\n               \"types\" : [ \"administrative_area_level_1\", \"political\"
+        ]\n            },\n            {\n               \"long_name\" : \"United
+        States\",\n               \"short_name\" : \"US\",\n               \"types\"
+        : [ \"country\", \"political\" ]\n            },\n            {\n               \"long_name\"
+        : \"02210\",\n               \"short_name\" : \"02210\",\n               \"types\"
+        : [ \"postal_code\" ]\n            }\n         ],\n         \"formatted_address\"
+        : \"245 Summer St, Boston, MA 02210, USA\",\n         \"geometry\" : {\n            \"location\"
+        : {\n               \"lat\" : 42.35120870,\n               \"lng\" : -71.0522730\n
+        \           },\n            \"location_type\" : \"APPROXIMATE\",\n            \"viewport\"
+        : {\n               \"northeast\" : {\n                  \"lat\" : 42.35255768029150,\n
+        \                 \"lng\" : -71.05092401970849\n               },\n               \"southwest\"
+        : {\n                  \"lat\" : 42.34985971970850,\n                  \"lng\"
+        : -71.05362198029151\n               }\n            }\n         },\n         \"types\"
+        : [ \"premise\" ]\n      }\n   ],\n   \"status\" : \"OK\"\n}\n"
+    http_version: 
+  recorded_at: Tue, 02 Jul 2013 15:05:43 GMT
+recorded_with: VCR 2.5.0
