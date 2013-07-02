@@ -15,11 +15,15 @@ class Location < ActiveRecord::Base
 
   validates_length_of :state, is: 2
 
+  validates_numericality_of :zip_code, only_integer: true
+  validates_length_of :zip_code, is: 5
+
   attr_accessible :city, :state, :street_address, :zip_code
+
 
   # this should be a before_validaiton callback
   # instead of a before_save but it blows up the unit tests. 
-  before_save :get_location_details
+  # before_save :set_location_data
 
   acts_as_gmappable :process_geocoding => false
 
@@ -46,23 +50,24 @@ class Location < ActiveRecord::Base
     "#{latitude}, #{longitude}"
   end
 
+  def make_full_address
+    self.full_address = "#{street_address.titleize} #{city.capitalize}, #{state.upcase} #{zip_code}"
+  end
+
   def already_registered?
-    get_full_address
     Location.find_by_full_address(full_address).present?
   end
 
-  def valid_location?
-    @loc_data = Geocoder.search(full_address)
+  def query_location_data
+    Geocoder.search(full_address)
+  end
+
+  def definitive_location?
+    @loc_data = query_location_data
     @loc_data.count == 1
   end
 
-  private
-
-  def get_full_address
-    self.full_address = "#{street_address.downcase} #{city.downcase}, #{state.downcase} #{zip_code}"
-  end
-
-  def get_location_details
+  def set_location_data
     self.neighborhood = @loc_data[0].neighborhood
     self.latitude = @loc_data[0].coordinates[0]
     self.longitude = @loc_data[0].coordinates[1]
