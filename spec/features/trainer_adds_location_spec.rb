@@ -88,15 +88,16 @@ feature "Trainer adds location" do
       click_on "Add Location"
 
       click_on "Add a Location"
-      fill_in "Street address", with: "123 Boston Ave"
+      fill_in "Street address", with: "1 Washington Mall"
       fill_in "City", with: "Boston"
       fill_in "State", with: "MA"
+      fill_in "Zip code", with: "02108"
       click_on "Add Location"
 
       expect(profile.locations.count).to eql(prev_count + 2)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
       expect(page).to have_content(location[:street_address])
-      expect(page).to have_content("123 Boston Ave")
+      expect(page).to have_content("1 Washington Mall")
       expect(page).to have_content("Location added.")
     end
 
@@ -142,4 +143,5 @@ def fill_in_location_form(location)
   fill_in "Street address", with: location[:street_address]
   fill_in "City", with: location[:city]
   fill_in "State", with: location[:state]
+  fill_in "Zip code", with: location[:zip_code]
 end

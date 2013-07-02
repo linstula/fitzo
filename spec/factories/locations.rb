@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :location do
-    street_address "123 ABC Street"
+    street_address "337 Summer Street"
     city "Boston"
     state "MA"
+    zip_code "02210"
   end
 end
