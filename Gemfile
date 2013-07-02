@@ -13,6 +13,8 @@ gem 'simple_form'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'geocoder'
+gem 'pg_search'
+gem 'gmaps4rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -32,6 +34,8 @@ group :test do
   gem 'shoulda-matchers'
   gem "capybara"
   gem "valid_attribute"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development, :test do

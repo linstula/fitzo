@@ -2,8 +2,13 @@ class TrainerProfilesController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update]
   load_and_authorize_resource
 
+  def index
+    @locations = Location.search_for_locations(params[:query])
+    @json = @locations.to_gmaps4rails  
+  end
+
   def show
-    @recommendation = Recommendation.new
+    @recommendation = Recommendation.new(trainer_profile_id: @trainer_profile.id)
   end
 
   def edit
