@@ -48,6 +48,7 @@ feature "Trainer adds location", :vcr do
       fill_in "Street address", with: "Summer street" # Note no street number
       fill_in "City", with: "Boston"
       fill_in "State", with: "MA"
+      fill_in "Zip code", with: "12345"
       click_on "Add Location"
 
       expect(profile.locations.count).to eql(prev_count)
