@@ -34,6 +34,8 @@ group :test do
   gem 'shoulda-matchers'
   gem "capybara"
   gem "valid_attribute"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development, :test do

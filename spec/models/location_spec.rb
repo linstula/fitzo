@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Location do
+describe Location, :vcr do
   
   it { should have_many(:trainer_locations) }
   it { should have_many(:trainer_profiles) }
