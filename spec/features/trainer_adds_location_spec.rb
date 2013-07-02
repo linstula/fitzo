@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Trainer adds location" do
+feature "Trainer adds location", :vcr do
 
   let(:trainer)       { FactoryGirl.create(:trainer) }
   let(:profile)       { trainer.trainer_profile }
@@ -48,35 +48,13 @@ feature "Trainer adds location" do
       fill_in "Street address", with: "Summer street" # Note no street number
       fill_in "City", with: "Boston"
       fill_in "State", with: "MA"
+      fill_in "Zip code", with: "12345"
       click_on "Add Location"
 
       expect(profile.locations.count).to eql(prev_count)
       expect(current_path).to eql(new_trainer_profile_location_path(profile))
       expect(page).to have_content("We couldn't find that address.")
     end
-
-    # it "must specify a location from a list if the entered location is ambiguous"
-    #   sign_in(trainer)
-    #   prev_count = profile.locations.count
-    #   visit edit_trainer_profile_path(profile)
-
-    #   click_on "Add a Location"
-    #   fill_in "Street address", with: "000"
-    #   fill_in "City", with: "NotARealCity"
-    #   fill_in "State", with: "ZZ"
-    #   click_on "Add Location"
-
-    #   expect(profile.locations.count).to eql(prev_count)
-    #   expect(page).to have_content("Select your location")
-
-    #   # select one of the search results
-    #   # click submit
-
-    #   expect(profile.locations.count).to eql(prev_count + 1)
-    #   expect(current_path).to eql(edit_trainer_profile_path(profile))
-    #   # expect(page).to have_content(#selection street_address)
-    #   expect(page).to have_content("Location added.")
-    # end
 
     it "can have more than one location" do
       sign_in(trainer)
@@ -88,15 +66,16 @@ feature "Trainer adds location" do
       click_on "Add Location"
 
       click_on "Add a Location"
-      fill_in "Street address", with: "123 Boston Ave"
+      fill_in "Street address", with: "1 Washington Mall"
       fill_in "City", with: "Boston"
       fill_in "State", with: "MA"
+      fill_in "Zip code", with: "02108"
       click_on "Add Location"
 
       expect(profile.locations.count).to eql(prev_count + 2)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
       expect(page).to have_content(location[:street_address])
-      expect(page).to have_content("123 Boston Ave")
+      expect(page).to have_content("1 Washington Mall")
       expect(page).to have_content("Location added.")
     end
 
@@ -142,4 +121,5 @@ def fill_in_location_form(location)
   fill_in "Street address", with: location[:street_address]
   fill_in "City", with: location[:city]
   fill_in "State", with: location[:state]
+  fill_in "Zip code", with: location[:zip_code]
 end

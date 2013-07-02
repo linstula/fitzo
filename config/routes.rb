@@ -3,10 +3,7 @@ Fitzo::Application.routes.draw do
 
   resource :home, only: [:show]
 
-  # resources :users, only: :show do
-    
-  # end
-  resources :trainer_profiles, only: [:show, :edit, :update] do
+  resources :trainer_profiles, only: [:index, :show, :edit, :update] do
     resources :services, except: [:index]
     resources :specialties, only: [:new, :create]
     resources :recommendations, only: [:create, :edit, :update, :destroy]
