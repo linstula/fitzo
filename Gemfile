@@ -20,7 +20,7 @@ gem 'gmaps4rails'
 
 gem "mini_magick"
 gem "carrierwave"
-gem "fog", "~> 1.3.1"
+gem "fog"
 
 # Gems used only for assets and not required
 # in production environments by default.
