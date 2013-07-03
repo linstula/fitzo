@@ -11,7 +11,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.production? || Rails.env.development?
+  unless Rails.env.test?
     storage :fog
   else
     storage :file

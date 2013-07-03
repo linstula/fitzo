@@ -1,7 +1,6 @@
 CarrierWave.configure do |config|
 
-  if Rails.env.production? || Rails.env.development?
-
+  unless Rails.env.test?
     config.fog_credentials = {
       :provider               => 'AWS',                        # required
       :aws_access_key_id      => ENV['S3_ACCESS_KEY_ID'],      # required
@@ -9,6 +8,5 @@ CarrierWave.configure do |config|
       :region                 => 'us-west-2'
     }
     config.fog_directory  = ENV['S3_BUCKET']                   # required
-    config.cache_dir = "#{Rails.root}/tmp/uploads"
   end
 end
