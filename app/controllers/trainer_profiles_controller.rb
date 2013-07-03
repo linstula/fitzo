@@ -8,7 +8,8 @@ class TrainerProfilesController < ApplicationController
   end
 
   def show
-    @recommendation = Recommendation.new(trainer_profile_id: @trainer_profile.id)
+    current_user ||= User.new
+    @recommendation = current_user.recommendations.build
   end
 
   def edit
