@@ -13,10 +13,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production? || Rails.env.development?
     storage :fog
-
-    def cache_dir
-      "#{Rails.root}/tmp/uploads"
-    end
   else
     storage :file
   end
