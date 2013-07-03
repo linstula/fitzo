@@ -23,6 +23,7 @@
         %li.has-dropdown
           =link_to "Settings", "#"
           %ul.dropdown
+            %li.divider
             %li
               = link_to "Edit Account", edit_user_registration_path
             - if current_user.role == "trainer"
