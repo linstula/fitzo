@@ -8,7 +8,7 @@
         %span Menu
   %section.top-bar-section
     %ul.right
-      %li.divider.hide-for-small
+      %li.divider
       - if user_signed_in?
         %li 
           = link_to "Signed in as #{current_user.username}"
