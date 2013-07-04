@@ -7,9 +7,10 @@
   .row
     .large-9.small-centered.columns
       %h2.subheader.get-listed-text
-        Are you a trainer? Fitzo is free!
+        %span
+          Are you a trainer? Fitzo is free!
         = link_to "Get Listed", new_user_registration_path(role: "trainer"),
-          class: 'button small get-listed'
+          class: 'button tiny get-listed'
   .row
     .large-9.small-centered.columns
       %h4.subheader
