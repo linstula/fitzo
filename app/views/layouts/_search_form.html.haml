@@ -1,6 +1,6 @@
 = form_tag trainer_profiles_path, method: :get do
   %div.row
-    %div.large-8.columns#right-label
+    %div.large-8.columns.search-field
       = text_field_tag :query, params[:query],
         placeholder: "Trainer name, location or specialty"
     %div.large-3.columns
