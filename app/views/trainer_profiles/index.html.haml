@@ -1,8 +1,6 @@
-%h1 Trainer Index
-= form_tag trainer_profiles_path, method: :get do
-  %p
-    = text_field_tag :query, params[:query]
-    = submit_tag "Search Trainers", name: nil
+%div.search-holder
+  = render 'layouts/search_form'
+= render 'layouts/notifications'
 
 = gmaps4rails(@json)
 
