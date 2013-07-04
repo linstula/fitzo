@@ -2,13 +2,16 @@
   = render 'layouts/search_form'
 = render 'layouts/notifications'
 
-= gmaps4rails(@json)
-
-- @profiles = []
-- @locations.each do |location|
-  - location.trainer_profiles.each do |profile|
-    - @profiles << profile
-  -if @profiles.count > 0
-    - @profiles.each do |profile|
-      %h2
-        = link_to "#{profile.user.username}", trainer_profile_path(profile)
+.row
+  .large-4.left.columns
+    .search-map
+      = gmaps4rails(@json)
+  .large-5.large-offset-1.columns.left
+    - @profiles = []
+    - @locations.each do |location|
+      - location.trainer_profiles.each do |profile|
+        - @profiles << profile
+      -if @profiles.count > 0
+        - @profiles.each do |profile|
+          %h2
+            = link_to "#{profile.user.username}", trainer_profile_path(profile)
