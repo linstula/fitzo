@@ -1,5 +1,4 @@
 .main-image {
-  margin-top: -30px;
   width: 100%;
   height: 350px;
   background: url('/assets/main-image.jpg');
@@ -7,19 +6,17 @@
   border-bottom: solid #31beb1 3px;
 }
 
-.search-holder {
-  padding-top: 20px;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.search-field  {
-  padding-top: 5px;
+.get-listed-text span {
+  margin-right: 10px;
 }
 
 .get-listed.button{
  margin-bottom: 0em;
+ font-weight: normal;
 }
 
 .trainer-banner {
   padding-top: 45px;
 }
+
+

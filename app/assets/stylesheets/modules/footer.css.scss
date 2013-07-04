@@ -1,0 +1,23 @@
+$footer-height: 3em;
+
+html, body { height: 100%; }
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto ($footer-height * -1);
+}
+#wrap > *:last-child {
+    padding-bottom: $footer-height;
+}
+
+#footer {
+  background: #686868;
+  height: $footer-height;
+}
+
+#footer h5 {
+  padding-top: 0.75em;
+  color: #fff;
+}
