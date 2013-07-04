@@ -3,11 +3,16 @@
     = render 'layouts/search_form'
   = render 'layouts/notifications'
 
+.trainer-banner
+  .row
+    .large-7.columns
+      %h2.subheader
+        Are you a trainer? Fitzo is free!
+    .large-4.columns
+      = link_to "Get Listed", new_user_registration_path(role: "trainer"),
+        class: 'button large'
+
 %p
   Looking for trainers? 
   = button_to "Sign up", new_user_registration_path(role: "member"),
-    class: 'button'
-%p
-  Trainer?
-  = button_to "Get Listed", new_user_registration_path(role: "trainer"),
     class: 'button'
