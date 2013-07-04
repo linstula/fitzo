@@ -5,14 +5,14 @@
 
 .trainer-banner
   .row
-    .large-7.columns
-      %h2.subheader
+    .large-9.small-centered.columns
+      %h2.subheader.get-listed-text
         Are you a trainer? Fitzo is free!
-    .large-5.columns.small-9.get-listed
-      = link_to "Get Listed", new_user_registration_path(role: "trainer"),
-        class: 'button large'
+        = link_to "Get Listed", new_user_registration_path(role: "trainer"),
+          class: 'button small get-listed'
+  .row
+    .large-9.small-centered.columns
+      %h4.subheader
+        Looking for trainers? 
+        = link_to "Sign up", new_user_registration_path(role: "member")
 
-%p
-  Looking for trainers? 
-  = button_to "Sign up", new_user_registration_path(role: "member"),
-    class: 'button'
