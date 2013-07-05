@@ -33,6 +33,14 @@ class TrainerProfile < ActiveRecord::Base
     "#{user.first_name.capitalize} #{user.last_name.capitalize}"
   end
 
+  def specialty_titles
+    titles = []
+    specialties.each do |specialty|
+      titles << specialty.title
+    end
+    titles
+  end
+
   def current_specialty_ids
     specialties.pluck(:id).map(&:to_s)
   end

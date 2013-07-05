@@ -43,4 +43,10 @@ describe TrainerProfile do
       ("#{profile.user.first_name.capitalize} #{profile.user.last_name.capitalize}")
       )
   end
+
+  it "can return an array of it's specialty titles" do
+    spec_ids = [spec.id, spec_2.id]
+    profile.add_specialties(spec_ids)
+    expect(profile.specialty_titles).to eql([spec.title, spec_2.title])
+  end
 end
