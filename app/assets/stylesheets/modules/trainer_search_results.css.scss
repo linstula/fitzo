@@ -3,7 +3,7 @@
 }
 
 .row.profile-box {
-  height: 3.9em;
+  height: 6em;
   background: #fff;
   border: solid 1px #ccc;
   margin-top: 0.75em;
@@ -18,32 +18,54 @@
 }
 
 .row .avatar {
-  width: 50px;
-  display: inline-block;
+  // width: 50px;
+  // display: inline-block;
   margin-left: 0.35em;
-  margin-right: 0.35em;
-  vertical-align: bottom;
+  // margin-right: 0.9375em;
+  // vertical-align: bottom;
+  padding-top: 5px;
+  height: 100%;
   padding-bottom: 5px;
 }
 
 .row .avatar img {
+  height: 100%
   // margin-left: 0em;
   // margin-top: 0.3em;
   // padding-bottom: 40px;
   // display: inline;
 }
 
-.profile-box .profile-text {
-  display: inline-block;
-  height: 100%;
-  line-height: .5em;
-  margin-left: 13px;
+.profile-box .row .profile-text {
+  // display: inline-block;
+  // height: 100%;
+  // line-height: .5em;
+  // margin-left: 13px;
+  margin-left: 1.2em;
 }
 
-.profile-box .profile-text h4 {
+.profile-box .row .profile-text h4 {
   margin: 0;
+  font-size: 1.4375em;
+  // margin-top: 0.7em;
 }
 
-.profile-box .profile-text h6 {
+.profile-box h6 .button {
+  margin-top: 0.7em;
+}
+
+.profile-text h6.address {
   margin: 0;
+  font-size: 0.8em;
+}
+
+.profile-text h6 span.count {
+  color: #f88a36;
+  margin-left: 5px;
+}
+
+
+
+#search-results .row .row {
+  // display: inline-block;
 }
