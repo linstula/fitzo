@@ -7,9 +7,9 @@
     .search-map
       = gmaps4rails(@json)
   .large-5.large-offset-1.columns.left
-    -if @profiles.count > 0
-      - @profiles.each do |profile|
+    - @profiles.each do |profile|
+      .row.large-offset-1
         %h2
           = link_to "#{profile.user.username}", trainer_profile_path(profile)
-  %div
-    = paginate @profiles
+    %div.large-offset-1
+      = paginate @profiles
