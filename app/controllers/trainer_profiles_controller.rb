@@ -3,7 +3,15 @@ class TrainerProfilesController < ApplicationController
   load_and_authorize_resource
 
   def index
+    # The search_for_locations method returns a two dimensional array
     @locations = Location.search_for_locations(params[:query])
+
+    # get_profiles returns all the trainer profiles from the locations
+    # and returns them as a single dimensional array with unique elements
+    profile_results = view_context.get_profiles(@locations)
+
+    @profiles = Kaminari.paginate_array(profile_results).page(params[:page])
+
     @json = @locations.to_gmaps4rails  
   end
 
