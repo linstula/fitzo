@@ -2,9 +2,9 @@
   .row.profile-info
     .small-12.large-3.columns.avatar-box
       .row
-        .small-12.large-12.columns
+        .columns
           = image_tag @trainer_profile.user.avatar_url(:large)
-        .small-offset-1.large-12.columns.avatar-box-text
+        .columns.avatar-box-text
           %p
             %span.rec-btn
               = link_to "Recommend", trainer_profile_path(@trainer_profile,
@@ -16,9 +16,15 @@
             %span Specialties:
             %span
               = @trainer_profile.specialty_titles.join(", ")
+    .small-12.large-4.large-offset-1.columns.contact-info
+      %h1
+        = "#{@trainer_profile.owner_full_name}"
+      %p
+        - locations_list(@trainer_profile).each do |address|
+          %p.subheader
+            = address
+    .small-12.large-3.large-offset-1
 
-%h1
-  = "#{@trainer_profile.owner_full_name}"
 
 
 
