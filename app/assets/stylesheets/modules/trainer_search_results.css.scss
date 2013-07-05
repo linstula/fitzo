@@ -3,7 +3,7 @@
 }
 
 .row.profile-box {
-  height: 4em;
+  height: 3.9em;
   background: #fff;
   border: solid 1px #ccc;
   margin-top: 0.75em;
@@ -12,6 +12,11 @@
 }
 
 .row.pag-links {
-  margin-top: .75em;
+  margin-top: 0.75em;
   margin-left: 0;
+}
+
+.row .avatar img {
+  margin-left: 1.5em;
+  margin-top: 0.5em;
 }
