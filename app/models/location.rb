@@ -38,7 +38,7 @@ class Location < ActiveRecord::Base
     if query.present?
       locations = location_search(query)
       if locations.empty?
-        locations = Location.all
+        locations = Location.limit(30)
       end
       locations
     else
