@@ -3,13 +3,25 @@
 = render 'layouts/notifications'
 
 .row
-  .large-4.left.columns
+  .large-5.left.columns
     .search-map
       = gmaps4rails(@json)
-  .large-7.large-offset-1.columns.left
+  .large-6.large-offset-1.columns.left#search-results
     - @profiles.each do |profile|
       .row.large-offset-1.profile-box
-        %h4
-          = link_to "#{profile.user.username}", trainer_profile_path(profile)
+        .avatar.left
+          =image_tag profile.user.avatar_url(:small)
+        .row.columns.left
+          .profile-text.columns
+            %h4
+              = link_to "#{profile.user.username}", trainer_profile_path(profile)
+            %h6.subheader.address
+              = profile.locations.first.street_address 
+            %h6
+              = link_to "Recommend",
+              trainer_profile_path(profile), class: "button tiny"
+              %span.count
+                = profile.recommendations.count
+            
     .row.large-offset-1.pag-links
       = paginate @profiles
