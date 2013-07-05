@@ -38,7 +38,9 @@ describe TrainerProfile do
     expect(profile.trainer_specialties.count).to eql(current_count - 1)
   end
 
-  # it "can return it's owner's full name" do
-
-  # end
+  it "can return it's owner's full name" do
+    expect(profile.owner_full_name).to eql(
+      ("#{profile.user.first_name.capitalize} #{profile.user.last_name.capitalize}")
+      )
+  end
 end

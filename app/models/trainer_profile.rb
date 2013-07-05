@@ -25,24 +25,12 @@ class TrainerProfile < ActiveRecord::Base
 
   attr_accessible :services_attributes
 
-  # pg_search_scope :trainer_search,
-  #   using: {tsearch: {dictionary: "english"}},
-  #   associated_against: {
-  #     user: :username,
-  #     specialties: :title,
-  #     locations: :neighborhood
-  #   }    
-
-  # def self.search_for_profiles(query)
-  #   if query.present?
-  #     trainer_search(query)
-  #   else
-  #     scoped
-  #   end
-  # end
-
   def owner?(current_user)
     current_user == user
+  end
+
+  def owner_full_name
+    "#{user.first_name.capitalize} #{user.last_name.capitalize}"
   end
 
   def current_specialty_ids
