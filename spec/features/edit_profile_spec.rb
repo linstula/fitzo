@@ -2,47 +2,45 @@ require "spec_helper"
 
 feature "Edit a profile" do
 
+  let(:trainer)       { FactoryGirl.create(:trainer) }
+  let(:profile)       { trainer.trainer_profile }
+  let(:member)        { FactoryGirl.create(:member) }
+  let(:other_trainer) { FactoryGirl.create(:trainer) }
+
   context "a registered trainer" do
 
-    it "needs some tests"
+    # it "can add a phone number" do
+    #   visit trainer_profile_path
+    # end
 
   end
 
   context "an unauthorized user" do
 
-    let(:service_attr)  { FactoryGirl.attributes_for(:service) }
-    let(:trainer_attr)  { FactoryGirl.attributes_for(:trainer) }
-    let(:new_trainer)   { sign_up_trainer(trainer_attr) }
-    let(:member_attr)   { FactoryGirl.attributes_for(:member) }
-    let(:new_member)    { sign_up_member(member_attr) }
+    describe "guest user" do
+      it "cannot access trainer's profile edit page" do
+        visit edit_trainer_profile_path(profile)
+        expect(current_path).to eql(new_user_session_path)
+        expect(page).to have_content("You need to sign in or sign up before continuing")
+      end
+    end
 
-    it "needs to be refactored"
+    describe "member" do
+      it "cannot access trainer's profile edit page" do
+        sign_in(member)
+        visit edit_trainer_profile_path(profile)
+        expect(current_path).to eql(root_path)
+        expect(page).to have_content("Access denied")
+      end
+    end
 
-    it "cannot access the trainer's edit page" do
-      new_trainer
-      trainer = User.last
-      profile = trainer.trainer_profile
-      sign_out(trainer)
-
-      visit edit_trainer_profile_path(profile)
-      expect(current_path).to eql(new_user_session_path)
-      expect(page).to have_content("You need to sign in or sign up before continuing")
-
-      new_member
-      member = User.last
-
-      visit edit_trainer_profile_path(profile)
-      expect(current_path).to eql(root_path)
-      expect(page).to have_content("Access denied")
-      click_on "Sign out"
-
-      new_trainer
-      trainer_2 = User.last
-      sign_in(trainer_2)
-
-      visit edit_trainer_profile_path(profile)
-      expect(current_path).to eql(root_path)
-      expect(page).to have_content("Access denied")
+    describe "other trainer" do
+      it "cannot access trainer's profile edit page" do
+        sign_in(other_trainer)
+        visit edit_trainer_profile_path(profile)
+        expect(current_path).to eql(root_path)
+        expect(page).to have_content("Access denied")
+      end
     end
   end
 
