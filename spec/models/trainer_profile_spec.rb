@@ -2,15 +2,17 @@ require 'spec_helper'
 
 describe TrainerProfile do
 
-  it { should belong_to(:user) }
-  it { should have_many(:services).dependent(:destroy) }
-  it { should have_many(:specialties) }
-  it { should have_many(:trainer_specialties).dependent(:destroy) }
-  it { should have_many(:recommendations).dependent(:destroy) }
-  it { should have_many(:locations) }
-  it { should have_many(:trainer_locations).dependent(:destroy) }
+  describe "associations and valiations" do
+    it { should belong_to(:user) }
+    it { should have_many(:services).dependent(:destroy) }
+    it { should have_many(:specialties) }
+    it { should have_many(:trainer_specialties).dependent(:destroy) }
+    it { should have_many(:recommendations).dependent(:destroy) }
+    it { should have_many(:locations) }
+    it { should have_many(:trainer_locations).dependent(:destroy) }
 
-  it { should validate_presence_of(:user_id)}
+    it { should validate_presence_of(:user_id) }
+  end
 
   let(:trainer) { FactoryGirl.create(:trainer) }
   let(:profile) { trainer.trainer_profile }

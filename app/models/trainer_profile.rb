@@ -46,15 +46,14 @@ class TrainerProfile < ActiveRecord::Base
   end
 
   def add_specialties(specialty_ids)
-    new_ids =  specialty_ids - current_specialty_ids
-
+    new_ids = specialty_ids - current_specialty_ids
     new_ids.each do |new_id|
       trainer_specialties.create(specialty_id: new_id)
     end
   end
 
   def remove_specialties(specialty_ids)
-    ids_to_remove =  current_specialty_ids - specialty_ids
+    ids_to_remove = current_specialty_ids - specialty_ids
 
     trainer_specialties.where(specialty_id: ids_to_remove).destroy_all
   end
