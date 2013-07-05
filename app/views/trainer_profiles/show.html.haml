@@ -1,5 +1,26 @@
+.row
+  .row
+    .small-12.large-3.columns.avatar-box
+      .row
+        .small-12.large-12.columns
+          = image_tag @trainer_profile.user.avatar_url(:medium)
+        .small-offset-1.large-12.columns
+          %p
+            %span.rec-btn
+              = link_to "Recommend", trainer_profile_path(@trainer_profile,
+                :anchor => "#recommendations"),
+                class: "button tiny columns small-6 large-6"
+            %span.count
+              = @trainer_profile.recommendations.count
+          %p
+            %span Specialties:
+            %span
+              = @trainer_profile.specialty_titles.join(", ")
+
 %h1
-  = "#{@trainer_profile.owner_name}'s Profile"
+  = "#{@trainer_profile.owner_full_name}"
+
+
 
 = render 'services/list', trainer_profile: @trainer_profile
 
