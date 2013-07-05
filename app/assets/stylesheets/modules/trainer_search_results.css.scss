@@ -9,6 +9,7 @@
   margin-top: 0.75em;
   margin-left: 0;
   margin-right: 0.3em;
+  width: 410px;
 }
 
 .row.pag-links {
@@ -16,12 +17,33 @@
   margin-left: 0;
 }
 
-.row .avatar img {
-  margin-left: 1.4em;
-  margin-top: 0.3em;
-  display: inline;
+.row .avatar {
+  width: 50px;
+  display: inline-block;
+  margin-left: 0.35em;
+  margin-right: 0.35em;
+  vertical-align: bottom;
+  padding-bottom: 5px;
 }
 
-.profile-box .row h5 {
+.row .avatar img {
+  // margin-left: 0em;
+  // margin-top: 0.3em;
+  // padding-bottom: 40px;
   // display: inline;
+}
+
+.profile-box .profile-text {
+  display: inline-block;
+  height: 100%;
+  line-height: .5em;
+  margin-left: 13px;
+}
+
+.profile-box .profile-text h4 {
+  margin: 0;
+}
+
+.profile-box .profile-text h6 {
+  margin: 0;
 }
