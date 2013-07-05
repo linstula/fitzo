@@ -10,9 +10,9 @@
     - @profiles.each do |profile|
       .row.large-offset-1.profile-box
         .row
-          .small-2.large-1.avatar
+          .small-2.large-2.avatar
             =image_tag profile.user.avatar_url(:micro)
-          %h5.small-2.large-5.inline
+          %h5.small-2.large-5
             = link_to "#{profile.user.username}", trainer_profile_path(profile)
 
     .row.large-offset-1.pag-links
