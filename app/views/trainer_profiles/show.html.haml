@@ -34,6 +34,27 @@
         = gmaps4rails(@json)
   .row.profile-divider.hide-for-small
     &nbsp;
+  .row.services
+    %h3
+      Services
+    .section-border
+      &nbsp;
+    - @trainer_profile.services.each do |service|
+      .row.service
+        .small-12.large-3.columns.serv-title
+          %h6
+            = service.title
+        .small-12.large-5.columns.serv-description
+          %span.subheader
+            = service.description
+        .small-6.large-2.columns.serv-price
+          %span.hide-for-medium-up
+            = "Price: $#{service.price}"
+          %span.hide-for-small
+            = "$#{service.price}"
+        .small-6.large-1.columns.left.serv-duration
+          %span
+            = service.duration
 
 
 
