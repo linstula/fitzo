@@ -23,7 +23,7 @@ class TrainerProfile < ActiveRecord::Base
 
   accepts_nested_attributes_for :services, allow_destroy: true
 
-  attr_accessible :services_attributes
+  attr_accessible :services_attributes, :phone_number, :website, :about
 
   def owner?(current_user)
     current_user == user

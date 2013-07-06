@@ -1,6 +1,6 @@
 .row
   .row.profile-info
-    .small-12.large-3.columns.avatar-box
+    .small-5.large-3.columns.small-centered.large-uncentered.avatar-box
       .row
         .columns
           = image_tag @trainer_profile.user.avatar_url(:large)
@@ -16,14 +16,25 @@
             %span Specialties:
             %span
               = @trainer_profile.specialty_titles.join(", ")
-    .small-12.large-4.large-offset-1.columns.contact-info
+    .small-12.large-5.columns.contact-info
       %h1
         = "#{@trainer_profile.owner_full_name}"
       %p
         - locations_list(@trainer_profile).each do |address|
           %p.subheader
             = address
-    .small-12.large-3.large-offset-1
+      %p.subheader
+        = @trainer_profile.phone_number
+      %p.subheader
+        = link_to @trainer_profile.website, "http://" + @trainer_profile.website
+      %p.subheader.about
+        = @trainer_profile.about
+    .large-3.columns.right.trainer-map
+      - unless @trainer_profile.locations.empty?
+        = gmaps4rails(@json)
+  .row.profile-divider.hide-for-small
+    &nbsp;
+
 
 
 

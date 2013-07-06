@@ -26,7 +26,7 @@ feature "Trainer selects specialties", %{
       visit edit_trainer_profile_path(profile)
       check specialty.title
       check specialty_2.title
-      click_on "Update Trainer profile"
+      click_on "Update Specialties"
 
       expect(profile.trainer_specialties.count).to eql(prev_count + 2)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
@@ -38,7 +38,7 @@ feature "Trainer selects specialties", %{
       visit edit_trainer_profile_path(profile)
 
       check specialty.title
-      click_on "Update Trainer profile"
+      click_on "Update Specialties"
 
       visit trainer_profile_path(profile)
 
