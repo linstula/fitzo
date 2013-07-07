@@ -2,16 +2,30 @@ require "spec_helper"
 
 feature "Edit a profile" do
 
-  let(:trainer)       { FactoryGirl.create(:trainer) }
-  let(:profile)       { trainer.trainer_profile }
+  let(:profile)       { FactoryGirl.create(:trainer_profile) }
+  let(:trainer)       { profile.user }
   let(:member)        { FactoryGirl.create(:member) }
   let(:other_trainer) { FactoryGirl.create(:trainer) }
 
   context "a registered trainer" do
 
-    # it "can add a phone number" do
-    #   visit trainer_profile_path
-    # end
+    it "can add profile info" do
+      sign_in(trainer)
+      visit edit_trainer_profile_path(profile)
+
+      fill_in "Phone number", with: "0987654321"
+      fill_in "Website", with: "trainer@trainer.com"
+      fill_in "About", with: "This is some interesting text."
+
+      click_on "Update info"
+
+      # this test is failing and i don't know why...
+      expect(current_path).to eql(edit_trainer_profile_path(profile))
+      expect(page).to have_content("Profile updated")
+      expect(profile.phone_number).to eql("0987654321")
+      expect(profile.website).to eql("trainer@trainer.com")
+      expect(profile.about).to eql("This is some interesting text.")
+    end
 
   end
 
@@ -21,7 +35,6 @@ feature "Edit a profile" do
       it "cannot access trainer's profile edit page" do
         visit edit_trainer_profile_path(profile)
         expect(current_path).to eql(new_user_session_path)
-        expect(page).to have_content("You need to sign in or sign up before continuing")
       end
     end
 
