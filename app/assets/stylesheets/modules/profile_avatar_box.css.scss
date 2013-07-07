@@ -17,11 +17,12 @@
   margin-bottom: .5em;
 }
 
-.avatar-box-text p .rec-btn a {
+.avatar-box-text p span.rec-btn {
+  color: #31beb1; 
   margin: 0;
 }
 
 .avatar-box-text p .count {
   margin-left: 0.5em;
-  color: #f88a36;
+  // color: #f88a36;
 }
