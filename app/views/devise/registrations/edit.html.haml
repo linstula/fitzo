@@ -1,7 +1,7 @@
 .row.edit-reg
-  %h2
+  %h2.columns
     Edit #{resource_name.to_s.humanize}
-  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "row" }) do |f|
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "row columns" }) do |f|
     .large-8.columns
       = f.error_notification
       .form-inputs
@@ -17,7 +17,7 @@
       = f.input :avatar
     .columns.form-actions
       = f.button :submit, "Update"
-  %h3 Cancel my account
-  %p
+  %h3.columns Cancel my account
+  %p.columns
     Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}
-  = link_to "Back", :back
+  = link_to "Back", :back, class: "columns"
