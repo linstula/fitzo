@@ -1,0 +1,44 @@
+.rec-section .recommendations {
+  margin-bottom: 1em;
+}
+.recommendations .rec {
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.row.rec {
+  background: #fff;
+  border: solid 1px #ccc;
+
+}
+
+.row .member-avatar {
+  margin-top: 0.5em;
+}
+
+.row .rec-info {
+  margin-bottom: 0.3em;
+}
+
+.row .rec-info p {
+  margin-bottom: 0;
+  font-size: 0.8em;
+}
+
+.row .rec-content p {
+  margin-bottom: 0;
+  font-size: 0.8em;
+}
+
+#rec-form {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+#rec-form h4 {
+  color: #31beb1;
+}
+// .row .rec-date {
+//   margin-bottom: 0.3em;
+// }
