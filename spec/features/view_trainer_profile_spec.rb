@@ -2,14 +2,20 @@ require "spec_helper"
 
 feature "view a trainer profile" do
 
-  it "needs some tests"
+  # let(:profile) { FactoryGirl.create(:trainer_profile) }
+  # let(:trainer) { profile.user }
+  # let(:specialty) { FactoryGirl.create(:specialty) }
+  # let(:service) { FactoryGirl.create(:service) }
+  # let(:rec)     { FactoryGirl.create(:recommendation) }
+  # let(:member)  { rec.user }
 
-  it "orders services based on category and alphabetically"
-
-  # it "can see specialties on the trainer's profile" do
-  #   visit trainer_profile_path(profile)
-
-  #   expect(page).to have_content(specialty.title)
-  #   expect(page).to have_content(specialty_2.title)
-  # end
+  describe "any user" do
+    it "can see trainer's avatar"
+    it "can see trainer's specialties"
+    it "can see trainer's recommendation count"
+    it "can see trainer's locations"
+    it "can see trainer's phone number"
+    it "can see trainer's website"
+    it "can see trainer's about me text"
+  end
 end

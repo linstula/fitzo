@@ -17,6 +17,8 @@ class TrainerProfilesController < ApplicationController
 
   def show
     current_user ||= User.new
+    @locations = @trainer_profile.locations
+    @json = @locations.to_gmaps4rails
     @recommendation = current_user.recommendations.build
   end
 
@@ -26,11 +28,20 @@ class TrainerProfilesController < ApplicationController
   end
 
   def update
-    @specialties = params[:trainer_profile][:specialty_ids].reject! { |c| c.empty? }
-
-    @trainer_profile.update_specialties(@specialties)
-
-    redirect_to edit_trainer_profile_path(@trainer_profile),
-      notice: "Profile updated"
+    if params[:trainer_profile][:specialty_ids].present?
+      @specialties = params[:trainer_profile][:specialty_ids].
+        reject! { |c| c.empty? }
+      @trainer_profile.update_specialties(@specialties)
+      redirect_to edit_trainer_profile_path(@trainer_profile),
+          notice: "Services updated"
+    else
+      if @trainer_profile.update_attributes(params[:trainer_profile])
+        redirect_to edit_trainer_profile_path(@trainer_profile),
+          notice: "Profile updated"
+      else
+        redirect_to edit_trainer_profile_path(@trainer_profile),
+          notice: "Profile could not be updated"
+      end
+    end
   end
 end

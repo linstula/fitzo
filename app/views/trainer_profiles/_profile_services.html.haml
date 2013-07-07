@@ -1,0 +1,34 @@
+.row.section.services
+  %h3
+    Services
+  .section-border
+    &nbsp;
+  .row.service.hide-for-small
+    .small-12.large-3.columns
+      %h5
+        Service
+    .small-12.large-5.columns
+      %h5
+        Description
+    .small-6.large-2.columns
+      %h5
+        Price
+    .small-6.large-1.columns.left
+      %h5
+        Duration
+  - @trainer_profile.services.each do |service|
+    .row.service
+      .small-12.large-3.columns.serv-title
+        %h6
+          = service.title
+      .small-12.large-5.columns.serv-description
+        %span.subheader
+          = service.description
+      .small-6.large-2.columns.serv-price
+        %span.hide-for-medium-up
+          = "Price: $#{service.price}"
+        %span.hide-for-small
+          = "$#{service.price}"
+      .small-6.large-1.columns.left.serv-duration
+        %span
+          = service.duration

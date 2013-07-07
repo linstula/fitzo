@@ -1,0 +1,27 @@
+.avatar-box .row {
+  padding: 1em 0.5em;
+}
+
+.profile-info .avatar-box {
+  background: #fff;
+  border: solid 1px #ccc;
+  width: 258px; 
+}
+
+.profile-info .avatar-box img {
+  width: 100%
+}
+
+.avatar-box-text p {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+.avatar-box-text p .rec-btn a {
+  margin: 0;
+}
+
+.avatar-box-text p .count {
+  margin-left: 0.5em;
+  color: #f88a36;
+}

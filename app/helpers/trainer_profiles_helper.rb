@@ -8,4 +8,12 @@ module TrainerProfilesHelper
     end
     profiles
   end
+
+  def locations_list(trainer_profile)
+    locations = []
+    trainer_profile.locations.each do |location|
+      locations << location.full_address
+    end
+    locations
+  end
 end

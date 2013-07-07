@@ -23,26 +23,22 @@ class TrainerProfile < ActiveRecord::Base
 
   accepts_nested_attributes_for :services, allow_destroy: true
 
-  attr_accessible :services_attributes
-
-  # pg_search_scope :trainer_search,
-  #   using: {tsearch: {dictionary: "english"}},
-  #   associated_against: {
-  #     user: :username,
-  #     specialties: :title,
-  #     locations: :neighborhood
-  #   }    
-
-  # def self.search_for_profiles(query)
-  #   if query.present?
-  #     trainer_search(query)
-  #   else
-  #     scoped
-  #   end
-  # end
+  attr_accessible :services_attributes, :phone_number, :website, :about
 
   def owner?(current_user)
     current_user == user
+  end
+
+  def owner_full_name
+    "#{user.first_name.capitalize} #{user.last_name.capitalize}"
+  end
+
+  def specialty_titles
+    titles = []
+    specialties.each do |specialty|
+      titles << specialty.title
+    end
+    titles
   end
 
   def current_specialty_ids
@@ -50,15 +46,14 @@ class TrainerProfile < ActiveRecord::Base
   end
 
   def add_specialties(specialty_ids)
-    new_ids =  specialty_ids - current_specialty_ids
-
+    new_ids = specialty_ids - current_specialty_ids
     new_ids.each do |new_id|
       trainer_specialties.create(specialty_id: new_id)
     end
   end
 
   def remove_specialties(specialty_ids)
-    ids_to_remove =  current_specialty_ids - specialty_ids
+    ids_to_remove = current_specialty_ids - specialty_ids
 
     trainer_specialties.where(specialty_id: ids_to_remove).destroy_all
   end

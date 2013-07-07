@@ -1,14 +1,6 @@
-%h1
-  = "#{@trainer_profile.user.username.capitalize}'s Profile"
+.row
+  = render 'profile_info'
 
-= render 'services/list', trainer_profile: @trainer_profile
+  = render 'profile_services'
 
-= render 'specialties/list', trainer_profile: @trainer_profile
-
-- unless @trainer_profile.user == current_user
-  %h3
-    = "Write a recommendation for #{@trainer_profile.user.first_name}"
-
-  = render 'recommendations/form', { trainer_profile: @trainer_profile, recommendation: @recommendation  }
-
-= render 'recommendations/list', trainer_profile: @trainer_profile
+  = render 'profile_recommendations'
