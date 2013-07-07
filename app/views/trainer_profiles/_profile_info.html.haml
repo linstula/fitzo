@@ -6,9 +6,7 @@
       .columns.avatar-box-text
         %p
           %span.rec-btn
-            = link_to "Recommend", trainer_profile_path(@trainer_profile,
-              :anchor => "#rec-form"),
-              class: "button tiny columns small-6 large-6"
+            Recommendations:
           %span.count
             = @trainer_profile.recommendations.count
         %p
