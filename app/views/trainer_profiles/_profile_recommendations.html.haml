@@ -24,8 +24,7 @@
           %p
             = recommendation.content
   .large-4.columns#rec-form
-    - unless @trainer_profile.user == current_user
-      %h4
-        = "Recommend #{@trainer_profile.user.first_name}"
-      = render 'recommendations/form', { trainer_profile: @trainer_profile, recommendation: @recommendation  }
+    %h4
+      = "Recommend #{@trainer_profile.user.first_name}"
+    = render 'recommendations/form', { trainer_profile: @trainer_profile, recommendation: @recommendation  }
 

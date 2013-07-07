@@ -1,3 +1,5 @@
-%h2 
-  = "#{current_user.username}'s Services"
-= render 'services/form'
+.row
+  .large-8.columns
+    %h2 
+      = "New Service for #{current_user.first_name} #{current_user.last_name}"
+    = render 'services/form'

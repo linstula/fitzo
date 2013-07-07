@@ -8,7 +8,7 @@ class RecommendationsController < ApplicationController
       build(params[:recommendation])
     @recommendation.user = current_user
 
-    if @recommendation.save
+    if @recommendation.not_recommending_self? && @recommendation.save
       redirect_to trainer_profile_path(@trainer_profile),
         notice: "Recommendation added."
     else

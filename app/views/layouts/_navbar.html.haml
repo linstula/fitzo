@@ -10,9 +10,6 @@
     %ul.right
       %li.divider
       - if user_signed_in?
-        %li 
-          = link_to "Signed in as #{current_user.username}"
-        %li.divider
         %li
           = link_to "Search Trainers", trainer_profiles_path
         %li.divider
@@ -21,7 +18,7 @@
             = link_to "My Profile", trainer_profile_path(current_user.trainer_profile)
           %li.divider
         %li.has-dropdown
-          =link_to "Settings", "#"
+          =link_to "Signed in as #{current_user.username}", "#"
           %ul.dropdown
             %li.divider
             %li
