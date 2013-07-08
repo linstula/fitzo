@@ -16,15 +16,16 @@ feature "Edit a profile" do
       fill_in "Phone number", with: "0987654321"
       fill_in "Website", with: "trainer@trainer.com"
       fill_in "About", with: "This is some interesting text."
-
       click_on "Update info"
 
-      # this test is failing and i don't know why...
       expect(current_path).to eql(edit_trainer_profile_path(profile))
       expect(page).to have_content("Profile updated")
-      expect(profile.phone_number).to eql("0987654321")
-      expect(profile.website).to eql("trainer@trainer.com")
-      expect(profile.about).to eql("This is some interesting text.")
+
+      visit trainer_profile_path(profile)
+
+      expect(page).to have_content("0987654321")
+      expect(page).to have_content("trainer@trainer.com")
+      expect(page).to have_content("This is some interesting text.")
     end
 
   end
