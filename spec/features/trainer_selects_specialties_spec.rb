@@ -30,7 +30,7 @@ feature "Trainer selects specialties", %{
 
       expect(profile.trainer_specialties.count).to eql(prev_count + 2)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
-      expect(page).to have_content("Profile updated")
+      expect(page).to have_content("Specialties updated")
     end
 
     it "can see new specialties on their profile" do

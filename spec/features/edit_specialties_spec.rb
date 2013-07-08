@@ -17,7 +17,7 @@ feature "Edit specialties" do
 
       check specialty.title
       check specialty_2.title
-      click_on "Update Trainer profile"
+      click_on "Update Specialties"
 
       expect(profile.trainer_specialties.count).to eql(2)
 
@@ -25,7 +25,7 @@ feature "Edit specialties" do
 
       uncheck(specialty.title)
       uncheck(specialty_2.title)
-      click_on "Update Trainer profile"
+      click_on "Update Specialties"
 
       expect(profile.trainer_specialties.count).to eql(0)
 
