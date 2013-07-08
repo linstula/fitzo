@@ -4,6 +4,7 @@ describe Location, :vcr do
   
   it { should belong_to(:trainer_profile) }
   it { should have_many(:specialties) }
+  it { should validate_presence_of(:trainer_profile_id) }
   
   it { should have_valid(:street_address).when("123 ABC street") }
   it { should have_valid(:city).when("SomeCity") }
@@ -24,33 +25,19 @@ describe Location, :vcr do
     expect(loc.full_address).to eql("337 Summer Street Boston, MA 02210")
   end
 
-  it "can see if the location has already been registered" do
-    loc = FactoryGirl.build(:location)
-    expect(loc.already_registered?).to be false
-    loc.definitive_result?
-    loc.save
-
-    loc_2 = FactoryGirl.build(:location)
-    loc_2.make_full_address
-    expect(loc_2.already_registered?).to be true
-  end
-
   it "can query the gmaps API and determine whether it returned a definitive result" do
     loc = FactoryGirl.build(:location)
-    loc.make_full_address
     loc.query_location_data
     expect(loc.definitive_result?).to be true
 
     loc_2 = Location.new(street_address: "123", city: "SOMETHING",
       state: "MA", zip_code: "12345" )
-    loc_2.make_full_address
     loc_2.query_location_data
     expect(loc_2.definitive_result?).to be false
   end
 
-  it "assigns lat/long coordiantes and a neighborhood if available" do
+  it "queries the gmaps api and determines if it returned a definitive result" do
     loc = FactoryGirl.build(:location)
-    loc.already_registered?
     loc.definitive_result?
     loc.save
 
@@ -59,20 +46,22 @@ describe Location, :vcr do
     expect(loc.neighborhood).to eql("Fort Point")
   end
 
-  it "can be searched for with :street_address, :neighborhood, and :zip_code" do
+  it "can be searched for with :street_address, :neighborhood, :zip_code and :city" do
     loc = Location.new(street_address: "337 Summer Street", city: "Boston",
       state: "MA", zip_code: "02210")
-    loc.already_registered?
     loc.definitive_result?
     loc.save
 
     loc_2 = Location.new(street_address: "1 Washington Street", city: "Boston",
       state: "MA", zip_code: "02108")
-    loc_2.already_registered?
     loc_2.definitive_result?
     loc_2.save
 
     search_results = Location.search_for_locations("337 Summer Street")
+    expect(search_results.include?(loc)).to be true 
+    expect(search_results.include?(loc_2)).to be false
+
+    search_results = Location.search_for_locations("02210")
     expect(search_results.include?(loc)).to be true 
     expect(search_results.include?(loc_2)).to be false
   end

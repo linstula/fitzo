@@ -1,16 +1,12 @@
 class Location < ActiveRecord::Base
   include PgSearch
 
-
   belongs_to :trainer_profile
-
-  # has_many :trainer_profiles, 
-  #   through: :trainer_locations
-  # has_many :trainer_locations
 
   has_many :specialties,
     through: :trainer_profile
 
+  validates_presence_of :trainer_profile_id
   validates_presence_of :street_address
   validates_presence_of :city
   validates_presence_of :state
@@ -64,22 +60,19 @@ class Location < ActiveRecord::Base
     "#{latitude}, #{longitude}"
   end
 
-  def make_full_address
-    self.full_address = "#{street_address.titleize} #{city.capitalize}, #{state.upcase} #{zip_code}"
-  end
-
-  def already_registered?
-    make_full_address
-    Location.find_by_full_address(full_address).present?
-  end
-
-  def query_location_data
-    Geocoder.search(full_address)
-  end
 
   def definitive_result?
     @loc_data = query_location_data
     @loc_data.count == 1
+  end
+
+  def query_location_data
+    make_full_address
+    Geocoder.search(full_address)
+  end
+
+  def make_full_address
+    self.full_address = "#{street_address.titleize} #{city.capitalize}, #{state.upcase} #{zip_code}"
   end
 
   def set_location_data
