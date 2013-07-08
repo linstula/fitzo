@@ -1,27 +1,6 @@
-%h1
-  Edit Profile
+.row
+  %h1
+    Edit Profile
+  = render 'edit_profile_info'
 
-= render 'layouts/notifications'
-
-= render 'locations/list', trainer_profile: @trainer_profile
-
-= render 'services/list', trainer_profile: @trainer_profile
-
-= simple_form_for @trainer_profile do |f|
-  = f.input :phone_number
-  = f.input :website
-  = f.input :about
-  = f.button :submit, "Update info"
-
-= button_to "Add a Location", new_trainer_profile_location_path(@trainer_profile),
-  method: :get
-
-= button_to "Add Service", new_trainer_profile_service_path(@trainer_profile),
-  method: :get
-
-= render 'specialties/list', trainer_profile: @trainer_profile
-
-= simple_form_for @trainer_profile do |f|
-  = f.association :specialties, as: :check_boxes
-  = f.button :submit, "Update Specialties"
-
+  = render 'edit_profile_services'
