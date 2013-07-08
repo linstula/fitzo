@@ -16,7 +16,10 @@
             %h4
               = link_to "#{profile.user.username}", trainer_profile_path(profile)
             %h6.subheader.address
-              = profile.locations.first.street_address 
+              - if profile.locations.count > 1
+                = "#{profile.locations.first.full_address}, ..."
+              - else
+                = profile.locations.first.full_address 
             %h6
               = link_to "Recommend",
               trainer_profile_path(profile), class: "button tiny"

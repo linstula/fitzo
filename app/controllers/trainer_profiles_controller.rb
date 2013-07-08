@@ -23,6 +23,7 @@ class TrainerProfilesController < ApplicationController
   end
 
   def edit
+    @json = @trainer_profile.locations.to_gmaps4rails
     @trainer_specialties = @trainer_profile.trainer_specialties.build
     authorize! :manage, @trainer_profile
   end

@@ -2,9 +2,7 @@ module TrainerProfilesHelper
   def get_profiles(locations)
     profiles = []
     locations.each do |location|
-      location.trainer_profiles.each do |profile|
-        profiles << profile unless profiles.include?(profile)
-      end
+      profiles << location.trainer_profile unless profiles.include?(location.trainer_profile)
     end
     profiles
   end
