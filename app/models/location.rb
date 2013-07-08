@@ -46,14 +46,10 @@ class Location < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-    profs = []
-    self.trainer_profiles.each do |profile|
-      profs <<  "<span>" +
-        "<img src=" + "#{self.trainer_profiles.first.user.avatar_url(:micro)}" + ">" +
-        "#{self.trainer_profiles.first.user.first_name}" + " #{self.trainer_profiles.first.user.last_name}" +
-        "</span>"
-    end
-    profs[0]
+    "<span>" +
+    "<img src=" + "#{self.trainer_profile.user.avatar_url(:micro)}" + ">" +
+    "#{self.trainer_profile.owner_full_name}" +
+    "</span>"
   end
 
   def gmaps4rails_address
