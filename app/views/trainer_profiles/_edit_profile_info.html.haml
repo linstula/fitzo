@@ -14,13 +14,16 @@
     %p
       - locations_list(@trainer_profile).each do |address|
         %p.subheader
-          = address
-    %p.subheader
-      = @trainer_profile.phone_number
-    %p.subheader
-      = link_to @trainer_profile.website, "http://" + @trainer_profile.website
-    %p.subheader.about
-      = @trainer_profile.about
+          %span
+            = address
+          %span
+      = link_to "Add a Location", new_trainer_profile_location_path(@trainer_profile), class: "button tiny"
+    = simple_form_for @trainer_profile do |f|
+      = f.input :phone_number
+      = f.input :website
+      = f.input :about
+      = f.button :submit, "Update info"
+    
   .large-3.columns.right.trainer-map
     - unless @trainer_profile.locations.empty?
       = gmaps4rails(@json)
