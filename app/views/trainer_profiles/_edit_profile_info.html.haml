@@ -1,0 +1,31 @@
+.row.profile-info
+  .small-5.large-3.columns.small-centered.large-uncentered.avatar-box
+    .row
+      .columns
+        = image_tag @trainer_profile.user.avatar_url(:large)
+      .columns.avatar-box-text
+        = link_to "Change photo", edit_user_registration_path(current_user), class: "button tiny edit-btn"
+        = simple_form_for @trainer_profile do |f|
+          = f.association :specialties, as: :check_boxes
+          = f.button :submit, "Update Specialties", class: "tiny"
+  .small-12.large-5.columns.contact-info
+    %h1
+      = "#{@trainer_profile.owner_full_name}"
+    %p
+      - locations_list(@trainer_profile).each do |address|
+        %p.subheader
+          %span
+            = address
+          %span
+      = link_to "Add a Location", new_trainer_profile_location_path(@trainer_profile), class: "button tiny"
+    = simple_form_for @trainer_profile do |f|
+      = f.input :phone_number
+      = f.input :website
+      = f.input :about
+      = f.button :submit, "Update info"
+    
+  .large-3.columns.right.trainer-map
+    - unless @trainer_profile.locations.empty?
+      = gmaps4rails(@json)
+.row.profile-divider.hide-for-small
+  &nbsp;
