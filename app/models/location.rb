@@ -28,7 +28,7 @@ class Location < ActiveRecord::Base
   acts_as_gmappable :process_geocoding => false
 
   pg_search_scope :location_search, 
-    against: [:street_address, :zip_code, :neighborhood],
+    against: [:street_address, :zip_code, :neighborhood, :city],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {
       specialties: :title
