@@ -18,7 +18,9 @@ def sign_up_member(member)
   valid_password = 12345678
 
   visit root_path
-  click_button "Sign up"
+  within(".top-bar") do
+    click_on "Sign up"
+  end
   
   fill_in "Email", with: member[:email]
   fill_in "user[password]", with: valid_password

@@ -33,7 +33,7 @@ class TrainerProfilesController < ApplicationController
         reject! { |c| c.empty? }
       @trainer_profile.update_specialties(@specialties)
       redirect_to edit_trainer_profile_path(@trainer_profile),
-          notice: "Services updated"
+          notice: "Specialties updated"
     else
       if @trainer_profile.update_attributes(params[:trainer_profile])
         redirect_to edit_trainer_profile_path(@trainer_profile),

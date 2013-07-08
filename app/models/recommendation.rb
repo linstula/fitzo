@@ -9,9 +9,7 @@ class Recommendation < ActiveRecord::Base
 
   attr_accessible :content, :title, :trainer_profile_id, :user_id
 
-  def not_recommending_self?
-    if self.trainer_profile == self.user.trainer_profile
-      errors.add(:recommendation, "can't recommend yourself")
-    end
+  def valid_recommendation?
+    self.trainer_profile != self.user.trainer_profile
   end
 end
