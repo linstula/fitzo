@@ -1,12 +1,15 @@
 class Location < ActiveRecord::Base
   include PgSearch
 
-  has_many :trainer_profiles, 
-    through: :trainer_locations
-  has_many :trainer_locations
+
+  belongs_to :trainer_profile
+
+  # has_many :trainer_profiles, 
+  #   through: :trainer_locations
+  # has_many :trainer_locations
 
   has_many :specialties,
-    through: :trainer_profiles
+    through: :trainer_profile
 
   validates_presence_of :street_address
   validates_presence_of :city

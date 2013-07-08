@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe Location, :vcr do
   
-  it { should have_many(:trainer_locations) }
-  it { should have_many(:trainer_profiles) }
+  it { should belong_to(:trainer_profile) }
   it { should have_many(:specialties) }
   
   it { should have_valid(:street_address).when("123 ABC street") }
