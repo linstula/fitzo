@@ -15,7 +15,7 @@ feature "Edit recommendation" do
       prev_count = profile.recommendations.count
 
       visit trainer_profile_path(profile)
-      click_on "Edit Recommendation"
+      click_on "Edit"
       fill_in "Title", with: "Edited recommendation title"
       click_on "Update Recommendation"
 
@@ -30,7 +30,7 @@ feature "Edit recommendation" do
       prev_count = profile.recommendations.count
 
       visit trainer_profile_path(profile)
-      click_on "Edit Recommendation"
+      click_on "Edit"
       fill_in "Title", with: ""
       click_on "Update Recommendation"
 
@@ -45,7 +45,7 @@ feature "Edit recommendation" do
       prev_count = profile.recommendations.count
 
       visit trainer_profile_path(profile)
-      click_on "Delete Recommendation"
+      click_on "Remove"
 
       expect(profile.recommendations.count).to eql(prev_count - 1)
       expect(current_path).to eql(trainer_profile_path(profile))

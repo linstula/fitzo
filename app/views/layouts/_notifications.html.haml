@@ -1,5 +1,7 @@
-%p.notification
-  %span.notice
-    = notice
-  %span.alert
-    = alert
+.notifications
+  - if notice.present?
+    .alert-box
+      = notice
+  -if alert.present?
+    .alert-box
+      = alert

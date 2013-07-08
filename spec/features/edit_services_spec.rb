@@ -18,7 +18,7 @@ feature "Edit services" do
       expect(profile.services.count).to eql(prev_count + 1)
 
       visit edit_trainer_profile_path(profile)
-      click_on "Edit Service"
+      click_on "Edit"
 
       fill_in "Title", with: "New service title"
       click_on "Update Service"
@@ -46,7 +46,7 @@ feature "Edit services" do
       sign_in(trainer)
 
       visit edit_trainer_profile_path(profile)
-      click_on "Remove Service"
+      click_on "Remove"
 
       expect(profile.services.count).to eql(prev_count - 1)
       expect(current_path).to eql(edit_trainer_profile_path(profile))

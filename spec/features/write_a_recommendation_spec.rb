@@ -15,7 +15,7 @@ feature "Write a recommendation" do
 
       sign_in(member)
       visit trainer_profile_path(profile)
-
+      
       fill_in_recommendation(rec_attr)
       click_on "Create Recommendation"
 
@@ -57,9 +57,13 @@ feature "Write a recommendation" do
 
     it "cannot write a recommendation for their own profile" do
       sign_in(trainer)
+      prev_count = profile.recommendations.count
       visit trainer_profile_path(profile)
 
-      expect(page).to_not have_css("form.new_recommendation")
+      fill_in_recommendation(rec_attr)
+      click_on "Create Recommendation"
+
+      expect(profile.recommendations.count).to eql(prev_count)
     end
   end
 end

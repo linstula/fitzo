@@ -41,7 +41,7 @@ describe Recommendation do
     rec_2 = Recommendation.new(title: "Title2", content: "Content2",
       user_id: (member.id) , trainer_profile_id: (profile.id))
 
-    expect(rec).to_not be_valid
-    expect(rec_2).to be_valid
+    expect(rec.valid_recommendation?).to be false
+    expect(rec_2.valid_recommendation?).to be true
   end
 end
