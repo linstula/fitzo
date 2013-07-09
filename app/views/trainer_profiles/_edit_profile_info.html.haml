@@ -11,19 +11,17 @@
   .small-12.large-5.columns.contact-info
     %h1
       = "#{@trainer_profile.owner_name}"
-    %p
-      - locations_list(@trainer_profile).each do |address|
-        %p.subheader
-          %span
-            = address
-          %span
-      = link_to "Add a Location", new_trainer_profile_location_path(@trainer_profile), class: "button tiny"
+    - locations_list(@trainer_profile).each do |address|
+      %p.subheader
+        %span
+          = address
+        %span
+          = link_to "Add a Location", new_trainer_profile_location_path(@trainer_profile), class: "button tiny"
     = simple_form_for @trainer_profile do |f|
       = f.input :phone_number
       = f.input :website
       = f.input :about
       = f.button :submit, "Update info"
-    
   .large-3.columns.right.trainer-map
     - unless @trainer_profile.locations.empty?
       = gmaps4rails(@json)
