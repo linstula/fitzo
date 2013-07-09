@@ -14,17 +14,16 @@
           %span
             = @trainer_profile.specialty_titles.join(", ")
   .small-12.large-5.columns.contact-info
-    %h1
+    %h1.columns
       = "#{@trainer_profile.owner_name}"
-    %p
-      - locations_list(@trainer_profile).each do |address|
-        %p.subheader
-          = address
-    %p.subheader
+    - locations_list(@trainer_profile).each do |address|
+      %p.subheader.columns
+        = address
+    %p.subheader.columns
       = @trainer_profile.phone_number
-    %p.subheader
+    %p.subheader.columns
       = link_to @trainer_profile.website, "http://" + @trainer_profile.website
-    %p.subheader.about
+    %p.subheader.about.columns
       = @trainer_profile.about
   .large-3.columns.right.trainer-map
     - unless @trainer_profile.locations.empty?
