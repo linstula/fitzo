@@ -13,13 +13,15 @@
           =image_tag profile.user.avatar_url(:small)
         .row.columns.left.prof-text-container
           .profile-text.columns
-            %h6
+            %h6.truncate
               = link_to "#{profile.owner_full_name}", trainer_profile_path(profile)
-            %h6.subheader.address
+            %h6.subheader.address.truncate
               - if profile.locations.count > 1
                 = "#{profile.locations.first.full_address}, ..."
               - else
                 = profile.locations.first.full_address 
+            %h6.subheader.specs.truncate
+              = specialty_titles(profile).join(", ")
             %h6
               = link_to "Recommend",
               trainer_profile_path(profile), class: "button tiny"

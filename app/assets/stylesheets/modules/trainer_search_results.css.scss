@@ -53,7 +53,20 @@
   font-size: 0.8em;
 }
 
+.profile-text h6.specs {
+  margin: 0;
+  font-size: 0.8em;
+  color: #000;
+}
+
 .profile-text h6 span.count {
   color: #f88a36;
   margin-left: 5px;
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

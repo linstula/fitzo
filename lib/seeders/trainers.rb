@@ -100,7 +100,7 @@ module Seeders
           ["540 Tremont Street", "Boston", "MA", "02116"], ["653 Summer St", "Boston", "MA", "02210"], 
           ["323 Dorchester Avenue", "South Boston", "MA", "02127"], ["131 West 8th Street", "Boston", "MA", "02127"], 
           ["301 3rd Street", "Cambridge", "MA", "02142"], ["Bunker Hill Street", "Charlestown", "MA", "02129"], 
-          ["22 Lincoln Street", "Somervle", "MA", "02145"], ["154 Magazine St #21", "Cambridge", "MA", "02139"], 
+          ["22 Lincoln Street", "Somerville", "MA", "02145"], ["154 Magazine St #21", "Cambridge", "MA", "02139"], 
           ["7 Temple Street", "Cambridge", "MA", "02139"], ["114 Western Avenue", "Boston", "MA", "02134"], 
           ["920 Commonwealth Avenue", "Brookline", "MA", "02215"], ["183 Green Street", "Jamaica Plain", "MA", "02130"], 
           ["35 White Street", "Cambridge", "MA", "02138"], ["656 Washington Street", "Brighton", "MA", "02135"] 
