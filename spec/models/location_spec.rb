@@ -18,6 +18,7 @@ describe Location, :vcr do
   it { should_not have_valid(:zip_code).when(nil, "", "   ",
     "non-integer string", "1234", "123456") }
 
+  let(:profile) { FactoryGirl.create(:trainer_profile) }
 
   it "can create a full_address" do
     loc = FactoryGirl.build(:location)
@@ -37,7 +38,8 @@ describe Location, :vcr do
   end
 
   it "queries the gmaps api and determines if it returned a definitive result" do
-    loc = FactoryGirl.build(:location)
+    loc = profile.locations.build(street_address: "337 Summer Street", city: "Boston",
+      state: "MA", zip_code: "02210")
     loc.definitive_result?
     loc.save
 
@@ -47,16 +49,16 @@ describe Location, :vcr do
   end
 
   it "can be searched for with :street_address, :neighborhood, :zip_code and :city" do
-    loc = Location.new(street_address: "337 Summer Street", city: "Boston",
+    loc = profile.locations.build(street_address: "337 Summer Street", city: "Boston",
       state: "MA", zip_code: "02210")
+
     loc.definitive_result?
     loc.save
 
-    loc_2 = Location.new(street_address: "1 Washington Street", city: "Boston",
+    loc_2 = profile.locations.build(street_address: "1 Washington Street", city: "Boston",
       state: "MA", zip_code: "02108")
     loc_2.definitive_result?
     loc_2.save
-
     search_results = Location.search_for_locations("337 Summer Street")
     expect(search_results.include?(loc)).to be true 
     expect(search_results.include?(loc_2)).to be false
