@@ -14,7 +14,7 @@
         .row.columns.left
           .profile-text.columns
             %h4
-              = link_to "#{profile.user.username}", trainer_profile_path(profile)
+              = link_to "#{profile.owner_full_name}", trainer_profile_path(profile)
             %h6.subheader.address
               - if profile.locations.count > 1
                 = "#{profile.locations.first.full_address}, ..."
