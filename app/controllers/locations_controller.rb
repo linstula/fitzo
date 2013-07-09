@@ -17,7 +17,6 @@ class LocationsController < ApplicationController
     
     if @location.definitive_result?
       if @location.save
-
         redirect_to edit_trainer_profile_path(@trainer_profile),
           notice: "Location added."
       else
@@ -27,6 +26,17 @@ class LocationsController < ApplicationController
     else
       redirect_to new_trainer_profile_location_path(@trainer_profile),
           notice: "We couldn't find that address."
+    end
+  end
+
+  def destroy
+    @trainer_profile = current_user.trainer_profile
+    if @location.destroy
+      redirect_to edit_trainer_profile_path(@trainer_profile),
+        notice: "Location removed"
+    else
+      redirect_to edit_trainer_profile_path(@trainer_profile),
+        notice: "Location could not be removed removed"
     end
   end
 end
