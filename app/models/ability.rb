@@ -14,9 +14,8 @@ class Ability
 
       if user.role == "trainer"
         can :manage, TrainerProfile, user_id: user.id
-        
+        can :manage, Location, trainer_profile: { user_id: user.id }
         can :manage, Service, trainer_profile: { user_id: user.id }
-        can [:read, :create], Location
       end
     end
     # Define abilities for the passed in user here. For example:

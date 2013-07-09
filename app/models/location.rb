@@ -17,7 +17,7 @@ class Location < ActiveRecord::Base
   validates_numericality_of :zip_code, only_integer: true
   validates_length_of :zip_code, is: 5
 
-  attr_accessible :city, :state, :street_address, :zip_code
+  attr_accessible :city, :state, :street_address, :zip_code, :full_address
 
 
   # this should be a before_validaiton callback
