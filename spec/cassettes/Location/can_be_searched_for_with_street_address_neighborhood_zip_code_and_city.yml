@@ -20,10 +20,49 @@ http_interactions:
     headers:
       Content-Type:
       - application/json; charset=UTF-8
+      Access-Control-Allow-Origin:
+      - ! '*'
       Date:
-      - Tue, 02 Jul 2013 15:05:41 GMT
+      - Mon, 08 Jul 2013 21:29:09 GMT
+      Server:
+      - mafe
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! "{\n   \"results\" : [],\n   \"status\" : \"OVER_QUERY_LIMIT\"\n}\n"
+    http_version: 
+  recorded_at: Mon, 08 Jul 2013 21:29:09 GMT
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=337%20Summer%20Street%20Boston,%20MA%2002210&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Mon, 08 Jul 2013 21:40:08 GMT
       Expires:
-      - Wed, 03 Jul 2013 15:05:41 GMT
+      - Tue, 09 Jul 2013 21:40:08 GMT
       Cache-Control:
       - public, max-age=86400
       Access-Control-Allow-Origin:
@@ -69,10 +108,10 @@ http_interactions:
         : -71.04921528029151\n               }\n            }\n         },\n         \"types\"
         : [ \"street_address\" ]\n      }\n   ],\n   \"status\" : \"OK\"\n}\n"
     http_version: 
-  recorded_at: Tue, 02 Jul 2013 15:05:42 GMT
+  recorded_at: Mon, 08 Jul 2013 21:40:08 GMT
 - request:
     method: get
-    uri: http://maps.googleapis.com/maps/api/geocode/json?address=1%20Washington%20Mall%20Boston,%20MA%2002108&language=en&sensor=false
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=1%20Washington%20Street%20Boston,%20MA%2002108&language=en&sensor=false
     body:
       encoding: US-ASCII
       string: ''
@@ -91,9 +130,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Tue, 02 Jul 2013 15:05:41 GMT
+      - Mon, 08 Jul 2013 21:41:49 GMT
       Expires:
-      - Wed, 03 Jul 2013 15:05:41 GMT
+      - Tue, 09 Jul 2013 21:41:49 GMT
       Cache-Control:
       - public, max-age=86400
       Access-Control-Allow-Origin:
@@ -111,10 +150,10 @@ http_interactions:
       string: ! "{\n   \"results\" : [\n      {\n         \"address_components\" :
         [\n            {\n               \"long_name\" : \"1\",\n               \"short_name\"
         : \"1\",\n               \"types\" : [ \"street_number\" ]\n            },\n
-        \           {\n               \"long_name\" : \"Washington Mall\",\n               \"short_name\"
-        : \"Washington Mall\",\n               \"types\" : [ \"route\" ]\n            },\n
-        \           {\n               \"long_name\" : \"Downtown\",\n               \"short_name\"
-        : \"Downtown\",\n               \"types\" : [ \"neighborhood\", \"political\"
+        \           {\n               \"long_name\" : \"Washington Street\",\n               \"short_name\"
+        : \"Washington St\",\n               \"types\" : [ \"route\" ]\n            },\n
+        \           {\n               \"long_name\" : \"Government Center\",\n               \"short_name\"
+        : \"Government Center\",\n               \"types\" : [ \"neighborhood\", \"political\"
         ]\n            },\n            {\n               \"long_name\" : \"Boston\",\n
         \              \"short_name\" : \"Boston\",\n               \"types\" : [
         \"locality\", \"political\" ]\n            },\n            {\n               \"long_name\"
@@ -125,57 +164,17 @@ http_interactions:
         ]\n            },\n            {\n               \"long_name\" : \"United
         States\",\n               \"short_name\" : \"US\",\n               \"types\"
         : [ \"country\", \"political\" ]\n            },\n            {\n               \"long_name\"
-        : \"02203\",\n               \"short_name\" : \"02203\",\n               \"types\"
+        : \"02108\",\n               \"short_name\" : \"02108\",\n               \"types\"
         : [ \"postal_code\" ]\n            }\n         ],\n         \"formatted_address\"
-        : \"1 Washington Mall, Boston, MA 02203, USA\",\n         \"geometry\" : {\n
-        \           \"location\" : {\n               \"lat\" : 42.35925350000001,\n
-        \              \"lng\" : -71.0578730\n            },\n            \"location_type\"
-        : \"ROOFTOP\",\n            \"viewport\" : {\n               \"northeast\"
-        : {\n                  \"lat\" : 42.36060248029151,\n                  \"lng\"
-        : -71.05652401970850\n               },\n               \"southwest\" : {\n
-        \                 \"lat\" : 42.35790451970851,\n                  \"lng\"
-        : -71.05922198029151\n               }\n            }\n         },\n         \"partial_match\"
-        : true,\n         \"types\" : [ \"street_address\" ]\n      }\n   ],\n   \"status\"
-        : \"OK\"\n}\n"
+        : \"1 Washington Street, Boston, MA 02108, USA\",\n         \"geometry\" :
+        {\n            \"location\" : {\n               \"lat\" : 42.3593750,\n               \"lng\"
+        : -71.05799000000002\n            },\n            \"location_type\" : \"ROOFTOP\",\n
+        \           \"viewport\" : {\n               \"northeast\" : {\n                  \"lat\"
+        : 42.36072398029150,\n                  \"lng\" : -71.05664101970852\n               },\n
+        \              \"southwest\" : {\n                  \"lat\" : 42.35802601970850,\n
+        \                 \"lng\" : -71.05933898029153\n               }\n            }\n
+        \        },\n         \"types\" : [ \"street_address\" ]\n      }\n   ],\n
+        \  \"status\" : \"OK\"\n}\n"
     http_version: 
-  recorded_at: Tue, 02 Jul 2013 15:05:42 GMT
-- request:
-    method: get
-    uri: http://maps.googleapis.com/maps/api/geocode/json?address=337%20Summer%20Street%20Boston,%20MA%2002210&language=en&sensor=false
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Access-Control-Allow-Origin:
-      - ! '*'
-      Date:
-      - Mon, 08 Jul 2013 21:00:01 GMT
-      Server:
-      - mafe
-      Cache-Control:
-      - private
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - SAMEORIGIN
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: US-ASCII
-      string: ! "{\n   \"results\" : [],\n   \"status\" : \"OVER_QUERY_LIMIT\"\n}\n"
-    http_version: 
-  recorded_at: Mon, 08 Jul 2013 21:00:01 GMT
+  recorded_at: Mon, 08 Jul 2013 21:41:49 GMT
 recorded_with: VCR 2.5.0
