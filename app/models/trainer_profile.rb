@@ -19,16 +19,18 @@ class TrainerProfile < ActiveRecord::Base
 
   validates_presence_of :user_id
 
+  before_save :get_owner_name
+
   accepts_nested_attributes_for :services, allow_destroy: true
 
-  attr_accessible :services_attributes, :phone_number, :website, :about
+  attr_accessible :services_attributes, :phone_number, :website, :about, :owner_name
 
   def owner?(current_user)
     current_user == user
   end
 
-  def owner_full_name
-    "#{user.first_name.capitalize} #{user.last_name.capitalize}"
+  def get_owner_name
+    self.owner_name = "#{user.first_name.capitalize} #{user.last_name.capitalize}"
   end
 
   def specialty_titles

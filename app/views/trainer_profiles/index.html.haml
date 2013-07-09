@@ -14,7 +14,7 @@
         .row.columns.left.prof-text-container
           .profile-text.columns
             %h6.truncate
-              = link_to "#{profile.owner_full_name}", trainer_profile_path(profile)
+              = link_to "#{profile.owner_name}", trainer_profile_path(profile)
             %h6.subheader.address.truncate
               - if profile.locations.count > 1
                 = "#{profile.locations.first.full_address}, ..."

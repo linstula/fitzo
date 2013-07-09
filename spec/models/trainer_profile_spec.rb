@@ -41,7 +41,7 @@ describe TrainerProfile do
   end
 
   it "can return it's owner's full name" do
-    expect(profile.owner_full_name).to eql(
+    expect(profile.owner_name).to eql(
       ("#{profile.user.first_name.capitalize} #{profile.user.last_name.capitalize}")
       )
   end

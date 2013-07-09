@@ -10,7 +10,7 @@
           = f.button :submit, "Update Specialties", class: "tiny"
   .small-12.large-5.columns.contact-info
     %h1
-      = "#{@trainer_profile.owner_full_name}"
+      = "#{@trainer_profile.owner_name}"
     %p
       - locations_list(@trainer_profile).each do |address|
         %p.subheader

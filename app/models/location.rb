@@ -30,7 +30,8 @@ class Location < ActiveRecord::Base
     against: [:street_address, :zip_code, :neighborhood, :city],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {
-      specialties: :title
+      specialties: :title,
+      trainer_profile: :owner_name
     }
 
   def self.search_for_locations(query)
@@ -48,7 +49,7 @@ class Location < ActiveRecord::Base
   def gmaps4rails_infowindow
     "<span>" +
     "<img src=" + "#{self.trainer_profile.user.avatar_url(:micro)}" + ">" +
-    "#{self.trainer_profile.owner_full_name}" +
+    "#{self.trainer_profile.owner_name}" +
     "</span>"
   end
 
