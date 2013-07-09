@@ -12,13 +12,13 @@ module Seeders
             password: "12345678",
             username: "Fitzo Member#{n}",
             first_name: "Fitzo",
-            last_name: "Member",
+            last_name: "Member#{n}",
             role: "member"
             )
           members << member
         end
 
-        (1..30).each do |n|
+        (1..25).each do |n|
           u_name = names[(rand(names.length))]
 
           trainer = {
@@ -144,39 +144,3 @@ module Seeders
   end
 end
 
-
-
-# create_table "users", :force => true do |t|
-#     t.string   "email",                  :default => "",       :null => false
-#     t.string   "encrypted_password",     :default => "",       :null => false
-#     t.string   "reset_password_token"
-#     t.datetime "reset_password_sent_at"
-#     t.datetime "remember_created_at"
-#     t.integer  "sign_in_count",          :default => 0
-#     t.datetime "current_sign_in_at"
-#     t.datetime "last_sign_in_at"
-#     t.string   "current_sign_in_ip"
-#     t.string   "last_sign_in_ip"
-#     t.datetime "created_at",                                   :null => false
-#     t.datetime "updated_at",                                   :null => false
-#     t.string   "username",               :default => "",       :null => false
-#     t.string   "first_name",             :default => "",       :null => false
-#     t.string   "last_name",              :default => "",       :null => false
-#     t.string   "role",                   :default => "member", :null => false
-#     t.string   "avatar"
-#   end
-
-
-# create_table "locations", :force => true do |t|
-#     t.string   "street_address"
-#     t.string   "city"
-#     t.string   "state"
-#     t.string   "neighborhood"
-#     t.float    "latitude"
-#     t.float    "longitude"
-#     t.string   "full_address"
-#     t.datetime "created_at",         :null => false
-#     t.datetime "updated_at",         :null => false
-#     t.string   "zip_code"
-#     t.integer  "trainer_profile_id"
-#   end
