@@ -3,7 +3,7 @@
 }
 
 .row.profile-box {
-  height: 6em;
+  height: 7em;
   background: #fff;
   border: solid 1px #ccc;
   margin-top: 0.75em;
@@ -17,14 +17,22 @@
 }
 
 .row .avatar {
+  width: 25%;
   margin-left: 0.35em;
   padding-top: 5px;
   height: 100%;
   padding-bottom: 5px;
+  text-align: center;
+  line-height: 6em;
 }
 
 .row .avatar img {
-  height: 100%
+  vertical-align: middle;
+  height: auto;
+}
+
+.profile-box .prof-text-container {
+  width: 75%;
 }
 
 .profile-box .row .profile-text {
