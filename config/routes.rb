@@ -7,7 +7,7 @@ Fitzo::Application.routes.draw do
     resources :services, except: [:index]
     resources :specialties, only: [:new, :create]
     resources :recommendations, only: [:create, :edit, :update, :destroy]
-    resources :locations, only: [:new, :create]
+    resources :locations, only: [:new, :create, :destroy]
   end
   root :to => "home#show"
   # The priority is based upon order of creation:

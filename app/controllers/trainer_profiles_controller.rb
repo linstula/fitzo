@@ -8,11 +8,21 @@ class TrainerProfilesController < ApplicationController
 
     # get_profiles returns all the trainer profiles from the locations
     # and returns them as a single dimensional array with unique elements
-    profile_results = view_context.get_profiles(@locations)
+    profile_search_results = view_context.get_profiles(@locations)
 
-    @profiles = Kaminari.paginate_array(profile_results).page(params[:page])
+    @profiles = Kaminari.paginate_array(profile_search_results).page(params[:page])
 
-    @json = @locations.to_gmaps4rails  
+    @json = @locations.to_gmaps4rails do |location, marker|
+      marker.infowindow render_to_string(:partial => "/locations/info_window", :locals => { :location => location})
+      # marker.picture({
+      #                 :picture => "http://www.blankdots.com/img/github-32x32.png",
+      #                 :width   => 32,
+      #                 :height  => 32
+      #                })
+      # marker.title   "i'm the title"
+      # marker.sidebar "i'm the sidebar"
+      # marker.json({ :id => user.id, :foo => "bar" })
+    end 
   end
 
   def show
