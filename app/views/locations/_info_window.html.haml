@@ -1,0 +1,9 @@
+%p.left
+	= image_tag location.trainer_profile.user.avatar_url(:micro)
+%p.left
+	%h6
+		= link_to "#{location.trainer_profile.owner_name}", 
+			trainer_profile_path(location.trainer_profile)
+	%p
+		= location.full_address
+
