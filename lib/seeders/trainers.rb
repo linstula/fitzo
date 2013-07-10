@@ -88,32 +88,31 @@ module Seeders
       end
 
       def locs
-        [
-          ["133 Endicott Street",     "Boston",         "MA", "02113"], 
-          ["8 S Market St",           "Boston",         "MA", "02109"],
-          ["90 Canal St",             "Boston",         "MA", "02114"], 
-          ["1 Washington Mall",       "Boston",         "MA", "02203"],
-          ["145 Hanover Street",      "Boston",         "MA", "02108"], 
-          ["143 Hampshire Street",    "Cambridge",      "MA", "02139"],
-          ["46 Cross St",             "Boston",         "MA", "02113"], 
-          ["225 Franklin Street",     "Boston",         "MA", "02110"],
-          ["4 Avery Street",          "Boston",         "MA", "02111"], 
-          ["9 Newbury Street",        "Boston",         "MA", "02116"], 
-          ["364 Boylston Street",     "Boston",         "MA", "02116"], 
-          ["36 Newbury Street",       "Boston",         "MA", "02116"], 
-          ["173 Marlborough St",      "Chelsea",        "MA", "02150"], 
-          ["561 Boylston Street",     "Boston",         "MA", "02116"], 
-          ["249 Newbury Street",      "Boston",         "MA", "02116"], 
-          ["540 Tremont Street",      "Boston",         "MA", "02116"], 
-          ["323 Dorchester Avenue",   "Boston",         "MA", "02127"], 
-          ["131 West 8th Street",     "Boston",         "MA", "02127"], 
-          ["301 3rd Street",          "Cambridge",      "MA", "02142"], 
-          ["22 Lincoln Street",       "Boston",         "MA", "02111"], 
-          ["154 Magazine St #21",     "Cambridge",      "MA", "02139"], 
-          ["7 Temple Street",         "Boston",         "MA", "02114"], 
-          ["1379 Beacon Street",      "Brookline",      "MA", "02446"], 
-          ["920 Commonwealth Avenue", "Boston",         "MA", "02215"], 
-          ["183 Green Street",        "Cambridge",      "MA", "02139"]
+        @locs ||= [
+          ["1 Kendall Square",        "Cambridge",      "MA", "02139"],
+          ["17 Station St",           "Brookline",      "MA", "02445"],
+          ["10 Presidential Way",     "Woburn",         "MA", "01801"], 
+          ["486 Green St",            "Cambridge",      "MA", "02139"],
+          ["100 CambridgePark Drive", "Cambridge",      "MA", "02140"], 
+          ["175 Crossing Boulevard",  "Framingham",     "MA", "01701"],
+          ["81 Wareham St",           "Boston",         "MA", "02118"], 
+          ["1 Kendall Sq",            "Cambridge",      "MA", "02139"],
+          ["1601 Trapelo Rd",         "Waltham",        "MA", "02451"], 
+          ["290 Congress Street",     "Boston",         "MA", "02210"], 
+          ["31 St. James Ave",        "Boston",         "MA", "02116"], 
+          ["25 First Street",         "Cambridge",      "MA", "02141"], 
+          ["10 Presidential Way",     "Woburn",         "MA", "01801"], 
+          ["86 Shrewsbury Street",    "Worcester",      "MA", "01604"], 
+          ["1 Appleton Street",       "Boston",         "MA", "02116"], 
+          ["4 South Market Place",    "Boston",         "MA", "02109"], 
+          ["50S Peen St",             "Framingham",     "MA", "01701"], 
+          ["896 Beacon St",           "Boston",         "MA", "02115"], 
+          ["10 Milk St",              "Boston",         "MA", "02108"], 
+          ["210 Broadway",            "Cambridge",      "MA", "02139"], 
+          ["41 Winter Street",        "Boston",         "MA", "02108"], 
+          ["36 Bromfield St",         "Boston",         "MA", "02108"], 
+          ["500 Boylston Street",     "Boston",         "MA", "02116"], 
+          ["201 South Street",        "Boston",         "MA", "02110"]
         ].shuffle
       end
 
