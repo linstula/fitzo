@@ -18,7 +18,7 @@ module Seeders
           members << member
         end
 
-        (1..25).each do |n|
+        (1..24).each do |n|
           u_name = names[(rand(names.length))]
 
           trainer = {
@@ -40,7 +40,7 @@ module Seeders
           u.create_profile_for_trainer
           
           # add a location
-          loc = u.trainer_profile.locations.build(street_address: locs[n][0], city: locs[n][1], state: locs[n][2], zip_code: locs[n][3])
+          loc = u.trainer_profile.locations.build(street_address: locs[n-1][0], city: locs[n-1][1], state: locs[n-1][2], zip_code: locs[n-1][3])
           loc.definitive_result?
           loc.save
           
@@ -89,21 +89,31 @@ module Seeders
 
       def locs
         [
-          ["133 Endicott Street", "Boston", "MA", "02113"], ["8 S Market St", "Boston", "MA", "02109"],
-          ["90 Canal Street", "Boston", "MA", "02114"], ["1 Washington Mall", "Boston", "MA", "02108"],
-          ["145 Hanover Street", "Boston", "MA", "02108"], ["276 Washington Street", "Boston", "MA", "02108"],
-          ["1 Beacon Street", "Boston", "MA", "02108"], ["225 Franklin Street", "Boston", "MA", "02110"],
-          ["4 Avery Street", "Boston", "MA", "02111"], ["48 Boylston Street", "Boston", "MA", "02116"], 
-          ["9 Newbury Street", "Boston", "MA", "02116"], ["364 Boylston Street", "Boston", "MA", "02116"], 
-          ["36 Newbury Street", "Boston", "MA", "02116"], ["173 Marlborough St","Boston"," MA","02116"], 
-          ["561 Boylston Street", "Boston", "MA", "02116"], ["249 Newbury Street", "Boston", "MA", "02116"], 
-          ["540 Tremont Street", "Boston", "MA", "02116"], ["653 Summer St", "Boston", "MA", "02210"], 
-          ["323 Dorchester Avenue", "South Boston", "MA", "02127"], ["131 West 8th Street", "Boston", "MA", "02127"], 
-          ["301 3rd Street", "Cambridge", "MA", "02142"], ["Bunker Hill Street", "Charlestown", "MA", "02129"], 
-          ["22 Lincoln Street", "Somerville", "MA", "02145"], ["154 Magazine St #21", "Cambridge", "MA", "02139"], 
-          ["7 Temple Street", "Cambridge", "MA", "02139"], ["114 Western Avenue", "Boston", "MA", "02134"], 
-          ["920 Commonwealth Avenue", "Brookline", "MA", "02215"], ["183 Green Street", "Jamaica Plain", "MA", "02130"], 
-          ["35 White Street", "Cambridge", "MA", "02138"], ["656 Washington Street", "Brighton", "MA", "02135"] 
+          ["133 Endicott Street",     "Boston",         "MA", "02113"], 
+          ["8 S Market St",           "Boston",         "MA", "02109"],
+          ["90 Canal St",             "Boston",         "MA", "02114"], 
+          ["1 Washington Mall",       "Boston",         "MA", "02203"],
+          ["145 Hanover Street",      "Boston",         "MA", "02108"], 
+          ["143 Hampshire Street",    "Cambridge",      "MA", "02139"],
+          ["46 Cross St",             "Boston",         "MA", "02113"], 
+          ["225 Franklin Street",     "Boston",         "MA", "02110"],
+          ["4 Avery Street",          "Boston",         "MA", "02111"], 
+          ["9 Newbury Street",        "Boston",         "MA", "02116"], 
+          ["364 Boylston Street",     "Boston",         "MA", "02116"], 
+          ["36 Newbury Street",       "Boston",         "MA", "02116"], 
+          ["173 Marlborough St",      "Chelsea",        "MA", "02150"], 
+          ["561 Boylston Street",     "Boston",         "MA", "02116"], 
+          ["249 Newbury Street",      "Boston",         "MA", "02116"], 
+          ["540 Tremont Street",      "Boston",         "MA", "02116"], 
+          ["323 Dorchester Avenue",   "Boston",         "MA", "02127"], 
+          ["131 West 8th Street",     "Boston",         "MA", "02127"], 
+          ["301 3rd Street",          "Cambridge",      "MA", "02142"], 
+          ["22 Lincoln Street",       "Boston",         "MA", "02111"], 
+          ["154 Magazine St #21",     "Cambridge",      "MA", "02139"], 
+          ["7 Temple Street",         "Boston",         "MA", "02114"], 
+          ["1379 Beacon Street",      "Brookline",      "MA", "02446"], 
+          ["920 Commonwealth Avenue", "Boston",         "MA", "02215"], 
+          ["183 Green Street",        "Cambridge",      "MA", "02139"]
         ].shuffle
       end
 
