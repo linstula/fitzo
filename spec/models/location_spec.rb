@@ -67,5 +67,4 @@ describe Location, :vcr do
     expect(search_results.include?(loc)).to be true 
     expect(search_results.include?(loc_2)).to be false
   end
-  it "can be searched for through specialties associations by :title"
 end

@@ -10,6 +10,4 @@ describe Specialty do
 
   it { should_not have_valid(:title).when("", nil)}
 
-  it "should have a better controller for admin use"
-
 end
