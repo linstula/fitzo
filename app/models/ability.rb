@@ -11,6 +11,7 @@ class Ability
       can [:update, :destroy], Recommendation do |rec|
         rec && rec.user == user
       end
+      can [:read], Location
 
       if user.role == "trainer"
         can :manage, TrainerProfile, user_id: user.id

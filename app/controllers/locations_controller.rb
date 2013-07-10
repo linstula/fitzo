@@ -1,8 +1,7 @@
 class LocationsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource
   load_and_authorize_resource :trainer_profile
-
+  load_and_authorize_resource :location, through: :trainer_profile
   def new
     # @trainer_profile = current_user.trainer_profile
     # @location = Location.new
