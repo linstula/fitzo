@@ -20,6 +20,9 @@ class TrainerProfilesController < ApplicationController
 
   def show
     current_user ||= User.new
+    @trainer_profile = TrainerProfile.includes(:locations, :services,
+      :specialties, recommendations: [:user]).find(params[:id])
+      
     @locations = @trainer_profile.locations
     @json = @locations.to_gmaps4rails
     @recommendation = current_user.recommendations.build
