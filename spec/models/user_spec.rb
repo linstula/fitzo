@@ -29,7 +29,6 @@ describe User do
       trainer.save
       trainer.build_trainer_profile.save
       expect(trainer.trainer_profile).to be_valid
-      # Test the profile creation method in the user model
     end
 
     it "does not have a profile if the role is 'member'" do

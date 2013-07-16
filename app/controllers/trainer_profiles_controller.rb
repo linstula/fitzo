@@ -13,15 +13,8 @@ class TrainerProfilesController < ApplicationController
     @profiles = Kaminari.paginate_array(profile_search_results).page(params[:page])
 
     @json = @locations.to_gmaps4rails do |location, marker|
-      marker.infowindow render_to_string(:partial => "/locations/info_window", :locals => { :location => location})
-      # marker.picture({
-      #                 :picture => "http://www.blankdots.com/img/github-32x32.png",
-      #                 :width   => 32,
-      #                 :height  => 32
-      #                })
-      # marker.title   "i'm the title"
-      # marker.sidebar "i'm the sidebar"
-      # marker.json({ :id => user.id, :foo => "bar" })
+      marker.infowindow render_to_string(:partial => "/locations/info_window",
+        :locals => { :location => location})
     end 
   end
 

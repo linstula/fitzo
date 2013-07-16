@@ -19,9 +19,6 @@ class Location < ActiveRecord::Base
 
   attr_accessible :city, :state, :street_address, :zip_code, :full_address
 
-
-  # this should be a before_validaiton callback
-  # instead of a before_save but it blows up the unit tests. 
   before_save :set_location_data
 
   acts_as_gmappable :process_geocoding => false
@@ -46,12 +43,12 @@ class Location < ActiveRecord::Base
     end
   end
 
-  def gmaps4rails_infowindow
-    "<span>" +
-    "<img src=" + "#{self.trainer_profile.user.avatar_url(:micro)}" + ">" +
-    "#{self.trainer_profile.owner_name}" +
-    "</span>"
-  end
+  # def gmaps4rails_infowindow
+  #   "<span>" +
+  #   "<img src=" + "#{self.trainer_profile.user.avatar_url(:micro)}" + ">" +
+  #   "#{self.trainer_profile.owner_name}" +
+  #   "</span>"
+  # end
 
   def gmaps4rails_address
     "#{latitude}, #{longitude}"

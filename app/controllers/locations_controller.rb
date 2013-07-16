@@ -2,16 +2,14 @@ class LocationsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource :trainer_profile
   load_and_authorize_resource :location, through: :trainer_profile
+
   def new
-    # @trainer_profile = current_user.trainer_profile
-    # @location = Location.new
     if current_user.id != @trainer_profile.user.id
       redirect_to root_path, notice: "Access denied"
     end
   end
 
   def create
-    # @trainer_profile = current_user.trainer_profile
     @location = @trainer_profile.locations.build(params[:location])
     
     if @location.definitive_result?
