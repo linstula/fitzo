@@ -16,8 +16,10 @@
             %h6.truncate
               = link_to "#{profile.owner_name}", trainer_profile_path(profile)
             %h6.subheader.address.truncate
-              - if profile.locations.count > 1
+              - if profile.locations.size > 1
                 = "#{profile.locations.first.full_address}, ..."
+              -elsif profile.locations.size == 0
+                = "No location established."
               - else
                 = profile.locations.first.full_address 
             %h6.subheader.specs.truncate
