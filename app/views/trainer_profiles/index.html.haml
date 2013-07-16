@@ -26,7 +26,7 @@
               = link_to "Recommend",
               trainer_profile_path(profile), class: "button tiny"
               %span.count
-                = profile.recommendations.count
+                = profile.recommendations.size
             
     .row.large-offset-1.pag-links
       = paginate @profiles
