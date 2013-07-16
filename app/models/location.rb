@@ -1,7 +1,8 @@
 class Location < ActiveRecord::Base
   include PgSearch
 
-  belongs_to :trainer_profile
+  belongs_to :trainer_profile, 
+    counter_cache: true
 
   has_many :specialties,
     through: :trainer_profile

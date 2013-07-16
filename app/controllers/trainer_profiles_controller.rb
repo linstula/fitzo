@@ -4,7 +4,7 @@ class TrainerProfilesController < ApplicationController
 
   def index
     # The search_for_locations method returns a two dimensional array
-    @locations = Location.search_for_locations(params[:query])
+    @locations = Location.search_for_locations(params[:query]).includes(trainer_profile: [:user, :specialties, :locations])
 
     # get_profiles returns all the trainer profiles from the locations
     # and returns them as a single dimensional array with unique elements
@@ -20,6 +20,9 @@ class TrainerProfilesController < ApplicationController
 
   def show
     current_user ||= User.new
+    @trainer_profile = TrainerProfile.includes(:locations, :services,
+      :specialties, recommendations: [:user]).find(params[:id])
+      
     @locations = @trainer_profile.locations
     @json = @locations.to_gmaps4rails
     @recommendation = current_user.recommendations.build

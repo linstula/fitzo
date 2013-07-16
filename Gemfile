@@ -25,6 +25,10 @@ gem 'kaminari'
 
 gem 'newrelic_rpm'
 
+group :development do
+  gem 'bullet'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
