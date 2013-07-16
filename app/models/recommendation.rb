@@ -1,6 +1,6 @@
 class Recommendation < ActiveRecord::Base
   belongs_to :user
-  belongs_to :trainer_profile
+  belongs_to :trainer_profile, counter_cache: true
 
   validates_presence_of :title
   validates_presence_of :content
