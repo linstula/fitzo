@@ -26,6 +26,8 @@ class TrainerProfile < ActiveRecord::Base
 
   attr_accessible :services_attributes, :phone_number, :website, :about, :owner_name
 
+  delegate :first_name, to: :user, prefix: true
+
   def owner?(current_user)
     current_user == user
   end
