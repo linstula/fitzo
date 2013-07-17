@@ -9,6 +9,8 @@ class Recommendation < ActiveRecord::Base
 
   attr_accessible :content, :title, :trainer_profile_id, :user_id
 
+  delegate :full_name, to: :user, prefix: true
+
   def valid_recommendation?
     self.trainer_profile != self.user.trainer_profile
   end
