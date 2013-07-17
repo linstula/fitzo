@@ -30,8 +30,7 @@ class Location < ActiveRecord::Base
     against: [:street_address, :zip_code, :neighborhood, :city],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {
-      specialties: :title,
-      trainer_profile: :owner_name
+      specialties: :title
     }
 
   def self.search_for_locations(query)

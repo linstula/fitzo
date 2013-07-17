@@ -20,8 +20,6 @@ class TrainerProfile < ActiveRecord::Base
 
   validates_presence_of :user_id
 
-  before_save :get_owner_name
-
   accepts_nested_attributes_for :services, allow_destroy: true
 
   attr_accessible :services_attributes, :phone_number, :website, :about, :owner_name
