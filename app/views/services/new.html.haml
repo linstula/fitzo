@@ -1,5 +1,5 @@
 .row
   .large-8.columns
     %h2 
-      = "New Service for #{current_user.first_name} #{current_user.last_name}"
-    = render 'services/form'
+      = "New Service for #{current_user.full_name}"
+    = render 'services/form', trainer_profile: @trainer_profile, service: @service

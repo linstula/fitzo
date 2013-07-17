@@ -1,6 +1,6 @@
 .row
-  = render 'profile_info'
+  = render 'profile_info', trainer_profile: @trainer_profile, json: @json
 
-  = render 'profile_services'
+  = render 'profile_services', trainer_profile: @trainer_profile
 
-  = render 'profile_recommendations'
+  = render 'profile_recommendations', trainer_profile: @trainer_profile, recommendation: @recommendation
