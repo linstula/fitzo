@@ -45,11 +45,6 @@ class Location < ActiveRecord::Base
     end
   end
 
-  def gmaps4rails_address
-    "#{latitude}, #{longitude}"
-  end
-
-
   def definitive_result?
     @loc_data = query_location_data
     @loc_data.count == 1

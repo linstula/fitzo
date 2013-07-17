@@ -26,10 +26,6 @@ class TrainerProfile < ActiveRecord::Base
 
   delegate :first_name, to: :user, prefix: true
 
-  def owner?(current_user)
-    current_user == user
-  end
-
   def owner_name
     self.user.full_name
   end
