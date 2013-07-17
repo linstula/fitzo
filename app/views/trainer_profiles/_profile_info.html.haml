@@ -2,31 +2,31 @@
   .small-5.large-3.columns.small-centered.large-uncentered.avatar-box
     .row
       .columns
-        = image_tag @trainer_profile.user.avatar_url(:large)
+        = image_tag trainer_profile.user.avatar_url(:large)
       .columns.avatar-box-text
         %p
           %span.rec-btn
             Recommendations:
           %span.count
-            = @trainer_profile.recommendations.size
+            = trainer_profile.recommendations.size
         %p
           %span Specialties:
           %span
-            = @trainer_profile.specialty_titles.join(", ")
+            = trainer_profile.specialty_titles.join(", ")
   .small-12.large-5.columns.contact-info
     %h1.columns
-      = "#{@trainer_profile.owner_name}"
-    - locations_list(@trainer_profile).each do |address|
+      = "#{trainer_profile.owner_name}"
+    - locations_list(trainer_profile).each do |address|
       %p.subheader.columns
         = address
     %p.subheader.columns
-      = @trainer_profile.phone_number
+      = trainer_profile.phone_number
     %p.subheader.columns
-      = link_to @trainer_profile.website, "http://" + @trainer_profile.website
+      = link_to trainer_profile.website, "http://" + trainer_profile.website
     %p.subheader.about.columns
-      = @trainer_profile.about
+      = trainer_profile.about
   .large-3.columns.right.trainer-map
-    - unless @trainer_profile.locations.empty?
-      = gmaps4rails(@json)
+    - unless trainer_profile.locations.empty?
+      = gmaps4rails(json)
 .row.profile-divider.hide-for-small
   &nbsp;
