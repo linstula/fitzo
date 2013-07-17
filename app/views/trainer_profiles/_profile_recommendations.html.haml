@@ -10,7 +10,7 @@
           .member-avatar.columns
             = image_tag recommendation.user.avatar_url(:small)
           %p.columns
-            = recommendation.user.first_name + " " + recommendation.user.last_name
+            = recommendation.user_full_name
           %p.subheader.columns
             = recommendation.created_at.strftime("%d %b. %y")
           %p.columns
@@ -25,6 +25,6 @@
             = recommendation.content
   .large-4.columns#rec-form
     %h4
-      = "Recommend #{@trainer_profile.user.first_name}"
+      = "Recommend #{@trainer_profile.user_first_name}"
     = render 'recommendations/form', { trainer_profile: @trainer_profile, recommendation: @recommendation  }
 

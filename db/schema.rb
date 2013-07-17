@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716185305) do
+ActiveRecord::Schema.define(:version => 20130717165230) do
 
   create_table "locations", :force => true do |t|
     t.string   "street_address"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20130716185305) do
     t.integer  "trainer_profile_id"
   end
 
+  add_index "locations", ["trainer_profile_id"], :name => "index_locations_on_trainer_profile_id"
+
   create_table "recommendations", :force => true do |t|
     t.string   "title",              :null => false
     t.text     "content",            :null => false
@@ -37,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20130716185305) do
   end
 
   add_index "recommendations", ["trainer_profile_id", "user_id"], :name => "index_recommendations_on_trainer_profile_id_and_user_id", :unique => true
+  add_index "recommendations", ["trainer_profile_id"], :name => "index_recommendations_on_trainer_profile_id"
+  add_index "recommendations", ["user_id"], :name => "index_recommendations_on_user_id"
 
   create_table "services", :force => true do |t|
     t.string   "title",              :null => false
@@ -48,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20130716185305) do
     t.datetime "updated_at",         :null => false
     t.string   "duration",           :null => false
   end
+
+  add_index "services", ["trainer_profile_id"], :name => "index_services_on_trainer_profile_id"
 
   create_table "specialties", :force => true do |t|
     t.string   "title",      :default => "", :null => false
@@ -62,10 +68,11 @@ ActiveRecord::Schema.define(:version => 20130716185305) do
     t.string   "phone_number",          :default => ""
     t.string   "website",               :default => ""
     t.text     "about",                 :default => ""
-    t.string   "owner_name"
     t.integer  "recommendations_count", :default => 0,  :null => false
     t.integer  "locations_count",       :default => 0,  :null => false
   end
+
+  add_index "trainer_profiles", ["user_id"], :name => "index_trainer_profiles_on_user_id"
 
   create_table "trainer_specialties", :force => true do |t|
     t.integer  "trainer_profile_id", :null => false
@@ -74,7 +81,9 @@ ActiveRecord::Schema.define(:version => 20130716185305) do
     t.datetime "updated_at",         :null => false
   end
 
+  add_index "trainer_specialties", ["specialty_id"], :name => "index_trainer_specialties_on_specialty_id"
   add_index "trainer_specialties", ["trainer_profile_id", "specialty_id"], :name => "trainer_specialties_uniqeness_index", :unique => true
+  add_index "trainer_specialties", ["trainer_profile_id"], :name => "index_trainer_specialties_on_trainer_profile_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",       :null => false

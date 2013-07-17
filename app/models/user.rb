@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
       self.build_trainer_profile.save
     end
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

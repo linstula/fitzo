@@ -27,6 +27,7 @@ gem 'newrelic_rpm'
 
 group :development do
   gem 'bullet'
+  gem 'rails_best_practices'
 end
 
 # Gems used only for assets and not required
