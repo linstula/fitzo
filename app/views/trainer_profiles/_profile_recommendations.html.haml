@@ -1,23 +1,23 @@
 .row.section.rec-section
   %h3
-    = "#{@trainer_profile.recommendations.size} Recommendations"
+    = "#{trainer_profile.recommendations.size} Recommendations"
   .section-border
     &nbsp;
   .large-8.columns.recommendations
-    - @trainer_profile.recommendations.each do |recommendation|
+    - trainer_profile.recommendations.each do |recommendation|
       .row.rec
         .small-4.large-3.columns.rec-info
           .member-avatar.columns
             = image_tag recommendation.user.avatar_url(:small)
           %p.columns
-            = recommendation.user.first_name + " " + recommendation.user.last_name
+            = recommendation.user_full_name
           %p.subheader.columns
             = recommendation.created_at.strftime("%d %b. %y")
           %p.columns
             - if can? :update, recommendation
-              = link_to "Edit", edit_trainer_profile_recommendation_path(@trainer_profile, recommendation), method: :get, class: "button tiny"
+              = link_to "Edit", edit_trainer_profile_recommendation_path(trainer_profile, recommendation), method: :get, class: "button tiny"
             - if can? :destroy, recommendation
-              = link_to "Remove", trainer_profile_recommendation_path(@trainer_profile, recommendation), method: :delete, data: { confirm: "Are you sure you want to delete this recommendation?" }, class: "button tiny alert"
+              = link_to "Remove", trainer_profile_recommendation_path(trainer_profile, recommendation), method: :delete, data: { confirm: "Are you sure you want to delete this recommendation?" }, class: "button tiny alert"
         .small-8.large-9.columns.rec-content
           %h5
             = recommendation.title
@@ -25,6 +25,6 @@
             = recommendation.content
   .large-4.columns#rec-form
     %h4
-      = "Recommend #{@trainer_profile.user.first_name}"
-    = render 'recommendations/form', { trainer_profile: @trainer_profile, recommendation: @recommendation  }
+      = "Recommend #{trainer_profile.user_first_name}"
+    = render 'recommendations/form', { trainer_profile: trainer_profile, recommendation: recommendation  }
 

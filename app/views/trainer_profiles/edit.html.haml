@@ -1,6 +1,6 @@
 .row
   %h1
     Edit Profile
-  = render 'edit_profile_info'
+  = render 'edit_profile_info', trainer_profile: @trainer_profile, json: @json
 
-  = render 'edit_profile_services'
+  = render 'edit_profile_services', trainer_profile: @trainer_profile

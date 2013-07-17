@@ -3,6 +3,8 @@ class Location < ActiveRecord::Base
 
   belongs_to :trainer_profile, 
     counter_cache: true
+  
+  delegate :owner_name, to: :trainer_profile, prefix: true
 
   has_many :specialties,
     through: :trainer_profile
@@ -28,8 +30,7 @@ class Location < ActiveRecord::Base
     against: [:street_address, :zip_code, :neighborhood, :city],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {
-      specialties: :title,
-      trainer_profile: :owner_name
+      specialties: :title
     }
 
   def self.search_for_locations(query)
@@ -43,18 +44,6 @@ class Location < ActiveRecord::Base
       scoped
     end
   end
-
-  # def gmaps4rails_infowindow
-  #   "<span>" +
-  #   "<img src=" + "#{self.trainer_profile.user.avatar_url(:micro)}" + ">" +
-  #   "#{self.trainer_profile.owner_name}" +
-  #   "</span>"
-  # end
-
-  def gmaps4rails_address
-    "#{latitude}, #{longitude}"
-  end
-
 
   def definitive_result?
     @loc_data = query_location_data

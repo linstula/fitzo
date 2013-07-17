@@ -11,6 +11,7 @@ class TrainerProfile < ActiveRecord::Base
 
   has_many :specialties, 
     through: :trainer_specialties
+
   has_many :trainer_specialties,
     dependent: :destroy
 
@@ -19,18 +20,14 @@ class TrainerProfile < ActiveRecord::Base
 
   validates_presence_of :user_id
 
-  before_save :get_owner_name
-
   accepts_nested_attributes_for :services, allow_destroy: true
 
   attr_accessible :services_attributes, :phone_number, :website, :about, :owner_name
 
-  def owner?(current_user)
-    current_user == user
-  end
+  delegate :first_name, to: :user, prefix: true
 
-  def get_owner_name
-    self.owner_name = "#{user.first_name.capitalize} #{user.last_name.capitalize}"
+  def owner_name
+    self.user.full_name
   end
 
   def specialty_titles
