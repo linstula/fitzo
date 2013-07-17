@@ -16,14 +16,14 @@
     .small-6.large-1.columns.left
       %h5
         Duration
-  - @trainer_profile.services.each do |service|
+  - trainer_profile.services.each do |service|
     .row.service
       .small-12.large-3.columns.serv-title
         %h6
           = service.title
         %p
-          = link_to "Edit", edit_trainer_profile_service_path(@trainer_profile, service), class: "button small"
-          = link_to "Remove", trainer_profile_service_path(@trainer_profile, service), method: :delete, confirm: "Are you sure?", class: "button small alert"
+          = link_to "Edit", edit_trainer_profile_service_path(trainer_profile, service), class: "button small"
+          = link_to "Remove", trainer_profile_service_path(trainer_profile, service), method: :delete, confirm: "Are you sure?", class: "button small alert"
       .small-12.large-5.columns.serv-description
         %span.subheader
           = service.description
@@ -36,4 +36,4 @@
         %span
           = service.duration
   .row.columns#new-service
-    = link_to "Add a new service", new_trainer_profile_service_path(@trainer_profile), class: "button"
+    = link_to "Add a new service", new_trainer_profile_service_path(trainer_profile), class: "button"

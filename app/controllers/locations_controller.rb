@@ -4,9 +4,6 @@ class LocationsController < ApplicationController
   load_and_authorize_resource :location, through: :trainer_profile
 
   def new
-    if current_user.id != @trainer_profile.user.id
-      redirect_to root_path, notice: "Access denied"
-    end
   end
 
   def create

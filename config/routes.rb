@@ -4,7 +4,7 @@ Fitzo::Application.routes.draw do
   resource :home, only: [:show]
 
   resources :trainer_profiles, only: [:index, :show, :edit, :update] do
-    resources :services, except: [:index]
+    resources :services, except: [:index, :show]
     resources :specialties, only: [:new, :create]
     resources :recommendations, only: [:create, :edit, :update, :destroy]
     resources :locations, only: [:new, :create, :destroy]
