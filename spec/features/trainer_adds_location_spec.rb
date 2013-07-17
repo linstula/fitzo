@@ -12,14 +12,14 @@ feature "Trainer adds location", :vcr do
 
     it "can add a location with valid attributes" do
       sign_in(trainer)
-      prev_count = profile.locations.size
+      prev_count = profile.locations.count
       visit edit_trainer_profile_path(profile)
 
       click_on "Add a Location"
       fill_in_location_form(location)
       click_on "Add Location"
 
-      expect(profile.locations.size).to eql(prev_count + 1)
+      expect(profile.locations.count).to eql(prev_count + 1)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
       expect(page).to have_content(location[:street_address])
       expect(page).to have_content("Location added.")
@@ -27,21 +27,21 @@ feature "Trainer adds location", :vcr do
     
     it "cannot add a location with invalid attributes" do
       sign_in(trainer)
-      prev_count = profile.locations.size
+      prev_count = profile.locations.count
       visit edit_trainer_profile_path(profile)
 
       click_on "Add a Location"
     
       click_on "Add Location"
 
-      expect(profile.locations.size).to eql(prev_count)
+      expect(profile.locations.count).to eql(prev_count)
       expect(current_path).to eql(new_trainer_profile_location_path(profile))
       expect(page).to have_content("We couldn't find that address.")
     end
 
     it "cannot create an ambiguous location" do
       sign_in(trainer)
-      prev_count = profile.locations.size
+      prev_count = profile.locations.count
       visit edit_trainer_profile_path(profile)
 
       click_on "Add a Location"
@@ -51,14 +51,14 @@ feature "Trainer adds location", :vcr do
       fill_in "Zip code", with: "12345"
       click_on "Add Location"
 
-      expect(profile.locations.size).to eql(prev_count)
+      expect(profile.locations.count).to eql(prev_count)
       expect(current_path).to eql(new_trainer_profile_location_path(profile))
       expect(page).to have_content("We couldn't find that address.")
     end
 
     it "can have more than one location" do
       sign_in(trainer)
-      prev_count = profile.locations.size
+      prev_count = profile.locations.count
       visit edit_trainer_profile_path(profile)
 
       click_on "Add a Location"
@@ -72,7 +72,7 @@ feature "Trainer adds location", :vcr do
       fill_in "Zip code", with: "02108"
       click_on "Add Location"
 
-      expect(profile.locations.size).to eql(prev_count + 2)
+      expect(profile.locations.count).to eql(prev_count + 2)
       expect(current_path).to eql(edit_trainer_profile_path(profile))
       expect(page).to have_content(location[:street_address])
       expect(page).to have_content("1 Washington Mall")

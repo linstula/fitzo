@@ -8,9 +8,9 @@ class TrainerProfilesController < ApplicationController
 
     # get_profiles returns all the trainer profiles from the locations
     # and returns them as a single dimensional array with unique elements
-    profile_search_results = view_context.get_profiles(@locations)
+    search_results_profiles = get_profiles(@locations)
 
-    @profiles = Kaminari.paginate_array(profile_search_results).page(params[:page])
+    @profiles = Kaminari.paginate_array(search_results_profiles).page(params[:page])
 
     @json = @locations.to_gmaps4rails do |location, marker|
       marker.infowindow render_to_string(:partial => "/locations/info_window",
@@ -51,4 +51,16 @@ class TrainerProfilesController < ApplicationController
       end
     end
   end
+
+  private
+
+  def get_profiles(locations)
+    profiles = []
+    locations.each do |location|
+      profiles << location.trainer_profile unless profiles.include?(location.trainer_profile)
+    end
+   profiles
+  end
+
+  helper_method :get_profiles
 end
