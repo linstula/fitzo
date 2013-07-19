@@ -10,10 +10,8 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'cancan'
 gem 'devise'
-gem 'cancan'
 gem 'simple_form'
 gem 'haml-rails'
-gem 'simple_form'
 gem 'geocoder'
 gem 'pg_search'
 gem 'gmaps4rails'
@@ -22,8 +20,6 @@ gem "mini_magick"
 gem "carrierwave"
 gem "fog", "~> 1.3.1"
 gem 'kaminari'
-
-gem 'newrelic_rpm'
 
 group :development do
   gem 'bullet'
