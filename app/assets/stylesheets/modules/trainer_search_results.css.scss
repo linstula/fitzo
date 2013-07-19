@@ -1,5 +1,6 @@
 .search-map {
   margin-top: 1em;
+  min-width: 325px;
 }
 
 .row.profile-box {
@@ -31,6 +32,10 @@
   height: auto;
 }
 
+#search-results {
+  min-width: 360px;
+}
+
 .profile-box .prof-text-container {
   width: 75%;
 }
@@ -57,6 +62,7 @@
   margin: 0;
   font-size: 0.8em;
   color: #000;
+  line-height: 1em;
 }
 
 .profile-text h6 span.count {
