@@ -21,6 +21,8 @@ gem "carrierwave"
 gem "fog", "~> 1.3.1"
 gem 'kaminari'
 
+gem 'newrelic_rpm'
+
 gem 'dalli'
 gem 'memcachier'
 
