@@ -21,6 +21,9 @@ gem "carrierwave"
 gem "fog", "~> 1.3.1"
 gem 'kaminari'
 
+gem 'dalli'
+gem 'memcachier'
+
 group :development do
   gem 'bullet'
   gem 'rails_best_practices'
