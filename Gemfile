@@ -21,10 +21,15 @@ gem "carrierwave"
 gem "fog", "~> 1.3.1"
 gem 'kaminari'
 
-group :development do
-  gem 'bullet'
-  gem 'rails_best_practices'
-end
+gem 'newrelic_rpm'
+
+gem 'dalli'
+gem 'memcachier'
+
+# group :development do
+#   gem 'bullet'
+#   gem 'rails_best_practices'
+# end
 
 # Gems used only for assets and not required
 # in production environments by default.
