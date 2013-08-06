@@ -1,7 +1,7 @@
 class TrainerProfile < ActiveRecord::Base
   include PgSearch
 
-  belongs_to :user
+  belongs_to :user, touch: true
 
   has_many :locations,
     dependent: :destroy
@@ -9,7 +9,7 @@ class TrainerProfile < ActiveRecord::Base
   has_many :services,
     dependent: :destroy
 
-  has_many :specialties, 
+  has_many :specialties,
     through: :trainer_specialties
 
   has_many :trainer_specialties,

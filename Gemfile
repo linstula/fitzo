@@ -26,10 +26,10 @@ gem 'newrelic_rpm'
 gem 'dalli'
 gem 'memcachier'
 
-group :development do
-  gem 'bullet'
-  gem 'rails_best_practices'
-end
+# group :development do
+#   gem 'bullet'
+#   gem 'rails_best_practices'
+# end
 
 # Gems used only for assets and not required
 # in production environments by default.

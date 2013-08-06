@@ -1,9 +1,10 @@
 class Location < ActiveRecord::Base
   include PgSearch
 
-  belongs_to :trainer_profile, 
-    counter_cache: true
-  
+  belongs_to :trainer_profile,
+    counter_cache: true,
+    touch: true
+
   delegate :owner_name, to: :trainer_profile, prefix: true
 
   has_many :specialties,
@@ -26,7 +27,7 @@ class Location < ActiveRecord::Base
 
   acts_as_gmappable :process_geocoding => false
 
-  pg_search_scope :location_search, 
+  pg_search_scope :location_search,
     against: [:street_address, :zip_code, :neighborhood, :city],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {
