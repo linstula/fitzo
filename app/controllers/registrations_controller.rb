@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    build_resource
+    build_resource(sign_up_params)
 
     if resource.save
       if resource.role == "trainer"
