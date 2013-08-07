@@ -1,6 +1,7 @@
 .row
-  = render 'profile_info', trainer_profile: @trainer_profile, json: @json
-
-  = render 'profile_services', trainer_profile: @trainer_profile
-
-  = render 'profile_recommendations', trainer_profile: @trainer_profile, recommendation: @recommendation
+	- cache ['info', @trainer_profile.user] do
+		= render 'profile_info', trainer_profile: @trainer_profile, json: @json
+	- cache ['services', @trainer_profile.user] do
+		= render 'profile_services', trainer_profile: @trainer_profile
+	- cache ['recommendations', @trainer_profile.user] do
+		= render 'profile_recommendations', trainer_profile: @trainer_profile, recommendation: @recommendation
